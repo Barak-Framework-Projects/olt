@@ -14,7 +14,7 @@ foreach ($directories as $directory) {
 }
 
 // Configuration : sets
-(new ApplicationConfig)->run();
+ApplicationConfig::run();
 
 // Database : connect and global share
 $db = ApplicationConfig::database();
