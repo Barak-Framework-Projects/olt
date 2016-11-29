@@ -15,6 +15,9 @@
 ### Simple Usage
 ---
 
+> request url : `/`
+
+
 > `config/routes.php`
 
 ```php
@@ -66,6 +69,8 @@ class HomeController extends ApplicationController {
 
 - Simple
 
+> `config/routes.php`
+
 ```php
 ApplicationRoutes::draw(
   get("/home/index")
@@ -82,16 +87,32 @@ ApplicationRoutes::draw(
 );
 ```
 
+> dynamical segment fetch variable
+
+> `app/controllers/HomeController.php`
+
+```php
+class HomeController extends ApplicationController {
+
+  public function index() {
+    echo $this->id;
+  }
+
+}
+```
+
 > `app/views/home/index.php`
 
 ```php
 <h1> Home#Index </h1>;
-<?= "id" . $params["id"]; ?>
+<?= "id" . $id; ?>
 ```
 
 #### POST
 
 - Simple
+
+> `config/routes.php`
 
 ```php
 ApplicationRoutes::draw(
@@ -99,11 +120,70 @@ ApplicationRoutes::draw(
 );
 ```
 
+> `app/controllers/AdminController.php`
+
+```php
+class AdminController extends ApplicationController {
+
+  protected $before_actions = [
+  ["require_login", "except" => ["login", "logout"]]
+  ];
+
+  public function login() {
+
+    if (isset($_SESSION["admin"]))
+      return $this->redirect_to("/admin/index");
+
+    if (isset($_POST["username"]) and isset($_POST["password"])) {
+
+      if ($user = User::unique(["username" => $_POST["username"], "password" => md5($_POST["password"])])) {
+
+        $_SESSION["success"] = "Admin sayfasına hoş geldiniz";
+        $_SESSION["full_name"] = "$user->first_name $user->last_name";
+        $_SESSION["admin"] = $user->id;
+        return $this->render("/admin/index");
+
+      } else {
+
+        $_SESSION["danger"] = "Oops! İsminiz veya şifreniz hatalı, belki de bunlardan sadece biri hatalıdır?";
+
+      }
+    }
+
+    return $this->render(["layout" => "default"]);
+  }
+
+  // public function index() {} // OPTIONAL
+
+  public function logout() {
+    if (isset($_SESSION["admin"]))
+      session_destroy();
+    return $this->redirect_to("/admin/login");
+  }
+
+  public function require_login() {
+    if (!isset($_SESSION["admin"])) {
+      $_SESSION["warning"] = "Lütfen hesabınıza giriş yapın!";
+      return $this->redirect_to("/admin/login");
+    }
+  }
+}
+```
+
+> `app/views/admin/index.php`
+
+```php
+<h1> Admin#Index </h1>;
+<?= $_SESSION["full_name"]; ?>
+```
+
 #### RESOURCE
+
+> `config/routes.php`
 
 ```php
 ApplicationRoutes::draw(
-  resources("/user")
+  resource("/users")
 );
 ```
 
@@ -111,21 +191,23 @@ ApplicationRoutes::draw(
 
 ```php
 ApplicationRoutes::draw(
-  get("/user/index"),           // all record
-  get("/user/new"),             // new record form
-  post("user/create"),          // new record create
-  get("user/show"),             // display record
-  get("user/edit"),             // edit record
-  post("user/update"),          // update record
-  post("user/destroy")          // destroy record
+  get("/users/", "user#index"), // all record
+  get("/users/create"),         // new record form
+  post("users/save"),           // new record save
+  get("/users/show"),           // display record
+  get("/users/edit"),           // edit record
+  post("/user/update"),         // update record
+  post("/user/destroy")         // destroy record
 );
 ```
 
 #### RESOURCES
 
+> `config/routes.php`
+
 ```php
 ApplicationRoutes::draw(
-  resources("/user")
+  resources("/users")
 );
 ```
 
@@ -133,29 +215,64 @@ ApplicationRoutes::draw(
 
 ```php
 ApplicationRoutes::draw(
-  get("/user/index"),           // all record
-  get("/user/new"),             // new record form
-  post("user/create"),          // new record create
-  get("user/show/:id"),         // display record
-  get("user/edit/:id"),         // edit record
-  post("user/update"),          // update record
-  post("user/destroy")          // destroy record
+  get("/users", "users#index"), // all record
+  get("/users/create"),         // new record form
+  post("/users/save"),          // new record save
+  get("/users/show/:id"),       // display record
+  get("/users/edit/:id"),       // edit record
+  post("/users/update"),        // update record
+  post("/users/destroy")        // destroy record
 );
 ```
 
 #### SCOPE
 
+> controller: `app/controllers/PATH/CONTROLLER.php`
+
+> view : `app/views/VIEW/PATH/ACTION.php`
+
+- Simple
+
+> `config/routes.php`
+
+> view : `app/views/admin/categories/ACTION.php`
+> controller : `app/controllers/admin/CategoriesController.php`
+
 ```php
 ApplicationRoutes::draw(
+ scope("admin",
+    resources("/categories")
+ )
+);
+```
+> *Aşağıdaki routes kümesini üretir:*
 
-  // Ör. 1:
-  resources("/category", "admin"),
-  resource("/product", "admin")
+```php
+ApplicationRoutes::draw(
+  get("/admin/categories", "categories#index", "admin"),  // all record
+  get("/admin/categories/create",       false, "admin"),  // new record form
+  post("/admin/categories/save",        false, "admin"),  // new record save
+  get("/admin/categories/show/:id",     false, "admin"),  // display record
+  get("/admin/categories/edit/:id",     false, "admin"),  // edit record
+  post("/admin/categories/update",      false, "admin"),  // update record
+  post("/admin/categories/destroy",     false, "admin"),  // destroy record
+);
+```
 
-  // Ör. 2:
+- Mix
+
+> `config/routes.php`
+
+```php
+ApplicationRoutes::draw(
+  get("/admin/login"),
   scope("admin",
-    resources("/category"),
-    resource("/product")
+    [
+    get("/users", "users#index"),
+    get("/users/show/:id")
+    ],
+    resources("/categories"),
+    resource("/products")
   );
 
 );
@@ -165,25 +282,28 @@ ApplicationRoutes::draw(
 
 ```php
 ApplicationRoutes::draw(
-  get("/admin/category/index"),       // all record
-  get("/admin/category/new"),         // new record form
-  post("/admin/category/create"),     // new record create
-  get("/admin/category/show/:id"),    // display record
-  get("/admin/category/edit/:id"),    // edit record
-  post("/admin/category/update"),     // update record
-  post("/admin/category/destroy"),    // destroy record
+  get("/admin/login"),
+  
+  get("/admin/users",          "users#index", "admin"),    // all record
+  get("/admin/users/show/:id",         false, "admin"),    // display record
 
-  get("/admin/product/index"),        // all record
-  get("/admin/product/new"),          // new record form
-  post("/admin/product/create"),      // new record create
-  get("/admin/product/show"),         // display record
-  get("/admin/product/edit"),         // edit record
-  post("/admin/product/update"),      // update record
-  post("/admin/product/destroy")      // destroy record
+  get("/admin/categories", "categories#index", "admin"),    // all record
+  get("/admin/categories/create",       false, "admin"),    // new record form
+  post("/admin/categories/save",        false, "admin"),    // new record save
+  get("/admin/categories/show/:id",     false, "admin"),    // display record
+  get("/admin/categories/edit/:id",     false, "admin"),    // edit record
+  post("/admin/categories/update",      false, "admin"),    // update record
+  post("/admin/categories/destroy",     false, "admin"),    // destroy record
+
+  get("/admin/products/index", "products#index", "admin"),  // all record
+  get("/admin/products/create",           false, "admin"),  // new record form
+  post("/admin/products/save",            false, "admin"),  // new record save
+  get("/admin/products/show",             false, "admin"),  // display record
+  get("/admin/products/edit",             false, "admin"),  // edit record
+  post("/admin/products/update",          false, "admin"),  // update record
+  post("/admin/products/destroy",         false, "admin")   // destroy record
 );
 ```
-# TODO scope:  layout and view directory sets
-
 
 ### Controller (`app/controller/*.php`)
 ---
@@ -240,7 +360,33 @@ class HomeController extends ApplicationController {
 
 - Redirect
 
-#TODO
+> request url [`/` or `/home`] redirect to `/home/index`
+
+> `config/routes.php`
+
+```php
+ApplicationRoutes::draw(
+  get("/", "home#home"),
+  get("/home", "home#home")
+);
+```
+
+> `app/controllers/HomeController.php`
+
+```php
+class HomeController extends ApplicationController {
+  public function home() {
+    return $this->redirect_to("/home/index");
+  }
+  public function index() {}
+}
+```
+
+> `app/views/home/index.php`
+
+```php
+<h1>Home#Index</h1>
+```
 
 - Before Action
 
@@ -308,40 +454,47 @@ ApplicationRoutes::draw(
 class AdminController extends ApplicationController {
 
   protected $before_actions = [
-    ["require_login", "except" => ["login"]]
+  ["require_login", "except" => ["login", "logout"]]
   ];
 
   public function login() {
 
-    if (isset($_SESSION['admin']))
-      return $this->redirect_to("/admin/home");
+    if (isset($_SESSION["admin"]))
+      return $this->redirect_to("/admin/index");
 
     if (isset($_POST["username"]) and isset($_POST["password"])) {
-      $user = User::load()->where(["username" => $_POST["username"], "password" => $_POST["password"]])->take();
 
-      if ($user) {
-        echo "tebrikler";
-        $_SESSION["admin"] = true;
-        return $this->render("/admin/home");
+      if ($user = User::unique(["username" => $_POST["username"], "password" => md5($_POST["password"])])) {
+
+        $_SESSION["success"] = "Admin sayfasına hoş geldiniz";
+        $_SESSION["full_name"] = "$user->first_name $user->last_name";
+        $_SESSION["admin"] = $user->id;
+        return $this->render("/admin/index");
+
       } else {
-        echo "şifre veya parola hatalı";
+
+        $_SESSION["danger"] = "Oops! İsminiz veya şifreniz hatalı, belki de bunlardan sadece biri hatalıdır?";
+
       }
     }
-    echo "otomatik render, login paneli gelmeli";
-    // $this->render("/admin/login");
-    // $this->render(["template" => "/admin/login"]);
-    // $this->render(["template" => "/admin/login", "layout" => "admin"]);
-    // $this->render(["view" => "admin", action => "login"]);
-    // $this->render(["view" => "admin", action => "login", "layout" => "admin"]);
+
+    return $this->render(["layout" => "default"]);
+  }
+
+  // public function index() {} // OPTIONAL
+
+  public function logout() {
+    if (isset($_SESSION["admin"]))
+      session_destroy();
+    return $this->redirect_to("/admin/login");
   }
 
   public function require_login() {
-    echo "Her işlem öncesi login oluyoruz<br/>";
-
-    if (!isset($_SESSION['admin']))
+    if (!isset($_SESSION["admin"])) {
+      $_SESSION["warning"] = "Lütfen hesabınıza giriş yapın!";
       return $this->redirect_to("/admin/login");
+    }
   }
-
 }
 ```
 
