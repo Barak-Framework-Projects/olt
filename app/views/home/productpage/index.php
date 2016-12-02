@@ -1,41 +1,48 @@
+<h4 class="page-title">Ürünler</h4>
+
 <div class="container">
 
-  <div class="row">
-    <?php foreach ($products as $product) { ?>
+	<table id="example" class="table table-striped table-hover dt-responsive" cellspacing="0" width="100%">
+		<thead>
+			<tr>
+				<th>Resim</th>
+				<th>Ürün</th>
+				<th>Kategori</th>
+				<th>Ürün Tipi</th>
 
-    <div class="col-sm-6 col-md-4 animated swing">
-      <div class="thumbnail">
-        <img src="<?= $product->image; ?>" alt="..." style="height:100px; width:100%">
-        <div class="caption">
-          <h3><?= $product->name; ?></h3>
-          <p><?= $product->name; ?></p>
-          <p><?= $product->price; ?></p>
-          <p><a href="/home/product/show/<?= $product->id; ?>" class="btn btn-primary fa fa-search" role="button">İncele</a></p>
-        </div>
-      </div>
-    </div>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php if ($products) { ?>
+			<?php foreach ($products as $product) { ?>
 
-    <?php } ?>
-  </div>
+			<tr>
+				<td><img src="<?= $product->image; ?>" class="thumbnail img-responsive" style="height:150px; width:auto"/></td>
+				<td><?= $product->name; ?></td>
+				<td>
+					<a class="label label-info" href="/home/categories/show/<?= $product->producttype->category->id; ?>">
+						<?= $product->producttype->category->name; ?>
+					</a>
+				</td>
+				<td>
+					<a class="label label-danger" href="/home/producttypes/show/<?= $product->producttype->id; ?>">
+						<?= $product->producttype->name; ?>
+					</a>
+				</td>
+
+				<td>
+					<a href="/home/products/show/<?= $product->id; ?>"
+						class="btn btn-default" role="button" title="Göster"><i class="fa fa-search"></i>
+					</a>
+				</td>
+			</tr>
+
+			<?php } ?>
+			<?php } else { ?>
+			<tr class="text-center"><td colspan="4">Henüz Ürün mevcut değil</td></tr>
+			<?php } ?>
+		</tbody>
+	</table>
 
 </div>
-
-<nav aria-label="Page navigation">
-  <ul class="pagination">
-    <li>
-      <a href="#" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-    <li><a href="#">1</a></li>
-    <li><a href="#">2</a></li>
-    <li><a href="#">3</a></li>
-    <li><a href="#">4</a></li>
-    <li><a href="#">5</a></li>
-    <li>
-      <a href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
-</nav>

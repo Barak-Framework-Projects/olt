@@ -16,6 +16,9 @@ ApplicationRoutes::draw(
   get("/", "home#home"),
   get("/home", "home#home"),
 
+
+
+
   get("/home/index"),
   get("/home/about"),
   get("/home/service_policy"),
@@ -24,7 +27,9 @@ ApplicationRoutes::draw(
   get("/home/contact"),
 
   scope("home",
-
+    [
+    get("/references", "referencepage#index"),
+    ],
     [
     get("/categories", "categorypage#index"),
     get("/categories/show/:id", "categorypage#show")
@@ -61,7 +66,9 @@ ApplicationRoutes::draw(
     resources("/categories"),
     resources("/producttypes"),
     resources("/products"),
-    resources("/users")
+    resources("/users"),
+    resources("/partners"),
+    resources("/references")
     )
 
   );

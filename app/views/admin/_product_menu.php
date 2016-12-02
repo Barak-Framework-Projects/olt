@@ -17,7 +17,7 @@
         </a>
       </li>
       <li role="presentation">
-        <a href="/admin/categories/new">
+        <a href="/admin/categories/create">
           <span class="hidden-xs hidden-sm hidden-md"><i class="glyphicon glyphicon-chevron-right"></i> Ekle</span>
           <i class="fa fa-plus fa-1x visible-xs visible-sm visible-md"></i>
         </a>
@@ -39,7 +39,7 @@
         </a>
       </li>
       <li role="presentation">
-        <a href="/admin/producttypes/new">
+        <a href="/admin/producttypes/create">
           <span class="hidden-xs hidden-sm hidden-md"><i class="glyphicon glyphicon-chevron-right"></i> Ekle</span>
           <i class="fa fa-plus fa-1x visible-xs visible-sm visible-md"></i>
         </a>
@@ -61,7 +61,7 @@
         </a>
       </li>
       <li role="presentation">
-        <a href="/admin/products/new">
+        <a href="/admin/products/create">
           <span class="hidden-xs hidden-sm hidden-md"><i class="glyphicon glyphicon-chevron-right"></i> Ekle</span>
           <i class="fa fa-plus fa-1x visible-xs visible-sm visible-md"></i>
         </a>

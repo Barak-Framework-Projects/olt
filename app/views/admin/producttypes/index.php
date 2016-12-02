@@ -49,4 +49,4 @@
   <?php } ?>
 </tbody>
 </table>
-<a class="btn btn-primary" href="/admin/producttypes/new">Ürün Tipi Ekle</a>
+<a class="btn btn-primary" href="/admin/producttypes/create">Ürün Tipi Ekle</a>

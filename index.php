@@ -16,7 +16,7 @@ foreach ($directories as $directory) {
 // Configuration : sets
 ApplicationConfig::run();
 
-// Database : connect and global share
+// // Database : connect and global share
 $db = ApplicationConfig::database();
 $GLOBALS['db'] = new ApplicationDatabase($db["host"], $db["name"], $db["user"], $db["pass"]);
 

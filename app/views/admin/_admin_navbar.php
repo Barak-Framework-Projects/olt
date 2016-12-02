@@ -24,7 +24,7 @@
 					</a>
 					<ul class="dropdown-menu" role="menu">
 						<li>
-							<a href="/admin/user/show/<?= $_SESSION['admin']; ?>">Hesap</a>
+							<a href="/admin/users/show/<?= $_SESSION['admin']; ?>">Hesap</a>
 						</li>
 						<li class="divider"></li>
 						<li><a href="/admin/logout">Çıkış</a></li>

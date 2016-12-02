@@ -47,4 +47,4 @@
   <?php } ?>
 </tbody>
 </table>
-<a class="btn btn-primary" href="/admin/categories/new">Kategori Ekle</a>
+<a class="btn btn-primary" href="/admin/categories/create">Kategori Ekle</a>

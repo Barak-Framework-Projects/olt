@@ -10,7 +10,7 @@ class ProducttypesController extends AdminController {
     $this->categories = Category::all();
   }
 
-  public function store() {
+  public function save() {
     $producttype = Producttype::draft($_POST);
     $producttype->created_at = date("Y-m-d H:i:s");
     $producttype->save();
@@ -21,13 +21,13 @@ class ProducttypesController extends AdminController {
       $producttype->save();
     }
 
-    $_SESSION["success"] = "Yeni ürün tipi eklendi";
+    $_SESSION["success"] = "Yeni Ürün Tipi eklendi";
     $this->redirect_to("/admin/producttypes/show/" . $producttype->id);
   }
 
   public function show() {
     if (!$this->producttype = Producttype::find($this->id)) {
-      $_SESSION["danger"] = "Böyle bir ürün tipi bulunmamaktadır";
+      $_SESSION["danger"] = "Böyle bir Ürün Tipi bulunmamaktadır";
       return $this->redirect_to("/admin/producttypes");
     }
   }
@@ -35,7 +35,7 @@ class ProducttypesController extends AdminController {
   public function edit() {
     $this->categories = Category::all();
     if (!$this->producttype = Producttype::find($this->id)) {
-      $_SESSION["danger"] = "Böyle bir ürün tipi bulunmamaktadır";
+      $_SESSION["danger"] = "Böyle bir Ürün Tipi bulunmamaktadır";
       return $this->redirect_to("/admin/producttypes");
     }
   }

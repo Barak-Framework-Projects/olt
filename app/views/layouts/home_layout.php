@@ -32,6 +32,42 @@
   </script>
   <!-- Google Analytics end -->
 
+  <!-- Jquery Datatables Responsive Bootstrap start -->
+  <!-- source: https://datatables.net/extensions/responsive/examples/styling/bootstrap.html -->
+  <link rel="stylesheet" type="text/css" href="/app/assets/css/dataTables.bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="/app/assets/css/responsive.bootstrap.min.css" />
+
+  <script type="text/javascript" src="/app/assets/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript" src="/app/assets/js/dataTables.bootstrap.min.js"></script>
+  <script type="text/javascript" src="/app/assets/js/dataTables.responsive.min.js"></script>
+  <script type="text/javascript" src="/app/assets/js/responsive.bootstrap.min.js"></script>
+
+  <!-- Jquery Datatables Language start -->
+  <!-- source: https://datatables.net/examples/basic_init/language.html -->
+  <script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+    $('#example').dataTable( {
+      "order": [[ 1, "desc" ]],
+      "responsive": true,
+      "language": {
+        "lengthMenu": "Gösterilen _MENU_ adet satır",
+        "zeroRecords": "Kayıt Bulunamadı",
+        "info": "Toplam _PAGES_ sayfadan _PAGE_ sayfa gösteriliyor",
+        "infoEmpty": "Kayıt Sayısı Yok",
+        "infoFiltered": "(Toplam _MAX_ gönderi filtrelendi)",
+        "search": "Ara",
+        "paginate": {
+          "previous": "Önceki",
+          "next": "Sonraki"
+        }
+      }
+    });
+  });
+  </script>
+  <!-- Jquery Datatables Language end -->
+  <!-- Jquery Datatables Responsive Bootstrap end -->
+
+
   <!-- datepicker start -->
   <!-- source: https://github.com/eternicode/bootstrap-datepicker -->
   <link rel="stylesheet" href="/app/assets/css/bootstrap-datepicker.min.css" type="text/css" />
@@ -52,7 +88,6 @@
   <!-- Animatecss start -->
   <!-- source: https://daneden.github.io/animate.css/ -->
   <link rel="stylesheet" type="text/css" href="/app/assets/css/animate.min.css" />
-
   <!-- Animatecss end -->
 
   <!-- bxSlider start -->
@@ -71,45 +106,85 @@
 
       <div class="col-xs-8">
         <ul class="nav nav-pills">
-          <li role="presentation"><a href="/home/index"><?= t("home.page"); ?></a></li>
+          <li role="presentation"><a href="/home/index"><?= t("home.link"); ?></a></li>
+
           <li role="presentation" class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <?= t("home.corporate"); ?>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <?= t("home.corporate.link"); ?>
               <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="/home/about"><?= t("home.about"); ?></a></li>
-              <li><a href="/home/service_policy"><?= t("home.service_policy"); ?></a></li>
-              <li><a href="/home/our_focus"><?= t("home.our_focus"); ?></a></li>
-              <li><a href="/home/human_resources"><?= t("home.human_resources"); ?></a></li>
+              <li><a href="/home/corporate/carrier"><?= t("home.corporate.carrier"); ?></a></li>
+              <li><a href="/home/corporate/about"><?= t("home.corporate.about"); ?></a></li>
+              <li><a href="/home/corporate/our_focus"><?= t("home.corporate.our_focus"); ?></a></li>
+              <li><a href="/home/corporate/service_policy"><?= t("home.corporate.service_policy"); ?></a></li>
             </ul>
           </li>
 
           <li role="presentation" class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <?= t("home.products"); ?>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <?= t("home.solutions.link"); ?>
               <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
+              <li><a href="/home/solutions/structural_cabling"><?= t("home.solutions.structural_cabling"); ?></a></li>
+              <li><a href="/home/solutions/fiber_optic_infrastructure"><?= t("home.solutions.fiber_optic_infrastructure"); ?></a></li>
+              <li><a href="/home/solutions/network"><?= t("home.solutions.network"); ?></a></li>
+              <li><a href="/home/solutions/server"><?= t("home.solutions.server"); ?></a></li>
+              <li class="dropdown-submenu">
+                <a tabindex="-1" href="/home/solutions/security"><?= t("home.solutions.security.link"); ?></a>
+                <ul class="dropdown-menu">
+                  <li><a href="/home/solutions/security/cctv/"><?= t("home.solutions.security.cctv"); ?></a></li>
+                  <li class="dropdown-submenu">
+                    <a href="/home/solutions/security"><?= t("home.solutions.security.wide_control_systems.link"); ?></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="/home/solutions/security/cctv/"><?= t("home.solutions.security.wide_control_systems.face"); ?></a></li>
+                      <li><a href="/home/solutions/security/cctv/"><?= t("home.solutions.security.wide_control_systems.finger"); ?></a></li>
+                      <li><a href="/home/solutions/security/cctv/"><?= t("home.solutions.security.wide_control_systems.card"); ?></a></li>
+                      <li><a href="/home/solutions/security/cctv/"><?= t("home.solutions.security.wide_control_systems.patrol_tour"); ?></a></li>
+                    </ul>
+                    <li><a href="/home/solutions/security/cctv/"><?= t("home.solutions.security.burglar_alarm_systems"); ?></a></li>
+                  </li>
+                  <ul class="dropdown-menu">
+                    <li><a href="/home/producttypes/show/"><?=  t("home.solutions.security.link"); ?></a></li>
+                  </ul>
+                </li>
+              </ul>
+              <li><a href="/home/solutions/security/cctv/"><?= t("home.solutions.wireless"); ?></a></li>
+              <li><a href="/home/solutions/security/cctv/"><?= t("home.solutions.video_conference"); ?></a></li>
+            </ul>
+          </li>
 
+          <li role="presentation" class="dropdown">
+            <a href="/home/products" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <?= t("home.products"); ?>
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
               <li class="dropdown-submenu">
                 <a tabindex="-1" href="/home/categories"><?= t("home.categories"); ?></a>
+                <?php if($_cs = Category::all()) { ?>
                 <ul class="dropdown-menu">
-                  <?php foreach (Category::all() as $_c) { ?>
+                  <?php foreach ($_cs as $_c) { ?>
                   <li class="dropdown-submenu">
                     <a href="/home/categories/show/<?= $_c->id; ?>"><?= $_c->name; ?></a>
+                    <?php if ($_pts = ($_c->all_of_producttype)) { ?>
                     <ul class="dropdown-menu">
-                      <?php foreach ($_c->all_of_producttype as $_pt) { ?>
+                      <?php foreach ($_pts as $_pt) { ?>
+                      <?php if($_pt) { ?>
                       <li><a href="/home/producttypes/show/<?= $_pt->id; ?>"><?= $_pt->name; ?></a></li>
                       <?php } ?>
+                      <?php } ?>
                     </ul>
+                    <?php } ?>
                   </li>
                   <?php } ?>
                 </ul>
+                <?php } ?>
               </li>
-
               <li><a href="/home/products/search"><?= t("home.product_search"); ?></a></li>
+              <li><a href="/home/products"><?= t("home.product_list"); ?></a></li>
             </ul>
           </li>
 
+          <li role="presentation"><a href="/home/references"><?= t("home.references"); ?></a></li>
           <li role="presentation"><a href="/home/contact"><?= t("home.contact"); ?></a></li>
         </ul>
       </div>
@@ -143,7 +218,7 @@
       {yield}
 
     </div>
-
+<!--
     <div class="well well-lg" style="background-color:#465568; color:white">
 
       <div class="row">
@@ -154,7 +229,7 @@
         </div>
       </div>
     </div>
-
+-->
     <?php render("signin_modal", "home"); ?>
     <?php render("home_footer", "home"); ?>
     <?php render("nav-up-down", "layouts"); ?>

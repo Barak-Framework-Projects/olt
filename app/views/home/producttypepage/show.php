@@ -31,7 +31,7 @@
       <?php if ($products) { ?>
       <?php foreach ($products as $product) { ?>
       <tr>
-        <td><img src="<?= $product->producttype->category->image ?>" style="width:200px"></td>
+        <td><img src="<?= $product->image ?>" style="width:200px"></td>
         <td><?= $product->name ?></td>
 
         <td>

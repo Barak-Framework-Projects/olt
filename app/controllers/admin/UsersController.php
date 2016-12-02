@@ -8,7 +8,7 @@ class UsersController extends AdminController {
 
   public function create() {}
 
-  public function store() {
+  public function save() {
 
     // rastgele bir parolar belirle
     $alphabet = "abcdefghijklmnopqrstuwxyzABC0123456789";
@@ -35,14 +35,14 @@ class UsersController extends AdminController {
 
   public function show() {
     if (!$this->user = User::find($this->id)) {
-      $_SESSION["danger"] = "Böyle bir personel bulunmamaktadır";
+      $_SESSION["danger"] = "Böyle bir Personel bulunmamaktadır";
       return $this->redirect_to("/admin/users");
     }
   }
 
   public function edit() {
     if (!$this->user = User::find($this->id)) {
-      $_SESSION["danger"] = "Böyle bir personel bulunmamaktadır";
+      $_SESSION["danger"] = "Böyle bir Personel bulunmamaktadır";
       return $this->redirect_to("/admin/users");
     }
   }

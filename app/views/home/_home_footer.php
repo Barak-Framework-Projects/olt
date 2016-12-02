@@ -1,3 +1,76 @@
+<style>
+.footer {
+  background: url('/app/assets/img/footer.png') repeat center center fixed;
+  border-radius: 10px 10px 0px 0px;
+  width: 100%;
+  height: auto;
+  display: block;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  color: #ccc;
+  font-size: 12px;
+  padding: 1em;
+}
+</style>
+
+<div class="footer">
+  <div class="container">
+    <div class="row animated zoomIn">
+      <div class="col-md-4">
+
+        <h3 class="lead">OLT</h3>
+        <p>
+          Aksi belirtilmedikçe <a href="http://olt.com.tr" target="_blank">olt.com.tr</a><br/>
+          tarafından tüm içerik hakları saklıdır.
+        </p>
+        <br/>
+        <div>
+          Batıkent Mahallesi<br/>
+          Ali İhsan Göğüş Caddesi Baran Apt Altı No: 140/A<br/>
+          Şehitkamil/Gaziantep, Türkiye
+        </div>
+
+      </div>
+      <div class="col-md-4">
+
+        <h5>Kategoriler</h5>
+        <hr>
+        <?php if ($_footer_cs = Category::all()) { ?>
+        <ul class="">
+          <?php foreach ($_footer_cs as $_footer_c) { ?>
+          <?php if ($_footer_c) { ?>
+          <li>
+            <i class="fa fa-caret-right" aria-hidden="true"></i>
+            <a href="/home/categories/show/<?= $_footer_c->id; ?>">
+              <?= $_footer_c->name; ?>
+            </a>
+          </li>
+          <?php } ?>
+          <?php } ?>
+        </ul>
+        <?php } ?>
+
+      </div>
+      <div class="col-md-4">
+
+        <h5>Ürün Tipleri</h5>
+        <hr>
+        <?php if ($_footer_pts = Producttype::all()) { ?>
+        <ul class="">
+          <?php foreach ($_footer_pts as $_footer_pt) { ?>
+          <?php if ($_footer_pt) { ?>
+          <li><i class="fa fa-caret-right" aria-hidden="true"></i> <a href="/home/producttpes/show/<?= $_footer_pt->id; ?>"><?= $_footer_pt->name; ?></a></li>
+          <?php } ?>
+          <?php } ?>
+        </ul>
+        <?php } ?>
+
+      </div>
+    </div>
+  </div>
+</div>
+
 <div style="font-size: 12px">
   <nav class="navbar navbar-default navbar-inverse">
     <div class="container-fluid">

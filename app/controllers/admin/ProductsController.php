@@ -10,7 +10,7 @@ class ProductsController extends AdminController {
     $this->categories = Category::all();
   }
 
-  public function store() {
+  public function save() {
     $product = Product::draft($_POST);
     $product->created_at = date("Y-m-d H:i:s");
     $product->save();
@@ -27,13 +27,13 @@ class ProductsController extends AdminController {
       $product->save();
     }
 
-    $_SESSION["success"] = "Yeni ürün eklendi";
+    $_SESSION["success"] = "Yeni Ürün eklendi";
     $this->redirect_to("/admin/products/show/" . $product->id);
   }
 
   public function show() {
     if (!$this->product = Product::find($this->id)) {
-      $_SESSION["danger"] = "Böyle bir ürün bulunmamaktadır";
+      $_SESSION["danger"] = "Böyle bir Ürün bulunmamaktadır";
       return $this->redirect_to("/admin/products");
     }
   }
@@ -41,7 +41,7 @@ class ProductsController extends AdminController {
   public function edit() {
   	$this->categories = Category::all();
     if (!$this->product = Product::find($this->id)) {
-      $_SESSION["danger"] = "Böyle bir ürün bulunmamaktadır";
+      $_SESSION["danger"] = "Böyle bir Ürün bulunmamaktadır";
       return $this->redirect_to("/admin/products");
     }
   }

@@ -1,10 +1,10 @@
-<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+<div id="carousel-example-generic1" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
   <ol class="carousel-indicators">
-    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+    <li data-target="#carousel-example-generic1" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-example-generic1" data-slide-to="1"></li>
+    <li data-target="#carousel-example-generic1" data-slide-to="2"></li>
+    <li data-target="#carousel-example-generic1" data-slide-to="3"></li>
   </ol>
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
@@ -68,11 +68,11 @@
 
   </div>
   <!-- Controls -->
-  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+  <a class="left carousel-control" href="#carousel-example-generic1" role="button" data-slide="prev">
     <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
     <span class="sr-only">Previous</span>
   </a>
-  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+  <a class="right carousel-control" href="#carousel-example-generic1" role="button" data-slide="next">
     <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
   </a>
@@ -81,9 +81,9 @@
 <?= link_to("merhaba", "evet"); ?>
 <!-- third section - Services -->
 
-<div style="background-color:#306d9f; color:white">
+<div class="well well-sm">
   <div class="container">
-    <h2 class="text-center">Our Services</h2> <hr />
+    <h2 class="text-center">Çözümlerimiz</h2> <hr />
     <div class="row text-center">
       <div class="col-sm-3 col-xs-6">
         <i class="glyphicon glyphicon-cloud"> </i>
@@ -107,5 +107,66 @@
       </div>
     </div>
   </div>
+
+  <!-- /third section -->
+
+
+  <h2 class="text-center">Partnerlerimiz</h2> <hr />
+  <div id="carousel-example-generic2" class="carousel slide" data-ride="carousel">
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+
+      <?php $partners = Partner::first(6); ?>
+      <?php if ($partners) { ?>
+
+      <div class="item container active">
+        <div class="row">
+          <?php foreach ($partners as $partner) { ?>
+          <img class="col-md-2 img-responsive" src="<?= $partner->image; ?>" alt="partner-image" style="max-height:100px;min-height:100px;width:auto">
+          <?php } ?>
+        </div>
+      </div>
+
+      <?php } ?>
+
+      <?php $partners = Partner::load()->limit(6)->offset(6)->take(); ?>
+      <?php if($partners) { ?>
+
+      <div class="item container">
+        <div class="row">
+          <?php foreach ($partners as $partner) { ?>
+          <img class="col-md-2 img-responsive" src="<?= $partner->image; ?>" alt="partner-image" style="max-height:100px;min-height:100px;width:auto">
+          <?php } ?>
+        </div>
+      </div>
+
+      <?php } ?>
+
+      <?php $partners = Partner::load()->limit(6)->offset(12)->take(); ?>
+      <?php if($partners) { ?>
+
+      <div class="item container">
+        <div class="row">
+          <?php foreach ($partners as $partner) { ?>
+          <img class="col-md-2 img-responsive" src="<?= $partner->image; ?>" alt="partner-image" style="max-height:100px;min-height:100px;width:auto">
+          <?php } ?>
+        </div>
+      </div>
+
+      <?php } ?>
+
+    </div>
+
+    <div align="center" style="margin-top:20px;">
+      <!-- Controls -->
+      <a class="left" href="#carousel-example-generic2" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+      </a>
+      <a class="right" href="#carousel-example-generic2" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+      </a>
+    </div>
+
+  </div>
 </div>
-<!-- /third section -->
+

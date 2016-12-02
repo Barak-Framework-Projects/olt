@@ -48,4 +48,4 @@
   <?php } ?>
 </tbody>
 </table>
-<a class="btn btn-primary" href="/admin/users/new">Kullanıcı Ekle</a>
+<a class="btn btn-primary" href="/admin/users/create">Kullanıcı Ekle</a>

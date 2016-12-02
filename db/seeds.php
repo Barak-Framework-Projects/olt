@@ -2,6 +2,14 @@
 
 //User::create(["first_name" => "first_name", "department_id" => "1"]);
 
+// foreach(Category::all() as $category)
+// 	print_r($category->all_of_producttype);
+
+// $producttypes = Producttype::load()->limit(2)->offset(2)->take();
+// foreach ($producttypes as $producttype) {
+//   echo $producttype->name;
+//   echo "<br/>";
+// }
 
 if (User::load()->count() == 0) {
 

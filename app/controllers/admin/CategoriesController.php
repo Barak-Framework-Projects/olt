@@ -9,7 +9,7 @@ class CategoriesController extends AdminController {
 
   public function create() {}
 
-  public function store() {
+  public function save() {
     $category = Category::draft($_POST);
     $category->created_at = date("Y-m-d H:i:s");
     $category->save();
@@ -21,20 +21,20 @@ class CategoriesController extends AdminController {
       $category->save();
     }
 
-    $_SESSION["success"] = "Yeni kategori eklendi";
+    $_SESSION["success"] = "Yeni Kategori eklendi";
     $this->redirect_to("/admin/categories/show/" . $category->id);
   }
 
   public function show() {
     if (!$this->category = Category::find($this->id)) {
-      $_SESSION["danger"] = "Böyle bir kategori bulunmamaktadır";
+      $_SESSION["danger"] = "Böyle bir Kategori bulunmamaktadır";
       return $this->redirect_to("/admin/categories");
     }
   }
 
   public function edit() {
     if (!$this->category = Category::find($this->id)) {
-      $_SESSION["danger"] = "Böyle bir kategori bulunmamaktadır";
+      $_SESSION["danger"] = "Böyle bir Kategori bulunmamaktadır";
       return $this->redirect_to("/admin/categories");
     }
   }

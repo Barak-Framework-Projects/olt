@@ -82,7 +82,7 @@
   </div>
   <div class="row">
     <div class="well well-sm col-xs-2 col-md-2" id="side-menu">
-
+      <?= render("partner_menu"); ?>
       <?= render("product_menu"); ?>
       <?= render("user_menu"); ?>
 
