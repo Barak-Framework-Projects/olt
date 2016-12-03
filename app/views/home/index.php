@@ -1,4 +1,4 @@
-<div id="carousel-example-generic1" class="carousel slide" data-ride="carousel">
+<div id="carousel-example-generic1" class="carousel slide" data-ride="carousel" style="color:white; font-size:14px;">
   <!-- Indicators -->
   <ol class="carousel-indicators">
     <li data-target="#carousel-example-generic1" data-slide-to="0" class="active"></li>
@@ -9,13 +9,13 @@
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
     <!-- Item 1 -->
-    <div class="item active">
+    <div class="item active" style="background:url(/app/assets/img/slide-bg-1.jpg)">
       <div class="row">
         <div class="container">
           <div class="col-md-3 text-right">
             <img style="max-width: 350px;"  class="animated zoomInLeft" src="http://s20.postimg.org/pfmmo6qj1/window_domain.png">
           </div>
-          <div class="col-md-9 text-left">
+          <div class="col-md-9 text-left" style="padding: 20px; color: rgb(255, 255, 255); background-color: rgba(0, 0, 0, 0.4); border-radius: 10px;">
             <h3 class="animated bounceInDown">Add images, or even your logo!</h3>
             <h4 class="animated bounceInUp">Easily use stunning effects</h4>
           </div>
@@ -23,10 +23,10 @@
       </div>
     </div>
     <!-- Item 2 -->
-    <div class="item">
+    <div class="item" style="background:url(/app/assets/img/slide-bg-2.jpg)">
       <div class="row">
         <div class="container">
-          <div class="col-md-7 text-left">
+          <div class="col-md-7 text-left" style="padding: 20px; color: rgb(255, 255, 255); background-color: rgba(0, 0, 0, 0.4); border-radius: 10px;">
             <h3 class="animated bounceInDown"> 50 animation options A beautiful</h3>
             <h4 class="animated bounceInUp">Create beautiful slideshows </h4>
           </div>
@@ -37,10 +37,10 @@
       </div>
     </div>
     <!-- Item 3 -->
-    <div class="item">
+    <div class="item" style="background:url(/app/assets/img/slide-bg-3.jpg)">
       <div class="row">
         <div class="container">
-          <div class="col-md-7 text-left">
+          <div class="col-md-7 text-left" style="padding: 20px; color: rgb(255, 255, 255); background-color: rgba(0, 0, 0, 0.4); border-radius: 10px;">
             <h3 class="animated bounceInDown">Simple Bootstrap Carousel</h3>
             <h4 class="animated bounceInUp">Bootstrap Image Carousel Slider with Animate.css</h4>
           </div>
@@ -51,10 +51,10 @@
       </div>
     </div>
     <!-- Item 4 -->
-    <div class="item">
+    <div class="item" style="background:url(/app/assets/img/slide-bg-4.jpg)">
       <div class="row">
         <div class="container">
-          <div class="col-md-7 text-left">
+          <div class="col-md-7 text-left" style="padding: 20px; color: rgb(255, 255, 255); background-color: rgba(0, 0, 0, 0.4); border-radius: 10px;">
             <h3 class="animated bounceInDown">We are creative</h3>
             <h4 class="animated bounceInUp">Get start your next awesome project</h4>
           </div>
@@ -116,57 +116,44 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
 
-      <?php $partners = Partner::first(6); ?>
-      <?php if ($partners) { ?>
+      <?php
+      $limit = 0;
+      $item = 3;
+      $col = intval( 12 / $item );
+      $start = "active";
+      ?>
+      <?php
+      while (true) {
+        $partners = Partner::load()->limit($item)->offset($limit)->take();
+        if ($partners) { ?>
 
-      <div class="item container active">
-        <div class="row">
-          <?php foreach ($partners as $partner) { ?>
-          <img class="col-md-2 img-responsive" src="<?= $partner->image; ?>" alt="partner-image" style="max-height:100px;min-height:100px;width:auto">
-          <?php } ?>
+        <div class="item container <?= $start; ?>">
+          <div class="row">
+            <?php foreach ($partners as $partner) { ?>
+            <div class="col-md-<?= $col; ?>">
+              <div class="thumbnail">
+                <img src="<?= $partner->image; ?>" alt="..." style="height:150px" class="img-responsive">
+              </div>
+            </div>
+            <?php } ?>
+          </div>
         </div>
+        <?php $limit = $limit + $item; $start = "";?>
+        <?php } else { break; } ?>
+        <?php } ?>
+
       </div>
 
-      <?php } ?>
-
-      <?php $partners = Partner::load()->limit(6)->offset(6)->take(); ?>
-      <?php if($partners) { ?>
-
-      <div class="item container">
-        <div class="row">
-          <?php foreach ($partners as $partner) { ?>
-          <img class="col-md-2 img-responsive" src="<?= $partner->image; ?>" alt="partner-image" style="max-height:100px;min-height:100px;width:auto">
-          <?php } ?>
-        </div>
+      <div align="center" style="margin-top:20px;">
+        <!-- Controls -->
+        <a class="left" href="#carousel-example-generic2" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <a class="right" href="#carousel-example-generic2" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right"></span>
+        </a>
       </div>
-
-      <?php } ?>
-
-      <?php $partners = Partner::load()->limit(6)->offset(12)->take(); ?>
-      <?php if($partners) { ?>
-
-      <div class="item container">
-        <div class="row">
-          <?php foreach ($partners as $partner) { ?>
-          <img class="col-md-2 img-responsive" src="<?= $partner->image; ?>" alt="partner-image" style="max-height:100px;min-height:100px;width:auto">
-          <?php } ?>
-        </div>
-      </div>
-
-      <?php } ?>
 
     </div>
-
-    <div align="center" style="margin-top:20px;">
-      <!-- Controls -->
-      <a class="left" href="#carousel-example-generic2" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left"></span>
-      </a>
-      <a class="right" href="#carousel-example-generic2" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right"></span>
-      </a>
-    </div>
-
   </div>
-</div>
 

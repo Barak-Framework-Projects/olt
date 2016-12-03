@@ -81,13 +81,14 @@
     </ul>
   </div>
   <div class="row">
-    <div class="well well-sm col-xs-2 col-md-2" id="side-menu">
+    <div class="well well-sm col-xs-3 col-md-2" id="side-menu">
       <?= render("partner_menu"); ?>
+      <?= render("reference_menu"); ?>
       <?= render("product_menu"); ?>
       <?= render("user_menu"); ?>
 
     </div>
-    <div class="col-xs-10 col-md-10" id="main-menu">
+    <div class="col-xs-9 col-md-10" id="main-menu">
       <div class="well well-sm">
         <?= BootstrapHelper::breadcrumb_button(); ?>
 

@@ -30,7 +30,7 @@
       <?php if ($producttypes) { ?>
       <?php foreach ($producttypes as $producttype) { ?>
       <tr>
-        <td><img src="<?= $producttype->image ?>" style="width:200px"></td>
+        <td><img src="<?= $producttype->image; ?>" class="thumbnail img-responsive" width="184" height="140"/></td>
         <td><?= $producttype->name ?></td>
         <td><?= count($producttype->all_of_product); ?></td>
         <td>

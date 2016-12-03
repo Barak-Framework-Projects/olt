@@ -3,7 +3,7 @@
 class ProductpageController extends HomeController {
 
   public function index() {
-    $this->products = Product::all();
+    $this->products = Product::load()->order("created_at", "desc")->take();
   }
 
   public function search() {
