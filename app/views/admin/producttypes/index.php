@@ -35,18 +35,17 @@
           </a>
 
           <input type="hidden" value="<?= $producttype->id; ?>" id="id" name="id"/>
-          <button type="submit" class="btn btn-default"
-          onClick=\"return confirm('Bu kaydı silmek istediğinizden emin misiniz?');\" title="Sil">
-          <i class="fa fa-trash"></i>
-        </button>
-      </form>
-    </td>
-  </tr>
+          <button type="submit" class="btn btn-default" onClick="return confirm('Bu kaydı silmek istediğinizden emin misiniz?');" title="Sil">
+            <i class="fa fa-trash"></i>
+          </button>
+        </form>
+      </td>
+    </tr>
 
-  <?php } ?>
-  <?php } else { ?>
-  <tr class="text-center"><td colspan="4">Henüz Ürün Tipi mevcut değil</td></tr>
-  <?php } ?>
-</tbody>
+    <?php } ?>
+    <?php } else { ?>
+    <tr class="text-center"><td colspan="4">Henüz Ürün Tipi mevcut değil</td></tr>
+    <?php } ?>
+  </tbody>
 </table>
 <a class="btn btn-primary" href="/admin/producttypes/create">Ürün Tipi Ekle</a>

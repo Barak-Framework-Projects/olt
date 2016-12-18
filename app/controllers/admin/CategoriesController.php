@@ -17,7 +17,10 @@ class CategoriesController extends AdminController {
     $image = $_FILES["image"];
     if ($image["name"] != "") {// varsa yeni resmi ekle
 
-      $category->image = ImageHelper::file_upload($image, "/upload/categories", $category->id);
+      $category->image = FileHelper::move_f($image, "/upload/categories", $category->id);
+      $category->save();
+    } else {
+      $category->image = FileHelper::copy("/app/assets/img/default.png", "/upload/categories", $category->id . ".png");
       $category->save();
     }
 
@@ -47,7 +50,8 @@ class CategoriesController extends AdminController {
 
     $image = $_FILES['image'];
     if ($image["name"] != "") {// varsa bir önceki resmi sil ve yeni resmi ekle
-      $category->image = ImageHelper::file_update($category->image, $image, "/upload/categories", $category->id);
+      FileHelper::remove($category->image);
+      $category->image = FileHelper::move_f($image, "/upload/categories", $category->id);
       $category->save();
     }
 
@@ -57,10 +61,14 @@ class CategoriesController extends AdminController {
 
   public function destroy() {
     $category = Category::find($_POST["id"]);
-    ImageHelper::file_remove($category->image);
-    $category->destroy();
+    if ($category->all_of_producttype)
+      $_SESSION["danger"] = "Bu Kategorinin Ürün Tipleri olduğundan dolayı silinemez!";
+    else {
+      FileHelper::remove($category->image);
+      $category->destroy();
 
-    $_SESSION["info"] = "Kategori silindi";
+      $_SESSION["info"] = "Kategori silindi";
+    }
     return $this->redirect_to("/admin/categories");
   }
 }

@@ -55,6 +55,13 @@
   <!-- Jquery Datatables Language end -->
   <!-- Jquery Datatables Responsive Bootstrap end -->
 
+  <!-- datepicker start -->
+  <!-- source: https://github.com/eternicode/bootstrap-datepicker -->
+  <link rel="stylesheet" href="/app/assets/css/bootstrap-datepicker.min.css" type="text/css" />
+  <script src="/app/assets/js/bootstrap-datepicker.min.js"></script>
+  <script src="/app/assets/js/bootstrap-datepicker.tr.js"></script>
+  <!-- datepicker end -->
+
   <!-- auto search start -->
   <script src="/app/assets/js/typeahead.bundle.js"></script>
   <!-- auto search end -->
@@ -81,9 +88,9 @@
     </ul>
   </div>
   <div class="row">
+
     <div class="well well-sm col-xs-3 col-md-2" id="side-menu">
-      <?= render("partner_menu"); ?>
-      <?= render("reference_menu"); ?>
+      <?= render("site_menu"); ?>
       <?= render("product_menu"); ?>
       <?= render("user_menu"); ?>
 
@@ -104,7 +111,8 @@
 
     </div>
 
-    <?php render('nav-up-down', 'layouts'); ?>
+    <?php render("back_to_top", "layouts"); ?>
+
     <!-- dropdown hover start -->
     <script src="/app/assets/js/bootstrap-hover-dropdown.min.js"></script>
     <script type="text/javascript">

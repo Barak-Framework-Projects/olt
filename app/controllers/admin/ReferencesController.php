@@ -15,8 +15,11 @@ class ReferencesController extends AdminController {
 
     $image = $_FILES["image"];
     if ($image["name"] != "") {// varsa yeni resmi ekle
-      $reference->image = ImageHelper::file_upload($image, "/upload/references", $reference->id);
+      $reference->image = FileHelper::move_f($image, "/upload/references", $reference->id);
       $reference->save();
+    } else {
+    	$reference->image = FileHelper::copy("/app/assets/img/default.png", "/upload/references", $reference->id . ".png");
+    	$reference->save();
     }
 
     $_SESSION["success"] = "Yeni Referans eklendi";
@@ -45,7 +48,8 @@ class ReferencesController extends AdminController {
 
     $image = $_FILES["image"];
     if ($image["name"] != "") {// varsa bir önceki resmi sil ve yeni resmi ekle
-      $reference->image = ImageHelper::file_update($reference->image, $image, "/upload/references", $reference->id);
+    	FileHelper::remove($reference->image);
+      $reference->image = FileHelper::move_f($image, "/upload/references", $reference->id);
       $reference->save();
     }
 
@@ -56,7 +60,7 @@ class ReferencesController extends AdminController {
   public function destroy() {
     $reference = Reference::find($_POST["id"]);
 
-    ImageHelper::file_remove($reference->image);
+    FileHelper::remove($reference->image);
 
     $reference->destroy();
     $_SESSION["info"] = "Referans silindi";

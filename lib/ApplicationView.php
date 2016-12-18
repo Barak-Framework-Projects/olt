@@ -121,8 +121,6 @@ class ApplicationView {
       }
     }
 
-/*    eval('?>' . $this->_content . '<?php '); */
-
     // http://stackoverflow.com/questions/1184628/php-equivalent-of-include-using-eval)
     $file_name = 'tmp/' . time() . '.php';
     if (!($fp = fopen($file_name, 'a')))

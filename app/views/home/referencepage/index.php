@@ -5,37 +5,37 @@
 </ol>
 
 <style>
-.thumbnail {
-  position:relative;
-  overflow:hidden;
-}
+  .thumbnail {
+    position: relative;
+    overflow: hidden;
+  }
 
-.caption {
-  position:absolute;
-  top:0;
-  right:0;
-  background:rgba(66, 139, 202, 0.75);
-  width:100%;
-  height:100%;
-  padding:2%;
-  display: none;
-  text-align:center;
-  color:#fff !important;
-  z-index:2;
-}
+  .caption {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: rgba(66, 139, 202, 0.75);
+    width: 100%;
+    height: 100%;
+    padding: 2%;
+    display: none;
+    text-align: center;
+    color: #fff !important;
+    z-index: 2;
+  }
 </style>
 <script type="text/javascript">
-$( document ).ready(function() {
+  $( document ).ready(function() {
 
-  $('.thumbnail').hover(
-    function(){
+    $('.thumbnail').hover(
+      function(){
             $(this).find('.caption').slideDown(250); //.fadeIn(250)
           },
           function(){
             $(this).find('.caption').slideUp(250); //.fadeOut(205)
           }
           );
-});
+  });
 </script>
 <div class="container">
 

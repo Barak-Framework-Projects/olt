@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="tr" lang="tr">
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -25,10 +25,11 @@
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-73568943-1', 'auto');
+  ga('create', 'UA-88458033-1', 'auto');
   ga('send', 'pageview');
+
   </script>
   <!-- Google Analytics end -->
 
@@ -67,7 +68,6 @@
   <!-- Jquery Datatables Language end -->
   <!-- Jquery Datatables Responsive Bootstrap end -->
 
-
   <!-- datepicker start -->
   <!-- source: https://github.com/eternicode/bootstrap-datepicker -->
   <link rel="stylesheet" href="/app/assets/css/bootstrap-datepicker.min.css" type="text/css" />
@@ -95,152 +95,87 @@
   <script src="/app/assets/js/jquery.bxslider.min.js"></script>
   <link href="/app/assets/css/jquery.bxslider.css" rel="stylesheet" />
   <!-- bxSlider end -->
+
+  <!-- ticker slider lib start -->
+  <script src="/app/assets/js/jquery.bootstrap.newsbox.min.js" type="text/javascript"></script>
+  <!-- ticker slider lib end -->
+
+  <!-- page start -->
+  <!-- source: https://github.com/HubSpot/pace -->
+  <script src="/app/assets/js/pace.min.js"></script>
+  <link href="/app/assets/css/pace.css" rel="stylesheet" />
+  <script type="text/javascript">
+  $(document).ready(function() {
+    Pace.on("done", function(){
+      $("#contents").fadeIn(1000);
+
+      /* ticker slider start */
+      $(".agendas").bootstrapNews({
+        newsPerPage: 3,
+        autoplay: true,
+        pauseOnHover: true,
+        direction: 'up',
+        newsTickerInterval: 4000
+      });
+      /* ticker slider end */
+    });
+  });
+  </script>
+  <style type="text/css">
+  #contents {
+    display: none;
+  }
+  </style>
+  <!-- page end -->
 </head>
 <body>
-
-  <?php render("home_navbar", "home"); ?>
-
-  <div class="well well-sm">
-
-    <div class="row">
-
-      <div class="col-xs-8">
-        <ul class="nav nav-pills">
-          <li role="presentation"><a href="/home/index"><?= t("home.link"); ?></a></li>
-
-          <li role="presentation" class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <?= t("home.corporate.link"); ?>
-              <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-              <li><a href="/home/corporate/carrier"><?= t("home.corporate.carrier"); ?></a></li>
-              <li><a href="/home/corporate/about"><?= t("home.corporate.about"); ?></a></li>
-              <li><a href="/home/corporate/our_focus"><?= t("home.corporate.our_focus"); ?></a></li>
-              <li><a href="/home/corporate/service_policy"><?= t("home.corporate.service_policy"); ?></a></li>
-            </ul>
-          </li>
-
-          <li role="presentation" class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <?= t("home.solutions.link"); ?>
-              <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-              <li><a href="/home/solutions/structural_cabling"><?= t("home.solutions.structural_cabling"); ?></a></li>
-              <li><a href="/home/solutions/fiber_optic_infrastructure"><?= t("home.solutions.fiber_optic_infrastructure"); ?></a></li>
-              <li><a href="/home/solutions/network"><?= t("home.solutions.network"); ?></a></li>
-              <li><a href="/home/solutions/server"><?= t("home.solutions.server"); ?></a></li>
-              <li class="dropdown-submenu">
-                <a tabindex="-1" href="/home/solutions/security"><?= t("home.solutions.security.link"); ?></a>
-                <ul class="dropdown-menu">
-                  <li><a href="/home/solutions/security/cctv/"><?= t("home.solutions.security.cctv"); ?></a></li>
-                  <li class="dropdown-submenu">
-                    <a href="/home/solutions/security"><?= t("home.solutions.security.wide_control_systems.link"); ?></a>
-                    <ul class="dropdown-menu">
-                      <li><a href="/home/solutions/security/cctv/"><?= t("home.solutions.security.wide_control_systems.face"); ?></a></li>
-                      <li><a href="/home/solutions/security/cctv/"><?= t("home.solutions.security.wide_control_systems.finger"); ?></a></li>
-                      <li><a href="/home/solutions/security/cctv/"><?= t("home.solutions.security.wide_control_systems.card"); ?></a></li>
-                      <li><a href="/home/solutions/security/cctv/"><?= t("home.solutions.security.wide_control_systems.patrol_tour"); ?></a></li>
-                    </ul>
-                    <li><a href="/home/solutions/security/cctv/"><?= t("home.solutions.security.burglar_alarm_systems"); ?></a></li>
-                  </li>
-                  <ul class="dropdown-menu">
-                    <li><a href="/home/producttypes/show/"><?=  t("home.solutions.security.link"); ?></a></li>
-                  </ul>
-                </li>
-              </ul>
-              <li><a href="/home/solutions/security/cctv/"><?= t("home.solutions.wireless"); ?></a></li>
-              <li><a href="/home/solutions/security/cctv/"><?= t("home.solutions.video_conference"); ?></a></li>
-            </ul>
-          </li>
-
-          <li role="presentation" class="dropdown">
-            <a href="/home/products" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <?= t("home.products"); ?>
-              <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="dropdown-submenu">
-                <a tabindex="-1" href="/home/categories"><?= t("home.categories"); ?></a>
-                <?php if($_cs = Category::all()) { ?>
-                <ul class="dropdown-menu">
-                  <?php foreach ($_cs as $_c) { ?>
-                  <li class="dropdown-submenu">
-                    <a href="/home/categories/show/<?= $_c->id; ?>"><?= $_c->name; ?></a>
-                    <?php if ($_pts = ($_c->all_of_producttype)) { ?>
-                    <ul class="dropdown-menu">
-                      <?php foreach ($_pts as $_pt) { ?>
-                      <?php if($_pt) { ?>
-                      <li><a href="/home/producttypes/show/<?= $_pt->id; ?>"><?= $_pt->name; ?></a></li>
-                      <?php } ?>
-                      <?php } ?>
-                    </ul>
-                    <?php } ?>
-                  </li>
-                  <?php } ?>
-                </ul>
-                <?php } ?>
-              </li>
-              <li><a href="/home/products/search"><?= t("home.product_search"); ?></a></li>
-              <li><a href="/home/products"><?= t("home.product_list"); ?></a></li>
-            </ul>
-          </li>
-
-          <li role="presentation"><a href="/home/references"><?= t("home.references"); ?></a></li>
-          <li role="presentation"><a href="/home/contact"><?= t("home.contact"); ?></a></li>
-        </ul>
-      </div>
-
-      <div class="col-xs-4 hidden-xs hidden-sm">
-        <!--<img src="/app/assets/img/signature_of_ataturk.svg.png" width="120" class="img-responsive pull-right"/>-->
-        <ul class="nav nav-pills pull-right">
-          <li role="presentation"><a href="/lang/tr"><img src="/app/assets/img/tr.png" class="img-border"/></a></li>
-          <li role="presentation"><a href="/lang/en"><img src="/app/assets/img/en.png" class="img-border"/></a></li>
-        </ul>
-      </div>
+  <div class="pace  pace-inactive">
+    <div class="pace-progress" data-progress-text="100%" data-progress="99" style="width: 100%;">
+      <div class="pace-progress-inner"></div>
     </div>
-
+    <div class="pace-activity"></div>
   </div>
 
-  <?php if (!in_array($_SERVER["REQUEST_URI"], ["/", "/home", "/home/index"])) { ?>
-  <div class="well well-sm">
-    <!-- BootstrapHelper::page_title_and_breadcrumb(); -->
+  <div id="contents">
 
-    <?php } else { ?>
+    <?php render("home_navbar", "home"); ?>
 
-    <div>
+    <?php $_is_home = in_array($_SERVER["REQUEST_URI"], ["/", "/home", "/home/index"]); ?>
 
-      <?php } ?>
+    <?php if (!$_is_home) { ?>
+    <div class="well well-sm">
 
-      <!-- bildirimleri göster ve temizle -->
+      <div class="">
 
-      <?= BootstrapHelper::notice_show(); ?>
-      <?php BootstrapHelper::notice_clear(); ?>
+        <?php } else { ?>
 
-      {yield}
+        <div>
+          <div>
 
-    </div>
-<!--
-    <div class="well well-lg" style="background-color:#465568; color:white">
+            <?php } ?>
 
-      <div class="row">
-        <div class="col-md-9 col-sm-12 col-xs-12">
-          Aksi belirtilmedikçe <a href="http://olt.com.tr" target="_blank">olt.com.tr</a> tarafından tüm içerik hakları saklıdır.
+            <!-- bildirimleri göster ve temizle -->
+
+            <?= BootstrapHelper::notice_show(); ?>
+            <?php BootstrapHelper::notice_clear(); ?>
+
+            {yield}
+
+          </div>
         </div>
-        <div class="col-md-3 hidden-sm hidden-xs">
-        </div>
+
+        <?php render("signin_modal", "home"); ?>
+        <?php render("home_footer", "home"); ?>
+        <?php render("back_to_top", "layouts"); ?>
+
+        <!-- dropdown hover start -->
+        <script src="/app/assets/js/bootstrap-hover-dropdown.min.js"></script>
+        <script type="text/javascript">
+        $('.dropdown-toggle').dropdownHover();
+        </script>
+        <!-- dropdown hover end -->
       </div>
     </div>
--->
-    <?php render("signin_modal", "home"); ?>
-    <?php render("home_footer", "home"); ?>
-    <?php render("nav-up-down", "layouts"); ?>
-
-    <!-- dropdown hover start -->
-    <script src="/app/assets/js/bootstrap-hover-dropdown.min.js"></script>
-    <script type="text/javascript">
-    $('.dropdown-toggle').dropdownHover();
-    </script>
-    <!-- dropdown hover end -->
-
-
-  </body>
-  </html>
+  </div>
+</body>
+</html>

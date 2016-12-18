@@ -15,7 +15,10 @@ class PartnersController extends AdminController {
 
     $image = $_FILES["image"];
     if ($image["name"] != "") {// varsa yeni resmi ekle
-      $partner->image = ImageHelper::file_upload($image, "/upload/partners", $partner->id);
+      $partner->image = FileHelper::move_f($image, "/upload/partners", $partner->id);
+      $partner->save();
+    } else {
+      $partner->image = FileHelper::copy("/app/assets/img/default.png", "/upload/partners", $partner->id . ".png");
       $partner->save();
     }
 
@@ -45,7 +48,8 @@ class PartnersController extends AdminController {
 
     $image = $_FILES["image"];
     if ($image["name"] != "") {// varsa bir önceki resmi sil ve yeni resmi ekle
-      $partner->image = ImageHelper::file_update($partner->image, $image, "/upload/partners", $partner->id);
+      FileHelper::remove($partner->image);
+      $partner->image = FileHelper::move_f($image, "/upload/partners", $partner->id);
       $partner->save();
     }
 
@@ -56,7 +60,7 @@ class PartnersController extends AdminController {
   public function destroy() {
     $partner = Partner::find($_POST["id"]);
 
-    ImageHelper::file_remove($partner->image);
+    FileHelper::remove($partner->image);
 
     $partner->destroy();
     $_SESSION["info"] = "Partner silindi";

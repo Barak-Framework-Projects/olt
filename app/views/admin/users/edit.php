@@ -44,7 +44,7 @@
   <div class="form-group">
     <label class="col-sm-1 control-label" for="password">Yeni Şifre</label>
     <div class="col-sm-11">
-      <input type="text" placeholder="Yeni parola giriniz" class="form-control" name="password" id="password" />
+      <input type="password" placeholder="Yeni parola giriniz" class="form-control" name="password" id="password" />
     </div>
   </div>
   <div class="form-group">

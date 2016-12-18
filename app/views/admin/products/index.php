@@ -35,8 +35,7 @@
           </a>
 
           <input type="hidden" value="<?= $product->id; ?>" id="id" name="id"/>
-          <button type="submit" class="btn btn-default"
-          onClick=\"return confirm('Bu kaydı silmek istediğinizden emin misiniz?');\" title="Sil">
+          <button type="submit" class="btn btn-default" onClick="return confirm('Bu kaydı silmek istediğinizden emin misiniz?');" title="Sil">
           <i class="fa fa-trash"></i>
         </button>
       </form>

@@ -1,4 +1,5 @@
 <?php
+
 // CRUD
 // DRAFT #TODO or builder : https://github.com/ryangurn/PHP-MVC/blob/master/libraries/activerecord/lib/SQLBuilder.php
 
@@ -6,63 +7,156 @@
 
 class ApplicationSql {
 
+  public static $order_sort_type = ["ASC", "DESC"];
+  public static $where_logics = ["AND", "OR"];
+  public static $where_in_marks = ["IN", "NOT IN"];
+  public static $where_between_marks = ["BETWEEN", "NOT BETWEEN"];
+  public static $where_like_marks = ["LIKE", "NOT LIKE"];
+  public static $where_other_marks = ["=", "<>", ">", "<", ">=", "<="];
+
   // ["first_name" => "Gökhan", "last_name" => "Demir"]
-  private static function hash_to_key_symbol_symbolvalue($_hash, $delimiter = ",", $command = "") {
+  private static function where_to_command_symbol_symbolvalue($_list) {
+
+    if (!empty($_list)) {
+      $symbols = "";
+      $symbol_and_values = [];  // [":first_name" => "Gökhan", ":last_name" => "Demir"]
+
+      foreach ($_list as $index => $hash) {
+
+        $unique_symbol_prefix = "WHERE_" . $index;
+        if ($index == 0) {
+
+          if (in_array($hash["mark"], static::$where_in_marks)) {
+
+            list($in_command, $in_symbols, $in_symbolvalues) = static::list_to_command_symbol_symbolvalue($hash["value"], $unique_symbol_prefix);
+            $symbols .= $hash["field"] . " " . $hash["mark"] . " " . "(" . $in_symbols . ")";
+            $symbol_and_values = array_merge($symbol_and_values, $in_symbolvalues);
+
+          } elseif (in_array($hash["mark"], static::$where_between_marks)) {
+
+            list($between_command, $between_symbols, $between_symbolvalues) = static::list_to_command_symbol_symbolvalue($hash["value"], $unique_symbol_prefix, "AND");
+            $symbols .= $hash["field"] . " " . $hash["mark"] . " " . $between_symbols;
+            $symbol_and_values = array_merge($symbol_and_values, $between_symbolvalues);
+
+          } else {
+
+            list($field_command, $field_symbol, $field_symbolvalue) = static::var_to_command_symbol_value($hash["value"], $unique_symbol_prefix);
+            $symbols .= $hash["field"] . " " . $hash["mark"] . " " . $field_symbol;
+            $symbol_and_values = array_merge($symbol_and_values, $field_symbolvalue);
+
+          }
+
+        } else {
+
+          if (in_array($hash["mark"], static::$where_in_marks)) {
+
+            list($in_command, $in_symbols, $in_symbolvalues) = static::list_to_command_symbol_symbolvalue($hash["value"], $unique_symbol_prefix);
+            $symbols .= " " . $hash["logic"] . " " . $hash["field"] . " " . $hash["mark"] . " " . "(" . $in_symbols . ")";
+            $symbol_and_values = array_merge($symbol_and_values, $in_symbolvalues);
+
+          } elseif (in_array($hash["mark"], static::$where_between_marks)) {
+
+            list($between_command, $between_symbols, $between_symbolvalues) = static::list_to_command_symbol_symbolvalue($hash["value"], $unique_symbol_prefix, "AND");
+            $symbols .= " " . $hash["logic"] . " " . $hash["field"] . " " . $hash["mark"] . " " . $between_symbols;
+            $symbol_and_values = array_merge($symbol_and_values, $between_symbolvalues);
+
+          } else {
+
+            list($field_command, $field_symbol, $field_symbolvalue) = static::var_to_command_symbol_value($hash["value"], $unique_symbol_prefix);
+            $symbols .= " " . $hash["logic"] . " " . $hash["field"] . " " . $hash["mark"] . " " . $field_symbol;
+
+            $symbol_and_values = array_merge($symbol_and_values, $field_symbolvalue);
+
+          }
+
+        }
+
+      }
+
+      return array("WHERE $symbols", $symbols, $symbol_and_values);
+    } else {
+      return array("", "", []);
+    }
+
+  }
+
+  // ["first_name" => "Gökhan", "last_name" => "Demir"]
+  private static function hash_to_key_symbol_symbolvalue($_hash, $_command = "", $_delimiter = ",") {
+
     $symbols = "";                             // ["first_name" => ":first_name", "last_name" => ":last_name"]
     $symbol_and_values = [];                   // [":first_name" => "Gökhan", ":last_name" => "Demir"]
     $keys = "";
+
     foreach ($_hash as $key => $value) {
-      $keys .= ($keys ? " $delimiter " : "") . $key;
-      $key_symbol = ":$command" . "_" . str_replace(".", "_", $key);
-      $symbols .= ($symbols ? " $delimiter " : "") . $key_symbol;
+
+      $keys .= ($keys ? " $_delimiter " : "") . $key;
+      $key_symbol = ":$_command" . "_" . str_replace(".", "_", $key);
+      $symbols .= ($symbols ? " $_delimiter " : "") . $key_symbol;
       $symbol_and_values[$key_symbol] = $value;
 
     }
 
+    /*
+    ["first_name", "last_name"],
+    [":first_name", ":last_name"],
+    [":first_name" => "Gökhan", ":last_name" => "Demir"]
+    */
     return array($keys, $symbols, $symbol_and_values);
   }
 
   // ["first_name" => "Gökhan", "last_name" => "Demir"]
   private static function hash_to_keysymbol_symbolvalue($_hash, $delimiter = ",", $command = "") {
+
     $key_and_symbols = "";                     // ["first_name" => ":first_name", "last_name" => ":last_name"]
     $symbol_and_values = [];                   // [":first_name" => "Gökhan", ":last_name" => "Demir"]
-
     foreach ($_hash as $key => $value) {
-
       $key_symbol = ":$command" . "_" . str_replace(".", "_", $key);
       $key_and_symbols .= ($symbol_and_values ? " $delimiter " : "") . "$key=$key_symbol";
       $symbol_and_values[$key_symbol] =  $value;
-
     }
-
     return array($key_and_symbols ? "$command $key_and_symbols" : "", $symbol_and_values);
   }
 
   // ["first_name", "last_name"]
-  private static function list_to_symbol_symbolvalue($_list, $_command = "") {
-    $symbols = "";                             // ":first_name , :last_name"
-    $symbol_and_values = [];                   // [":first_name" => "first_name", ":last_name" => "last_name"]
-    $command = str_replace(" ", "", $_command); // ORDER BY => ORDERBY, GROUP BY => GROUPBY
+  private static function list_to_command_symbol_symbolvalue($_list, $_command = "", $_delimiter = ",") {
 
-    foreach ($_list as $field) {
+    if (!empty($_list)) {
 
-      $key_symbol = ":$command" . "_" . str_replace(".", "_", str_replace(" ", "_", $field));
-      $symbols .= ($symbols ? "," : "") . $key_symbol;
-      $symbol_and_values[$key_symbol] = $field;
+      $symbols = "";                              // ":first_name , :last_name"
+      $symbol_and_values = [];                    // [":first_name" => "first_name", ":last_name" => "last_name"]
+      $command = str_replace(" ", "", $_command); // ORDER BY => ORDERBY, GROUP BY => GROUPBY
 
-    }
+      foreach ($_list as $index => $field) {
 
-    return array($symbols ? "$_command $symbols" : "", $symbol_and_values);
-  }
+        //$key_symbol = ":$command" . "_" . str_replace(".", "_", str_replace(" ", "_", $field));
+        $key_symbol = ":$command" . "_" . $index;
+        $symbols .= ($symbols ? " $_delimiter " : "") . $key_symbol;
+        $symbol_and_values[$key_symbol] = $field;
 
-  private static function var_to_symbol($_var, $command = "") {
+      }
 
-    if ($_var) {
-      $symbol = ":$command" . "_" . $_var;
-      return array($symbol, "$command $symbol", [$symbol => $_var]);
+      // array(
+      // "ORDER BY :first_name, :last_name",
+      // ":first_name, :last_name",
+      // "[':first_name' => 'gökhan', ':last_name' => 'demir']"
+      // )
+
+      return array("$_command $symbols", $symbols, $symbol_and_values);
     } else {
       return array("", "", []);
     }
+
+  }
+
+  private static function var_to_command_symbol_value($_value, $_command = "") {
+
+    if ($_value) {
+      $symbol = ":" . str_replace(" ", "", $_command); // ORDER BY => ORDERBY, GROUP BY => GROUPBY
+      return array("$_command $symbol", $symbol, [$symbol => $_value]);
+    } else {
+      return array("", "", []);
+    }
+
   }
 
   public static function create($_table, $_fields) {
@@ -71,11 +165,19 @@ class ApplicationSql {
 
     foreach ($_fields as $field => $value) if ($value == null) unset($_fields[$field]);
 
-    list($field_keys, $field_symbols, $field_symbol_and_values) = static::hash_to_key_symbol_symbolvalue($_fields);
+    list($field_keys, $field_symbols, $field_symbolvalues) = static::hash_to_key_symbol_symbolvalue($_fields);
 
-    $query = $GLOBALS['db']->prepare("INSERT INTO $_table ( $field_keys ) VALUES ( $field_symbols )");
+    $query = $GLOBALS['db']->prepare("INSERT INTO `$_table` ( $field_keys ) VALUES ( $field_symbols )");
 
-    if (!$query->execute($field_symbol_and_values))
+    $symbolvalues = array_merge(
+      $field_symbolvalues
+      );
+
+    foreach ($symbolvalues as $symbol => $value) {
+      $query->bindValue($symbol, $value, ApplicationSql::bindtype($value));
+    }
+
+    if (!$query->execute())
       throw new SQLException("Tabloya kayıt yazmada sorun oluştu", $_table);
 
     return intval($GLOBALS["db"]->lastInsertId());
@@ -83,14 +185,21 @@ class ApplicationSql {
 
   public static function read($_table, $_select, $_where) {
 
-    if (empty($_select)) $_select = ["*"];
-    $_select = implode(",", $_select);
+    $_select = (!empty($_select)) ? implode(",", $_select) : "*";
 
-    list($where_key_and_symbols, $where_symbol_and_values) = static::hash_to_keysymbol_symbolvalue($_where, "and", "WHERE");
+    list($where_commands, $where_symbols, $where_symbolvalues) = static::where_to_command_symbol_symbolvalue($_where);
 
-    $query = $GLOBALS['db']->prepare("SELECT $_select FROM $_table $where_key_and_symbols");
+    $query = $GLOBALS['db']->prepare("SELECT $_select FROM `$_table` $where_commands");
 
-    if (!$query->execute($where_symbol_and_values))
+    $symbolvalues = array_merge(
+      $where_symbolvalues
+      );
+
+    foreach ($symbolvalues as $symbol => $value) {
+      $query->bindValue($symbol, $value, ApplicationSql::bindtype($value));
+    }
+
+    if (!$query->execute())
       throw new SQLException("Tablodan veri okumasında sorun oluştu", $_table);
 
     return $query->fetch(PDO::FETCH_ASSOC);
@@ -98,77 +207,87 @@ class ApplicationSql {
 
   public static function update($_table, $_sets, $_where) {
 
-    list($set_key_and_symbols, $set_symbol_and_values) = static::hash_to_keysymbol_symbolvalue($_sets);
+    list($set_keysymbols, $set_symbolvalues) = static::hash_to_keysymbol_symbolvalue($_sets);
+    list($where_commands, $where_symbols, $where_symbolvalues) = static::where_to_command_symbol_symbolvalue($_where);
 
-    list($where_key_and_symbols, $where_symbol_and_values) = static::hash_to_keysymbol_symbolvalue($_where, ",");
+    $query = $GLOBALS['db']->prepare("UPDATE `$_table` SET $set_keysymbols $where_commands");
 
-    $query = $GLOBALS['db']->prepare("UPDATE `$_table` SET $set_key_and_symbols WHERE $where_key_and_symbols");
+    $symbolvalues = array_merge(
+      $where_symbolvalues,
+      $set_symbolvalues
+      );
 
-    if (!$query->execute(array_merge($where_symbol_and_values, $set_symbol_and_values)))
+    foreach ($symbolvalues as $symbol => $value) {
+      $query->bindValue($symbol, $value, ApplicationSql::bindtype($value));
+    }
+
+    if (!$query->execute())
       throw new SQLException("Tabloda kayıt güncellemesinde sorun oluştu", $_table);
   }
 
-  public static function delete($_table, $_fields, $_limit) {
+  public static function delete($_table, $_where, $_limit) {
 
-    list($where_key_and_symbols, $where_symbol_and_values) = static::hash_to_keysymbol_symbolvalue($_fields, "and", "WHERE");
-    list($limit_symbol, $limit_command_symbol, $limit_symbol_and_value) = static::var_to_symbol($_limit, "LIMIT");
+    list($where_commands, $where_symbols, $where_symbolvalues) = static::where_to_command_symbol_symbolvalue($_where);
+    list($limit_command, $limit_symbol, $limit_symbolvalue)  = static::var_to_command_symbol_value($_limit, "LIMIT");
 
-    $query = $GLOBALS['db']->prepare("DELETE FROM `$_table` $where_key_and_symbols $limit_command_symbol");
+    $query = $GLOBALS['db']->prepare("DELETE FROM `$_table` $where_commands $limit_command");
 
-    if ($_limit)
-      $query->bindParam($limit_symbol, $limit_symbol_and_value[$limit_symbol], PDO::PARAM_INT);
+    $symbolvalues = array_merge(
+      $where_symbolvalues,
+      $limit_symbolvalue
+      );
 
-    if (!$query->execute($where_symbol_and_values))
+    foreach ($symbolvalues as $symbol => $value) {
+      $query->bindValue($symbol, $value, ApplicationSql::bindtype($value));
+    }
+
+    if (!$query->execute())
       throw new SQLException("Tablodan veri silmesinde sorun oluştu", $_table);
   }
 
   public static function query($_select, $_table, $_join, $_where, $_order, $_group, $_limit, $_offset) {
 
-    if (empty($_select)) $_select = ["*"];
-    $_select = implode(",", $_select);
+    $_select_fields = (!empty($_select)) ? implode(",", $_select) : "*";
+    $_order_fields  = (!empty($_order)) ? "ORDER BY " . implode(",", $_order) : "";
+    $_group_fields  = (!empty($_group)) ? "GROUP BY " . implode(",", $_group) : "";
+
 
     if ($_join) {
-      $_join_commands = "";
+      $_join_fields = "";
       foreach ($_join as $table => $condition) {
-        $_join_commands .= ($_join_commands ? " " : "") . "INNER JOIN $table ON $condition";;
+        $_join_fields .= ($_join_fields ? " " : "") . "INNER JOIN $table ON $condition";;
       }
     } else {
-      $_join_commands = "";
+      $_join_fields = "";
     }
 
-    list($where_command_key_and_symbols, $where_symbol_and_values) = static::hash_to_keysymbol_symbolvalue($_where, "and", "WHERE");
-    list($order_command_symbols, $order_symbol_and_values) = static::list_to_symbol_symbolvalue($_order, "ORDER BY");
-    list($group_command_symbols, $group_symbol_and_values) = static::list_to_symbol_symbolvalue($_group, "GROUP BY");
-    list($limit_symbol, $limit_command_symbol, $limit_symbol_and_value) = static::var_to_symbol($_limit, "LIMIT");
-    list($offset_symbol, $offset_command_symbol, $offset_symbol_and_value) = static::var_to_symbol($_offset, "OFFSET");
+    list($where_commands, $where_symbols, $where_symbolvalues) = static::where_to_command_symbol_symbolvalue($_where);
+
+    list($limit_command,  $limit_symbol,  $limit_symbolvalue)  = static::var_to_command_symbol_value($_limit, "LIMIT");
+    list($offset_command, $offset_symbol, $offset_symbolvalue) = static::var_to_command_symbol_value($_offset, "OFFSET");
 
     $sql = "
-    SELECT $_select
+    SELECT $_select_fields
     FROM $_table
-    $_join_commands
-    $where_command_key_and_symbols
-    $order_command_symbols
-    $group_command_symbols
-    $limit_command_symbol
-    $offset_command_symbol
+    $_join_fields
+    $where_commands
+    $_order_fields
+    $_group_fields
+    $limit_command
+    $offset_command
     ";
 
     $query = $GLOBALS['db']->prepare($sql);
 
-    if ($_limit)
-      $query->bindParam($limit_symbol, $limit_symbol_and_value[$limit_symbol], PDO::PARAM_INT);
-
-    if ($_offset)
-      $query->bindParam($offset_symbol, $offset_symbol_and_value[$offset_symbol], PDO::PARAM_INT);
-
-    $symbol_and_values = array_merge(
-      $where_symbol_and_values,
-      $order_symbol_and_values,
-      $group_symbol_and_values
+    $symbolvalues = array_merge(
+      $where_symbolvalues,
+      $limit_symbolvalue,
+      $offset_symbolvalue
       );
 
-    foreach ($symbol_and_values as $symbol => $value) {
-      $query->bindParam($symbol, $value);
+    foreach ($symbolvalues as $symbol => $value) {
+      // $query->bindParam($symbol, $value);
+      $query->bindValue($symbol, $value, ApplicationSql::bindtype($value));
     }
 
     if (!$query->execute())
@@ -176,7 +295,13 @@ class ApplicationSql {
 
     return $query->fetchAll(PDO::FETCH_ASSOC);
   }
+  public static function bindtype($value) {
+    if     (is_int($value))  return PDO::PARAM_INT;
+    elseif (is_bool($value)) return PDO::PARAM_BOOL;
+    elseif (is_null($value)) return PDO::PARAM_NULL;
+    else                     return PDO::PARAM_STR;
 
+  }
   public static function tablenames() {
     $name = $GLOBALS['db']->query("select database()")->fetchColumn();
     $result = $GLOBALS['db']->query("show tables");
@@ -192,4 +317,5 @@ class ApplicationSql {
     return $GLOBALS['db']->query("SHOW INDEX FROM $table WHERE Key_name = 'PRIMARY'")->fetch(PDO::FETCH_ASSOC)["Column_name"];
   }
 }
+
 ?>

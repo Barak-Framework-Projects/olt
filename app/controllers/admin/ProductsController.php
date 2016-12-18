@@ -17,13 +17,16 @@ class ProductsController extends AdminController {
 
     $image = $_FILES["image"];
     if ($image["name"] != "") {// varsa yeni resmi ekle
-      $product->image = ImageHelper::file_upload($image, "/upload/products/image", $product->id);
+      $product->image = FileHelper::move_f($image, "/upload/products/image", $product->id);
       $product->save();
+    } else {
+    	$product->image = FileHelper::copy("/app/assets/img/default.png", "/upload/products", $product->id . ".png");
+    	$product->save();
     }
 
     $file = $_FILES["file"];
     if ($file["name"] != "") {// varsa yeni resmi ekle
-      $product->file = ImageHelper::file_upload($file, "/upload/products/file", $product->id);
+      $product->file = FileHelper::move_f($file, "/upload/products/file", $product->id);
       $product->save();
     }
 
@@ -54,13 +57,14 @@ class ProductsController extends AdminController {
 
     $image = $_FILES["image"];
     if ($image["name"] != "") {// varsa bir önceki resmi sil ve yeni resmi ekle
-      $product->image = ImageHelper::file_update($product->image, $image, "/upload/products/image", $product->id);
+    	FileHelper::remove($product->image);
+      $product->image = FileHelper::move_f($image, "/upload/products/image", $product->id);
       $product->save();
     }
 
     $file = $_FILES["file"];
     if ($file["name"] != "") {// varsa bir önceki resmi sil ve yeni resmi ekle
-      $product->file = ImageHelper::file_update($product->file, $file, "/upload/products/file", $product->id);
+      $product->file = FileHelper::file_update($product->file, $file, "/upload/products/file", $product->id);
       $product->save();
     }
 
@@ -71,8 +75,8 @@ class ProductsController extends AdminController {
   public function destroy() {
     $product = Product::find($_POST["id"]);
 
-    ImageHelper::file_remove($product->image);
-    ImageHelper::file_remove($product->file);
+    FileHelper::file_remove($product->image);
+    FileHelper::file_remove($product->file);
 
     $product->destroy();
     $_SESSION["info"] = "Ürün silindi";

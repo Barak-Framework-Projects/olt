@@ -18,17 +18,32 @@ return [
   "corporate" => [
     "link" => "Kurumsal",
 
-    "carrier" => "Kariyer",
-    "carrier_content" => "Kariyer İçerik",
+    "gallery" => "Galeri",
 
     "about" => "Hakkımızda",
-    "about_content" => "Hakkımızda",
+    "about_content" => "
+
+      OLT telekomünikasyon ve bilişim sektörlerinde sistem entegrasyonu, projelendirme, satış, kurulum, bakım, profesyonel teknik destek ve danışmanlık hizmetleri vermek üzere 2011 yılı içerisinde kurulmuştur. Gaziantep merkezli firmamız Türkiye geneli bütün bölgelere hizmet vermektedir.<br/><br/>
+
+      OLT’nin sunduğu çözümler arasında fiber optik altyapı, lokal ve geniş alan ağı, bilgi güvenliği ve WiFi hizmetleri, güvenlik sistemleri bulunurken; uygulama alanları KOBİ’lerden kurumsal firmalara ve kamu kurumlarına kadar yayılmaktadır. OLT dinamik, uzman ve tecrübeli kadrosuyla müşterilerinin ihtiyaçlarına benzersiz ve eksiksiz çözümler sunmayı hedefler.<br/><br/>
+
+      OLT, müşteri memnuniyetini odağına yerleştirip, yüksek kaliteli çözüm ortağı olarak müşterilerine hizmet vermeyi ve dinamik bir yapı ile satış öncesi ve sonrasında üstün hizmet farkını ortaya koymayı ilke edinmiştir.
+    ",
 
     "our_focus" => "Odak Noktamız",
-    "our_focus_content" => "Odak Noktamız",
+    "our_focus_content" => "
+      Temel odak noktamız en iyi çözümleri müşterilerimizle buluşturmak ve mükemmel hizmet seviyesi sunmaktır. OLT müşterilerinin ihtiyaç ve beklentilerini eksiksiz ve tam anlayarak müşterilerine özel yenilikçi çözümler sunar.
+    ",
 
     "service_policy" => "Hizmet Politikamız",
-    "service_policy_content" => "Hizmet Politikamız",
+    "service_policy_content" => "
+      OLT müşterilerinin ana işine değer katmak, ağ ve bilgi teknolojileriyle müşterilerini geleceğe taşıyan en doğru adres olmak ve profesyonel çözümleri en uygun maliyetlerle müşterilerine sunmak amacıyla kurulmuştur. Biz araştırmacı bir şirketiz. En iyi çözümleri müşterilerimizle buluşturmak ve mükemmel hizmet seviyesi sunmak temel odak noktamız. OLT ile çalıştığınızda sistemin size teslim edilmesinden sonra da yanınızda olduğumuzu bilirsiniz. Bizim müşterilerimizle ilişkimiz karşılıklı bilgi paylaşımını içerir. Bizim uzmanı olduğumuz konularda siz bize danışırken sizin ana işinizle ilgili gereksinimleri öğrenir; kendi işimizi size özel geliştirdiğimiz uygulamalarla zenginleştiririz.<br/><br/>
+
+      Kısaca OLT ile çalışırken 'mükemmel müşteri deneyimini' hissedersiniz!
+    ",
+
+    "human_resources" => "İnsan Kaynakları",
+    "human_resources_content" => "İnsan Kaynakları İçerik",
   ],
 
   "solutions" => [
@@ -55,6 +70,9 @@ return [
       "cctv" => "CCTV Çözümleri",
       "cctv_content" => "CCTV Çözümleri",
 
+      "burglar_alarm_systems" => "Hırsız Alarm Sistemi",
+      "burglar_alarm_systems_content" => "Hırsız Alarm Sistemi",
+
       "wide_control_systems" => [
         "link" => "Geniş Kontrol Sistemleri",
 
@@ -70,8 +88,6 @@ return [
         "patrol_tour" => "Devriye Tur",
         "patrol_tour_content" => "Devriye Tur",
       ],
-
-      "burglar_alarm_systems" => "Hırsız Alarm Sistemi",
     ],
       "wireless" => "Wireless Çözümleri",
       "wireless_content" => "Wireless Çözümleri",
@@ -81,6 +97,8 @@ return [
 
 
   ],
+
+  "agendas" => "Haberler",
 
   "references" => "Referanslar",
 

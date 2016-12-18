@@ -23,7 +23,6 @@ class ProductpageController extends HomeController {
   }
 
   public function find() {
-
     if (!$product = Product::find($_POST["product_id"]))
       return $this->redirect_to("/home/index");
     return $this->redirect_to("/home/products/show/" . $product->id);

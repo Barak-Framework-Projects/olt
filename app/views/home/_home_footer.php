@@ -1,4 +1,4 @@
-<style>
+﻿<style type="text/css">
 .footer {
   background: url('/app/assets/img/footer.png') repeat center center fixed;
   border-radius: 10px 10px 0px 0px;
@@ -15,7 +15,7 @@
 </style>
 
 <div class="footer">
-  <div class="container">
+  <div class="container-fluid">
     <div class="row animated zoomIn">
       <div class="col-md-4">
 
@@ -54,63 +54,88 @@
       </div>
       <div class="col-md-4">
 
-        <h5>Ürün Tipleri</h5>
+        <h5><?= t("home.agendas"); ?></h5>
         <hr>
-        <?php if ($_footer_pts = Producttype::all()) { ?>
-        <ul class="">
-          <?php foreach ($_footer_pts as $_footer_pt) { ?>
-          <?php if ($_footer_pt) { ?>
-          <li><i class="fa fa-caret-right" aria-hidden="true"></i> <a href="/home/producttpes/show/<?= $_footer_pt->id; ?>"><?= $_footer_pt->name; ?></a></li>
-          <?php } ?>
-          <?php } ?>
-        </ul>
-        <?php } ?>
+          <!--
+          <?php if ($_footer_pts = Producttype::all()) { ?>
+            <ul class="">
+              <?php foreach ($_footer_pts as $_footer_pt) { ?>
+              <?php if ($_footer_pt) { ?>
+              <li><i class="fa fa-caret-right" aria-hidden="true"></i> <a href="/home/producttpes/show/<?= $_footer_pt->id; ?>"><?= $_footer_pt->name; ?></a></li>
+              <?php } ?>
+              <?php } ?>
+            </ul>
+            <?php } ?>
+          -->
+          <?php $agendas = Agenda::last(5); ?>
+          <div class="panel panel-default">
 
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-xs-12">
+                  <ul class="agendas">
+
+                    <?php foreach ($agendas as $agenda) { ?>
+                    <li class="news-item">
+
+                      <a href="/home/agendas/show/<?= $agenda->id; ?>"><?= $agenda->subject; ?></a>
+                      <hr>
+
+                    </li>
+
+                    <?php } ?>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="panel-footer"> </div>
+          </div>
+
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<div style="font-size: 12px">
-  <nav class="navbar navbar-default navbar-inverse">
-    <div class="container-fluid">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand">
-          copyright &copy; <?= date("Y"); ?><br>
-        </a>
-      </div>
+  <div style="font-size: 12px">
+    <nav class="navbar navbar-default navbar-inverse">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand">
+            copyright &copy; <?= date("Y"); ?><br>
+          </a>
+        </div>
 
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
-        <ul class="nav navbar-nav pull-left">
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+          <ul class="nav navbar-nav pull-left">
 
-          <li><a href="mailto:info@olt.com.tr" target="_blank" class="fa fa-envelope fa-2x"></a></li>
+            <li><a href="mailto:info@olt.com.tr" target="_blank" class="fa fa-envelope fa-2x"></a></li>
 
-          <li><a href="http://www.linkedin.com/in/olt.com.tr/" target="_blank" class="fa fa-linkedin-square fa-2x"></a></li>
+            <li><a href="http://www.linkedin.com/in/olt.com.tr/" target="_blank" class="fa fa-linkedin-square fa-2x"></a></li>
 
-          <li><a href="http://plus.google.com/olt.com.tr/" target="_blank" class="fa fa-google-plus-square fa-2x"></a></li>
+            <li><a href="http://plus.google.com/olt.com.tr/" target="_blank" class="fa fa-google-plus-square fa-2x"></a></li>
 
-          <li><a href="http://twitter.com/olt.com.tr/" target="_blank" class="fa fa-twitter-square fa-2x"></a></li>
+            <li><a href="http://twitter.com/olt.com.tr/" target="_blank" class="fa fa-twitter-square fa-2x"></a></li>
 
-          <li><a href="http://instagram.com/olt.com.tr/" target="_blank" class="fa fa-instagram fa-2x"></a></li>
+            <li><a href="http://instagram.com/olt.com.tr/" target="_blank" class="fa fa-instagram fa-2x"></a></li>
 
-        </ul>
+          </ul>
 
-        <ul class="nav navbar-nav navbar-right">
-          <li>
-            <a href="http://www.turkeydiscoverthepotential.com/" target="_blank">
-              <img src="/app/assets/img/signature_of_turkey.svg.png" width="120" height="40" class="pull-right"/>
-            </a>
-          </li>
-        </ul>
-      </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-  </nav>
-</div>
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <a href="http://www.turkeydiscoverthepotential.com/" target="_blank">
+                <img src="/app/assets/img/signature_of_turkey.png" width="120" height="40" class="pull-right"/>
+              </a>
+            </li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+  </div>

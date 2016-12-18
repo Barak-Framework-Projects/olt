@@ -1,5 +1,3 @@
-<?php $product = Product::find($id); ?>
-
 <h4 class="page-title"><?= t("home.product"); ?></h4>
 <ol class="breadcrumb text-right">
   <li><a href="/">Anasayfa</a></li>

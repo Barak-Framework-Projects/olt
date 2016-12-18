@@ -12,10 +12,12 @@ class AdminController extends ApplicationController {
 
     if (isset($_POST["username"]) and isset($_POST["password"])) {
 
-      if ($user = User::unique(["username" => $_POST["username"], "password" => md5($_POST["password"])])) {
+      if ($user = User::unique(
+        ["username" => $_POST["username"], "password" => md5($_POST["password"]), "admin" => true]
+      )) {
 
         $_SESSION["success"] = "Admin sayfasına hoş geldiniz";
-        $_SESSION["full_name"] = "$user->first_name $user->last_name";
+        $_SESSION["full_name"] = $user->full_name();
         $_SESSION["admin"] = $user->id;
         return $this->render("/admin/index");
 

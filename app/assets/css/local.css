@@ -17,6 +17,7 @@
 /* Parallax */
 
 .parallax {
+  height: 130px;
   display: table;
   position: relative;
   width: 100%;
@@ -24,6 +25,8 @@
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  vertical-align: middle;
+  bottom: 0;
 }
 .parallax-caption {
   display: table-cell;
@@ -31,6 +34,8 @@
   vertical-align: middle;
 }
 .parallax-caption h1 {
+  display: inline;
+  color: #d3d3d3;
   font-size: 4.5em;
   font-weight: 700;
   margin: 0;
@@ -45,3 +50,46 @@
 .dropdown-submenu:hover>a:after{border-left-color:#555;}
 .dropdown-submenu.pull-left{float:none;}
 .dropdown-submenu.pull-left>.dropdown-menu{left:-100%;margin-left:10px;-webkit-border-radius:6px 0 6px 6px;-moz-border-radius:6px 0 6px 6px;border-radius:6px 0 6px 6px;}
+
+/* Image hover */
+
+.img-hover img {
+  -webkit-transition: all .5s ease; /* Safari and Chrome */
+  -moz-transition: all .5s ease; /* Firefox */
+  -o-transition: all .5s ease; /* IE 9 */
+  -ms-transition: all .5s ease; /* Opera */
+  transition: all .5s ease;
+}
+.img-hover img:hover {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform:translateZ(0) scale(1.02); /* Safari and Chrome */
+  -moz-transform:scale(1.02); /* Firefox */
+  -ms-transform:scale(1.02); /* IE 9 */
+  -o-transform:translatZ(0) scale(1.02); /* Opera */
+  transform:translatZ(0) scale(1.02);
+}
+
+/* Gray Scale */
+
+.gray_scale {
+ filter: grayscale(100%);
+ -webkit-filter: grayscale(100%);
+ -moz-filter: grayscale(100%);
+ -ms-filter: grayscale(100%);
+ -o-filter: grayscale(100%);
+}
+.gray_scale_box:hover .gray_scale {
+ filter: grayscale(0%);
+ -webkit-filter: grayscale(0%);
+ -moz-filter: grayscale(0%);
+ -ms-filter: grayscale(0%);
+ -o-filter: grayscale(0%);
+}
+
+/* Background Transparent Overlay */
+
+.background-transparent {
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+}

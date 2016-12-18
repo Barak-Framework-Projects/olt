@@ -34,8 +34,7 @@
           <a href="/admin/users/edit/<?= $user->id; ?>" class="btn btn-default" role="button" title="Düzenle"><i class="fa fa-edit"></i></a>
 
           <input type="hidden" value="<?= $user->id; ?>" id="id" name="id" />
-          <button type="submit" class="btn btn-default"
-          onClick=\"return confirm('Bu kullanıcıyı silmek istediğinizden emin misiniz?');\" title="Sil">
+          <button type="submit" class="btn btn-default" onClick="return confirm('Bu kaydı silmek istediğinizden emin misiniz?');" title="Sil">
           <i class="fa fa-trash"></i>
         </button>
       </form>

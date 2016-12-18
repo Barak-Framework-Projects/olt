@@ -24,8 +24,11 @@ class UsersController extends AdminController {
 
     $image = $_FILES["image"];
     if ($image["name"] != "") {// varsa yeni resmi ekle
-      $user->image = ImageHelper::file_upload($image, "/upload/users", $user->id);
+      $user->image = FileHelper::move_f($image, "/upload/users", $user->id);
       $user->save();
+    } else {
+    	$user->image = FileHelper::copy("/app/assets/img/default.png", "/upload/users", $user->id . ".png");
+    	$user->save();
     }
 
     $_SESSION["warning"] = "Güvenliği için bu kullanıcı parolasını güncellemelidir!";
@@ -48,6 +51,9 @@ class UsersController extends AdminController {
   }
 
   public function update() {
+    if ($_POST["password"] != "")
+      $_POST["password"] = md5($_POST["password"]);
+
     $user = User::find($_POST["id"]);
     foreach ($_POST as $key => $value) $user->$key = $value;
     $user->updated_at = date("Y-m-d H:i:s");
@@ -55,7 +61,8 @@ class UsersController extends AdminController {
 
     $image = $_FILES['image'];
     if ($image["name"] != "") {// varsa bir önceki resmi sil ve yeni resmi ekle
-      $user->image = ImageHelper::file_update($user->image, $image, "/upload/users", $user->id);
+    	FileHelper::remove($user->image);
+      $user->image = FileHelper::move_f($image, "/upload/users", $user->id);
       $user->save();
     }
 
@@ -66,7 +73,7 @@ class UsersController extends AdminController {
   public function destroy() {
     $user = User::find($_POST["id"]);
 
-    ImageHelper::file_remove($user->image);
+    FileHelper::remove($user->image);
 
     $user->destroy();
     $_SESSION["info"] = "Personel silindi";

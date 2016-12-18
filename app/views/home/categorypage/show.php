@@ -8,7 +8,7 @@
 <!-- first section - Home -->
 <div class="parallax" style="background: url(<?= $category->image; ?>) no-repeat center fixed">
   <div class="parallax-caption">
-    <h1><?= $category->name; ?></h1>
+    <h1 class="background-transparent"><?= $category->name; ?></h1>
   </div>
 </div>
 <!-- /first section -->
@@ -31,7 +31,7 @@
       <?php foreach ($producttypes as $producttype) { ?>
       <tr>
         <td><img src="<?= $producttype->image; ?>" class="thumbnail img-responsive" width="184" height="140"/></td>
-        <td><?= $producttype->name ?></td>
+        <td><?= $producttype->name; ?></td>
         <td><?= count($producttype->all_of_product); ?></td>
         <td>
           <a href="/home/producttypes/show/<?= $producttype->id; ?>" class="btn btn-default" role="button" title="Göster">
@@ -39,10 +39,7 @@
           </a>
         </td>
       </tr>
-
       <?php } ?>
-      <?php } else { ?>
-      <tr class="text-center"><td colspan="4">Henüz Ürün Tipi mevcut değil</td></tr>
       <?php } ?>
     </tbody>
   </table>

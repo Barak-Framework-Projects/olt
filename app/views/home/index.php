@@ -1,3 +1,5 @@
+<!-- first section - Slides -->
+
 <div id="carousel-example-generic1" class="carousel slide" data-ride="carousel" style="color:white; font-size:14px;">
   <!-- Indicators -->
   <ol class="carousel-indicators">
@@ -5,53 +7,79 @@
     <li data-target="#carousel-example-generic1" data-slide-to="1"></li>
     <li data-target="#carousel-example-generic1" data-slide-to="2"></li>
     <li data-target="#carousel-example-generic1" data-slide-to="3"></li>
+    <li data-target="#carousel-example-generic1" data-slide-to="4"></li>
   </ol>
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
     <!-- Item 1 -->
-    <div class="item active" style="background:url(/app/assets/img/slide-bg-1.jpg)">
+    <div class="item active" style="background-image:url(/app/assets/img/slide-bg-1.jpg);">
       <div class="row">
         <div class="container">
-          <div class="col-md-3 text-right">
-            <img style="max-width: 350px;"  class="animated zoomInLeft" src="http://s20.postimg.org/pfmmo6qj1/window_domain.png">
+          <div class="col-md-2 text-right" style="min-height: 450px">
+            <img class="animated zoomInLeft" src="/app/assets/img/slide-2.png">
           </div>
-          <div class="col-md-9 text-left" style="padding: 20px; color: rgb(255, 255, 255); background-color: rgba(0, 0, 0, 0.4); border-radius: 10px;">
-            <h3 class="animated bounceInDown">Add images, or even your logo!</h3>
-            <h4 class="animated bounceInUp">Easily use stunning effects</h4>
+          <div class="col-md-10 text-left background-transparent">
+            <h3 class="animated bounceInDown">Fiber Optik Tesisatları</h3>
+            <h4 class="animated bounceInUp">Fiber Optik Kurulum</h4>
           </div>
         </div>
       </div>
     </div>
     <!-- Item 2 -->
-    <div class="item" style="background:url(/app/assets/img/slide-bg-2.jpg)">
+    <div class="item" style="background-image:url(/app/assets/img/slide-bg-2.jpg);">
       <div class="row">
         <div class="container">
-          <div class="col-md-7 text-left" style="padding: 20px; color: rgb(255, 255, 255); background-color: rgba(0, 0, 0, 0.4); border-radius: 10px;">
-            <h3 class="animated bounceInDown"> 50 animation options A beautiful</h3>
-            <h4 class="animated bounceInUp">Create beautiful slideshows </h4>
+          <div class="col-md-5 text-left" style="min-height: 450px">
+            <div class="row">
+              <img style="max-height: 80px"  class="animated infinite pulse" src="/app/assets/img/sfp.png">
+            </div>
+            <div class="row">
+              <img style="max-height: 80px"  class="animated infinite pulse" src="/app/assets/img/sfp-plus.png">
+            </div>
+            <div class="row">
+              <img style="max-height: 80px"  class="animated infinite pulse" src="/app/assets/img/sfp-copper.png">
+            </div>
+            <div class="row">
+              <img style="max-height: 80px"  class="animated infinite pulse" src="/app/assets/img/sfp_transceiver.png">
+            </div>
           </div>
-          <div class="col-md-5 text-right">
-            <img style="max-width: 350px;"  class="animated zoomInLeft" src="http://s20.postimg.org/sp11uneml/rack_server_unlock.png">
+          <div class="col-md-7 text-right background-transparent">
+            <h3 class="animated bounceInDown">SFP Data Transferleri</h3>
+            <h4 class="animated bounceInUp">Cisco, Hp, D-Link, Huawei, Intel, Juniper, Linksys</h4>
           </div>
         </div>
       </div>
     </div>
     <!-- Item 3 -->
-    <div class="item" style="background:url(/app/assets/img/slide-bg-3.jpg)">
+    <div class="item" style="background-image:url(/app/assets/img/slide-bg-3.jpg); background-position:center;">
       <div class="row">
         <div class="container">
-          <div class="col-md-7 text-left" style="padding: 20px; color: rgb(255, 255, 255); background-color: rgba(0, 0, 0, 0.4); border-radius: 10px;">
+          <div class="col-md-7 text-left background-transparent">
             <h3 class="animated bounceInDown">Simple Bootstrap Carousel</h3>
             <h4 class="animated bounceInUp">Bootstrap Image Carousel Slider with Animate.css</h4>
           </div>
-          <div class="col-md-5 text-right">
+          <div class="col-md-5 text-right" style="min-height: 450px">
             <img style="max-width: 350px;"  class="animated zoomInLeft" src="http://s20.postimg.org/eq8xvxeq5/globe_network.png">
           </div>
         </div>
       </div>
     </div>
     <!-- Item 4 -->
-    <div class="item" style="background:url(/app/assets/img/slide-bg-4.jpg)">
+    <div class="item" style="background-image:url(/app/assets/img/slide-bg-4.jpg); background-position:center;">
+      <div class="row">
+        <div class="container">
+          <div class="col-md-7 text-left" style="padding: 20px; color: rgb(255, 255, 255); background-color: rgba(0, 0, 0, 0.4); border-radius: 10px;">
+            <h3 class="animated bounceInDown">We are creative</h3>
+            <h4 class="animated bounceInUp">Get start your next awesome project</h4>
+          </div>
+          <div class="col-md-5 text-right" style="min-height: 450px">
+            <img style="max-width: 350px;"  class="animated zoomInLeft" src="http://s20.postimg.org/9vf8xngel/internet_speed.png">
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Item 5 -->
+    <div class="item" style="background-image:url(/app/assets/img/slide-bg-5.jpg); background-position:center;">
       <div class="row">
         <div class="container">
           <div class="col-md-7 text-left" style="padding: 20px; color: rgb(255, 255, 255); background-color: rgba(0, 0, 0, 0.4); border-radius: 10px;">
@@ -78,82 +106,126 @@
   </a>
 </div>
 
-<?= link_to("merhaba", "evet"); ?>
-<!-- third section - Services -->
+<!-- morphext start -->
+<!-- source: https://github.com/MrSaints/Morphext -->
+<link href="/app/assets/css/morphext.css" rel="stylesheet" />
+<script src="/app/assets/js/morphext.min.js"></script>
+<!-- morphext end -->
+
+<script>
+$(document).ready(function() {
+  $("#js-rotating").Morphext({
+      // The [in] animation type. Refer to Animate.css for a list of available animations.
+      animation: "flipInX",
+      // An array of phrases to rotate are created based on this separator. Change it if you wish to separate the phrases differently (e.g. So Simple | Very Doge | Much Wow | Such Cool).
+      separator: ",",
+      // The delay between the changing of each phrase in milliseconds.
+      speed: 2000,
+      complete: function () {
+        // Called after the entrance animation is executed.
+      }
+    });
+});
+</script>
 
 <div class="well well-sm">
-  <div class="container">
-    <h2 class="text-center">Çözümlerimiz</h2> <hr />
-    <div class="row text-center">
-      <div class="col-sm-3 col-xs-6">
-        <i class="glyphicon glyphicon-cloud"> </i>
-        <h4>Service 1</h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in sem cras amet. Donec in sem cras amet.</p>
-      </div>
-      <div class="col-sm-3 col-xs-6">
-        <i class="glyphicon glyphicon-leaf"> </i>
-        <h4>Service 2</h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in sem cras amet. Donec in sem cras amet.</p>
-      </div>
-      <div class="col-sm-3 col-xs-6">
-        <i class="glyphicon glyphicon-phone-alt"> </i>
-        <h4>Service 3</h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in sem cras amet. Donec in sem cras amet.</p>
-      </div>
-      <div class="col-sm-3 col-xs-6">
-        <i class="glyphicon glyphicon-bullhorn"> </i>
-        <h4>Service 4</h4>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in sem cras amet. Donec in sem cras amet.</p>
+  <div style="border-bottom: 1px solid #e7e7e7;">
+    <div class="container">
+      <div class="text-center">
+        <img src="/app/assets/img/default.png" style="width: 80px; height: 80px;"/>
+        <h2>
+          OLT İLE TELEKOM İŞLERİ <b id="js-rotating">HIZLI, SÜREKLİ, PRATİK, KARARLI</b><br/>
+        </h2>
+        <h4>
+          ve her gün daha iyisi olmak için çalışıyoruz!<br/><br/>
+          <a href="/home/corporate/about" class="btn btn-info" role="button">OLT HAKKINDA</a>
+        </h4>
       </div>
     </div>
+  </div>
+
+  <!-- /first section -->
+
+  <div class="row">
+
+    <div class="col-md-7">
+    </div>
+    <div class="col-md-5">
+
+      <?php $agendas = Agenda::last(5); ?>
+      <div class="panel panel-default">
+        <div class="panel-heading"> <span class="glyphicon glyphicon-list-alt"></span><b> <?= t("home.agendas"); ?></b></div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-xs-12">
+              <ul class="agendas">
+
+                <?php foreach ($agendas as $agenda) { ?>
+                <li class="news-item">
+
+                  <a href="/home/agendas/show/<?= $agenda->id; ?>"><?= $agenda->subject; ?></a>
+                  <hr>
+
+                </li>
+
+                <?php } ?>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="panel-footer"> </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- second section - Solutions -->
+  <div style="border-bottom: 1px olid #e7e7e7; background-color: #f8f8f8;">
+    <div class="container">
+      <h2 class="text-center">Çözümlerimiz</h2> <hr/>
+      <div class="row text-center">
+        <div class="col-md-3 col-sm-3 col-xs-6">
+          <i class="glyphicon glyphicon-cloud"> </i>
+          <h4>Service 1</h4>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in sem cras amet. Donec in sem cras amet.</p>
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-6">
+          <i class="glyphicon glyphicon-leaf"> </i>
+          <h4>Service 2</h4>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in sem cras amet. Donec in sem cras amet.</p>
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-6">
+          <i class="glyphicon glyphicon-phone-alt"> </i>
+          <h4>Service 3</h4>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in sem cras amet. Donec in sem cras amet.</p>
+        </div>
+        <div class="col-md-3 col-sm-3 col-xs-6">
+          <i class="glyphicon glyphicon-bullhorn"> </i>
+          <h4>Service 4</h4>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in sem cras amet. Donec in sem cras amet.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- /second section -->
+
+  <!-- third section - Partners -->
+  <div class="container">
+
+    <h2 class="text-center">Partnerlerimiz</h2> <hr/>
+    <?php $partners = Partner::all(); ?>
+    <?php if ($partners) { ?>
+    <center>
+      <?php foreach ($partners as $partner) { ?>
+      <i class="gray_scale_box img-hover">
+        <img src="<?= $partner->image; ?>" class="gray_scale" style="padding:1em; max-height:100px; max-width:300px;"/>
+      </i>
+      <?php } ?>
+    </center>
+    <?php } ?>
   </div>
 
   <!-- /third section -->
 
-
-  <h2 class="text-center">Partnerlerimiz</h2> <hr />
-  <div id="carousel-example-generic2" class="carousel slide" data-ride="carousel">
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner">
-
-      <?php
-      $limit = 0;
-      $item = 3;
-      $col = intval( 12 / $item );
-      $start = "active";
-      ?>
-      <?php
-      while (true) {
-        $partners = Partner::load()->limit($item)->offset($limit)->take();
-        if ($partners) { ?>
-
-        <div class="item container <?= $start; ?>">
-          <div class="row">
-            <?php foreach ($partners as $partner) { ?>
-            <div class="col-md-<?= $col; ?>">
-              <div class="thumbnail">
-                <img src="<?= $partner->image; ?>" alt="..." style="height:150px" class="img-responsive">
-              </div>
-            </div>
-            <?php } ?>
-          </div>
-        </div>
-        <?php $limit = $limit + $item; $start = "";?>
-        <?php } else { break; } ?>
-        <?php } ?>
-
-      </div>
-
-      <div align="center" style="margin-top:20px;">
-        <!-- Controls -->
-        <a class="left" href="#carousel-example-generic2" data-slide="prev">
-          <span class="glyphicon glyphicon-chevron-left"></span>
-        </a>
-        <a class="right" href="#carousel-example-generic2" data-slide="next">
-          <span class="glyphicon glyphicon-chevron-right"></span>
-        </a>
-      </div>
-
-    </div>
-  </div>
-
+</div>
