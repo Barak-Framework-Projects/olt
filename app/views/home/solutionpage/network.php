@@ -1,6 +1,7 @@
 <h4 class="page-title"><?= t("home.solutions.network"); ?></h4>
 <ol class="breadcrumb text-right">
   <li><a href="/">Anasayfa</a></li>
+  <li><a href="/home/solutions"><?= t("home.solutions.link"); ?></a></li>
   <li class="active"><?= t("home.solutions.network"); ?></li>
 </ol>
 
@@ -11,9 +12,16 @@
   </div>
 </div>
 <!-- /first section -->
+<div class="row">
+  <div class=" col-md-3">
+    <?php render("list", "home/solutionpage"); ?>
+  </div>
+  <div class="col-md-8">
 
-<div class="container">
+    <div class="well well-sm">
 
-<?= t("home.solutions.network_content"); ?>
+      <?= t("home.solutions.network_content"); ?>
 
+    </div>
+  </div>
 </div>

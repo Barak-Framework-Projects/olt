@@ -15,7 +15,7 @@
     <div class="item active" style="background-image:url(/app/assets/img/slide-bg-1.jpg);">
       <div class="row">
         <div class="container">
-          <div class="col-md-2 text-right" style="min-height: 450px">
+          <div class="col-md-2 text-right" style="min-height: 340px">
             <img class="animated zoomInLeft" src="/app/assets/img/slide-2.png">
           </div>
           <div class="col-md-10 text-left background-transparent">
@@ -29,7 +29,7 @@
     <div class="item" style="background-image:url(/app/assets/img/slide-bg-2.jpg);">
       <div class="row">
         <div class="container">
-          <div class="col-md-5 text-left" style="min-height: 450px">
+          <div class="col-md-5 text-left" style="min-height: 340px">
             <div class="row">
               <img style="max-height: 80px"  class="animated infinite pulse" src="/app/assets/img/sfp.png">
             </div>
@@ -58,7 +58,7 @@
             <h3 class="animated bounceInDown">Simple Bootstrap Carousel</h3>
             <h4 class="animated bounceInUp">Bootstrap Image Carousel Slider with Animate.css</h4>
           </div>
-          <div class="col-md-5 text-right" style="min-height: 450px">
+          <div class="col-md-5 text-right" style="min-height: 340px">
             <img style="max-width: 350px;"  class="animated zoomInLeft" src="http://s20.postimg.org/eq8xvxeq5/globe_network.png">
           </div>
         </div>
@@ -72,7 +72,7 @@
             <h3 class="animated bounceInDown">We are creative</h3>
             <h4 class="animated bounceInUp">Get start your next awesome project</h4>
           </div>
-          <div class="col-md-5 text-right" style="min-height: 450px">
+          <div class="col-md-5 text-right" style="min-height: 340px">
             <img style="max-width: 350px;"  class="animated zoomInLeft" src="http://s20.postimg.org/9vf8xngel/internet_speed.png">
           </div>
         </div>
@@ -145,39 +145,6 @@ $(document).ready(function() {
   </div>
 
   <!-- /first section -->
-
-  <div class="row">
-
-    <div class="col-md-7">
-    </div>
-    <div class="col-md-5">
-
-      <?php $agendas = Agenda::last(5); ?>
-      <div class="panel panel-default">
-        <div class="panel-heading"> <span class="glyphicon glyphicon-list-alt"></span><b> <?= t("home.agendas"); ?></b></div>
-        <div class="panel-body">
-          <div class="row">
-            <div class="col-xs-12">
-              <ul class="agendas">
-
-                <?php foreach ($agendas as $agenda) { ?>
-                <li class="news-item">
-
-                  <a href="/home/agendas/show/<?= $agenda->id; ?>"><?= $agenda->subject; ?></a>
-                  <hr>
-
-                </li>
-
-                <?php } ?>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="panel-footer"> </div>
-      </div>
-    </div>
-  </div>
-
 
   <!-- second section - Solutions -->
   <div style="border-bottom: 1px olid #e7e7e7; background-color: #f8f8f8;">

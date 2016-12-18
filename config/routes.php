@@ -15,13 +15,7 @@ ApplicationRoutes::draw(
 
   get("/", "home#home"),
   get("/home", "home#home"),
-
-
   get("/home/index"),
-  get("/home/service_policy"),
-  get("/home/our_focus"),
-  get("/home/human_resources"),
-  get("/home/contact"),
 
   scope("home",
   	[
@@ -30,13 +24,14 @@ ApplicationRoutes::draw(
   	post("/agendas", "agendapage#index"),
   	],
     [
-    get("/corporate/gallery", "corporatepage#gallery"),
+    get("/corporate", "corporatepage#about"),
     get("/corporate/about", "corporatepage#about"),
     get("/corporate/our_focus", "corporatepage#our_focus"),
     get("/corporate/service_policy", "corporatepage#service_policy"),
     get("/corporate/human_resources", "corporatepage#human_resources"),
     ],
     [
+    get("/solutions", "solutionpage#network"),
     get("/solutions/structural_cabling", "solutionpage#structural_cabling"),
     get("/solutions/fiber_optic_infrastructure", "solutionpage#fiber_optic_infrastructure"),
     get("/solutions/network", "solutionpage#network"),
@@ -63,6 +58,11 @@ ApplicationRoutes::draw(
     [
     get("/producttypes/show/:id", "producttypepage#show"),
     post("/producttypes/find", "producttypepage#find")
+    ],
+
+    [
+    get("/gallery", "gallerypage#index"),
+    get("/contact")
     ]
 
     ),

@@ -3,7 +3,7 @@
 class AjaxController extends ApplicationController {
 
   public function producttype() {
-    $producttypes = Producttype::load()->where(["category_id" => $_POST['category_id']])->take();
+    $producttypes = Producttype::load()->where("category_id", $_POST['category_id'])->take();
     $text = "";
     foreach ($producttypes as $producttype)
       $text .= "<option value='" . $producttype->id . "'>" . $producttype->name . "</option>";

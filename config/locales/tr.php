@@ -18,8 +18,6 @@ return [
   "corporate" => [
     "link" => "Kurumsal",
 
-    "gallery" => "Galeri",
-
     "about" => "Hakkımızda",
     "about_content" => "
 
@@ -98,12 +96,6 @@ return [
 
   ],
 
-  "agendas" => "Haberler",
-
-  "references" => "Referanslar",
-
-  "contact" => "İletişim",
-
   "categories" => "Kategoriler",
   "category" => "Kategori",
 
@@ -115,6 +107,14 @@ return [
 
   "product_search" => "Ürün Ara",
   "product_list" => "Ürün Listele",
+
+  "agendas" => "Haberler",
+
+  "references" => "Referanslar",
+
+  "gallery" => "Galeri",
+
+  "contact" => "İletişim",
 
 ],
 

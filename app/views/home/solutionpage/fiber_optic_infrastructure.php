@@ -1,6 +1,8 @@
 <h4 class="page-title"><?= t("home.solutions.fiber_optic_infrastructure"); ?></h4>
 <ol class="breadcrumb text-right">
   <li><a href="/">Anasayfa</a></li>
+  <li><a href="/home/solutions"><?= t("home.solutions.link"); ?></a></li>
+
   <li class="active"><?= t("home.solutions.fiber_optic_infrastructure"); ?></li>
 </ol>
 
@@ -12,8 +14,16 @@
 </div>
 <!-- /first section -->
 
-<div class="container-fluid">
+<div class="row">
+  <div class=" col-md-3">
+    <?php render("list", "home/solutionpage"); ?>
+  </div>
+  <div class="col-md-8">
 
-<?= t("home.solutions.fiber_optic_infrastructure_content"); ?>
+    <div class="well well-sm">
 
+      <?= t("home.solutions.fiber_optic_infrastructure_content"); ?>
+
+    </div>
+  </div>
 </div>

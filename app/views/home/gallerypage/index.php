@@ -1,7 +1,7 @@
 <h4 class="page-title">Galeriler</h4>
 <ol class="breadcrumb text-right">
   <li><a href="#">Anasayfa</a></li>
-  <li class="active">Galeriler</li>
+  <li class="active"><?= t("home.gallery"); ?></li>
 </ol>
 
 <!-- The Gallery as lightbox dialog, should be a child element of the document body -->
@@ -18,7 +18,7 @@
 <div id="links">
   <?php if ($galleries) { ?>
   <?php foreach($galleries as $gallery) { ?>
-  <a href="<?= $gallery->image; ?>" class="img-thumbnail" title="<?= $gallery->name; ?> ">
+  <a href="<?= $gallery->image; ?>" class="img-thumbnail animated flipInY" title="<?= $gallery->name; ?> ">
     <img src="<?= $gallery->image; ?>" style='min-width:200px;width:200px;min-height:200px;height:200px;'>
   </a>
 

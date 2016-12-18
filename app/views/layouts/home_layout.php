@@ -97,7 +97,7 @@
   <!-- bxSlider end -->
 
   <!-- ticker slider lib start -->
-  <script src="/app/assets/js/jquery.bootstrap.newsbox.min.js" type="text/javascript"></script>
+  <script type="text/javascript" src="/app/assets/js/jquery.newsTicker.js"></script>
   <!-- ticker slider lib end -->
 
   <!-- page start -->
@@ -109,14 +109,12 @@
     Pace.on("done", function(){
       $("#contents").fadeIn(1000);
 
-      /* ticker slider start */
-      $(".agendas").bootstrapNews({
-        newsPerPage: 3,
-        autoplay: true,
-        pauseOnHover: true,
-        direction: 'up',
-        newsTickerInterval: 4000
+      $('#newsticker').newsTicker({
+        duration: 4000,
+        prevButton: $('#newsticker-prev'),
+        nextButton: $('#newsticker-next')
       });
+
       /* ticker slider end */
     });
   });
@@ -127,6 +125,9 @@
   }
   </style>
   <!-- page end -->
+
+
+
 </head>
 <body>
   <div class="pace  pace-inactive">
