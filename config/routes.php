@@ -16,12 +16,13 @@ ApplicationRoutes::draw(
   get("/", "home#home"),
   get("/home", "home#home"),
   get("/home/index"),
+  get("/home/contact"),
 
   scope("home",
-  	[
-  	get("/agendas", "agendapage#index"),
-  	get("/agendas/show/:id", "agendapage#show"),
-  	post("/agendas", "agendapage#index"),
+    [
+    get("/agendas", "agendapage#index"),
+    get("/agendas/show/:id", "agendapage#show"),
+    post("/agendas", "agendapage#index"),
   	],
     [
     get("/corporate", "corporatepage#about"),
@@ -61,8 +62,7 @@ ApplicationRoutes::draw(
     ],
 
     [
-    get("/gallery", "gallerypage#index"),
-    get("/contact")
+    get("/gallery", "gallerypage#index")
     ]
 
     ),

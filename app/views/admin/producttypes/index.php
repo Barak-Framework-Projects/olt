@@ -20,7 +20,7 @@
       <td><?= $producttype->id; ?></td>
       <td><?= $producttype->category->name; ?></td>
       <td><?= $producttype->name; ?></td>
-      <td><?= $producttype->content; ?></td>
+      <td><?= substr(UTF8Helper::html_to_clear($producttype->content), 0, 550) . "..."; ?></td>
       <td><?= $producttype->created_at; ?></td>
       <td><?= $producttype->updated_at; ?></td>
 

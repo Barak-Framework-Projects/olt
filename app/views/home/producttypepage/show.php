@@ -14,6 +14,8 @@
 </div>
 <!-- /first section -->
 
+<div class="container"><?= $producttype->content; ?></div>
+
 <div class="container">
 
   <h4 class="page-title">Ürünler</h4>
