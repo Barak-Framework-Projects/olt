@@ -97,6 +97,7 @@
   <!-- bxSlider end -->
 
   <!-- ticker slider lib start -->
+  <!-- source: https://github.com/risq/jquery-advanced-news-ticker -->
   <script type="text/javascript" src="/app/assets/js/jquery.newsTicker.js"></script>
   <!-- ticker slider lib end -->
 
