@@ -101,7 +101,7 @@
   <script type="text/javascript" src="/app/assets/js/jquery.newsTicker.js"></script>
   <!-- ticker slider lib end -->
 
-  <!-- page start -->
+  <!-- Pace start -->
   <!-- source: https://github.com/HubSpot/pace -->
   <script src="/app/assets/js/pace.min.js"></script>
   <link href="/app/assets/css/pace.css" rel="stylesheet" />
@@ -110,13 +110,14 @@
     Pace.on("done", function(){
       $("#contents").fadeIn(1000);
 
+      /* Ticker slider start */
       $('#newsticker').newsTicker({
         duration: 4000,
         prevButton: $('#newsticker-prev'),
         nextButton: $('#newsticker-next')
       });
 
-      /* ticker slider end */
+      /* Ticker slider end */
     });
   });
   </script>
@@ -125,7 +126,7 @@
     display: none;
   }
   </style>
-  <!-- page end -->
+  <!-- Page end -->
 
 
 
