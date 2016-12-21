@@ -82,7 +82,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right" style="padding: 15px 0px 0px 0px;">
         <li><a href="/lang/tr"><img src="/app/assets/img/tr.png" class="img-border"/></a></li>
-        <li><a href="/lang/en"><img src="/app/assets/img/en.png" class="img-border"/></a></li>
+        <!--<li><a href="/lang/en"><img src="/app/assets/img/en.png" class="img-border"/></a></li>-->
         <li>
           <!-- Button trigger modal -->
           <a data-toggle="modal" data-target="<?php if (!isset($_SESSION['admin'])) echo '#myModal1'; ?>" href="<?php if (isset($_SESSION['admin'])) echo '/admin/index'?>">

@@ -632,6 +632,71 @@ foreach ($user as $user)
   echo $user->first_name;
 ```
 
+> `where`
+
+
+operators: `=`, `<>`, `>`, `<`, `>=`, `<=`
+
+
+```php
+$users = User::load()->where("first_name", "Gökhan")->take();
+$users = User::load()->where("first_name", "Gökhan", "=")->take();
+// SELECT * FROM user WHERE first_name = 'Gökhan';
+
+$users = User::load()->where("age", 25, "<>")->take();
+// SELECT * FROM user WHERE age <> 25;
+
+$users = User::load()->where("age", 25, ">")->take();
+// SELECT * FROM user WHERE age > 25;
+
+$users = User::load()->where("age", 25, "<")->take();
+// SELECT * FROM user WHERE age < 25;
+
+$users = User::load()->where("age", 25, ">=")->take();
+// SELECT * FROM user WHERE age >= 25;
+
+$users = User::load()->where("age", 25, "<=")->take();
+// SELECT * FROM user WHERE age <= 25;
+```
+
+operators: `LIKE`, `NOT LIKE`
+
+```php
+$users = User::load()->where("email", "%.com.tr", "like")->take();
+// SELECT * FROM user WHERE id LIKE '%.com.tr';
+$users = User::load()->where("email", "%.com.tr", "not like")->take();
+// SELECT * FROM user WHERE id NOT LIKE '%.com.tr';
+```
+
+operators: `IN`, `NOT IN`
+
+```php
+$users = User::load()->where("id", [1, 2, 3], "in")->take();
+// SELECT * FROM user WHERE id IN (1, 2, 3);
+$users = User::load()->where("id", [1, 2, 3], "not in")->take();
+// SELECT * FROM user WHERE id NOT IN (1, 2, 3)
+```
+
+operators: `BETWEEN`, `NOT BETWEEN`
+
+```php
+$users = User::load()->where("created_at", ["2016-12-01", "2016-13-01"], "between")->take();
+// SELECT * FROM user WHERE created_at BETWEEN "2016-12-01" AND "2016-13-01";
+$users = User::load()->where("created_at", ["2016-12-01", "2016-13-01"], "not between")->take();
+// SELECT * FROM user WHERE created_at NOT BETWEEN "2016-12-01" AND "2016-13-01";
+```
+
+> `or_where`
+
+only logic key: `OR`
+
+```php
+// where($field, $value, $mark, "OR")
+$users = User::load()->where("first_name", "Gökhan")->or_where("last_name", "Demir")->take();
+$users = User::load()->where("first_name", "Gökhan", "=", "AND")->where("last_name", "Demir", "=", "OR")->take();
+// SELECT * FROM user WHERE first_name = 'Gökhan' OR last_name = 'Demir';
+```
+
 > `select`, `where`, `order`, `group`, `limit`, `take`
 
 ```php
@@ -780,7 +845,7 @@ $users = User::load()
            ->where("first_name", "Gökhan")
            ->select("first_name")
            ->order("id")
-           ->limit("10")
+           ->limit(10)
            ->take();
 $users = User::first(10);
 foreach ($users as $user) {

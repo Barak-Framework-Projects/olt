@@ -13,12 +13,16 @@ ApplicationRoutes::draw(
 
   // HOME
 
-  get("/", "home#home"),
+  root("home#home"), //get("/", "home#home"),
   get("/home", "home#home"),
   get("/home/index"),
   get("/home/contact"),
 
-  scope("home",
+  //get("/home/categories/producttypes/products"),
+
+  // get("/solutions/network", "solutionpage#network", "/home"),
+
+  scope("/home",
     [
     get("/agendas", "agendapage#index"),
     get("/agendas/show/:id", "agendapage#show"),
@@ -80,7 +84,7 @@ ApplicationRoutes::draw(
   // resources("/category", "admin"),
   // post("/category/ajax", false, "admin"),
 
-  scope("admin",
+  scope("/admin",
     resources("/categories"),
     resources("/producttypes"),
     resources("/products"),

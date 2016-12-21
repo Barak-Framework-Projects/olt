@@ -7,7 +7,6 @@
     <li data-target="#carousel-example-generic1" data-slide-to="1"></li>
     <li data-target="#carousel-example-generic1" data-slide-to="2"></li>
     <li data-target="#carousel-example-generic1" data-slide-to="3"></li>
-    <li data-target="#carousel-example-generic1" data-slide-to="4"></li>
   </ol>
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
@@ -15,7 +14,7 @@
     <div class="item active" style="background-image:url(/app/assets/img/slide-bg-1.jpg);">
       <div class="row">
         <div class="container">
-          <div class="col-md-2 text-right" style="min-height: 340px">
+          <div class="col-md-2 text-right" style="min-height: 390px">
             <img class="animated zoomInLeft" src="/app/assets/img/slide-2.png">
           </div>
           <div class="col-md-10 text-left background-transparent">
@@ -25,11 +24,12 @@
         </div>
       </div>
     </div>
+    <!-- End Item 1 -->
     <!-- Item 2 -->
     <div class="item" style="background-image:url(/app/assets/img/slide-bg-2.jpg);">
       <div class="row">
         <div class="container">
-          <div class="col-md-5 text-left" style="min-height: 340px">
+          <div class="col-md-5 text-left" style="min-height: 390px">
             <div class="row">
               <img style="max-height: 80px"  class="animated infinite pulse" src="/app/assets/img/sfp.png">
             </div>
@@ -50,6 +50,7 @@
         </div>
       </div>
     </div>
+    <!-- End Item 2 -->
     <!-- Item 3 -->
     <div class="item" style="background-image:url(/app/assets/img/slide-bg-3.jpg); background-position:center;">
       <div class="row">
@@ -58,12 +59,13 @@
             <h3 class="animated bounceInDown">Simple Bootstrap Carousel</h3>
             <h4 class="animated bounceInUp">Bootstrap Image Carousel Slider with Animate.css</h4>
           </div>
-          <div class="col-md-5 text-right" style="min-height: 340px">
+          <div class="col-md-5 text-right" style="min-height: 390px">
             <img style="max-width: 350px;"  class="animated zoomInLeft" src="http://s20.postimg.org/eq8xvxeq5/globe_network.png">
           </div>
         </div>
       </div>
     </div>
+    <!-- End Item 3 -->
     <!-- Item 4 -->
     <div class="item" style="background-image:url(/app/assets/img/slide-bg-4.jpg); background-position:center;">
       <div class="row">
@@ -72,21 +74,7 @@
             <h3 class="animated bounceInDown">We are creative</h3>
             <h4 class="animated bounceInUp">Get start your next awesome project</h4>
           </div>
-          <div class="col-md-5 text-right" style="min-height: 340px">
-            <img style="max-width: 350px;"  class="animated zoomInLeft" src="http://s20.postimg.org/9vf8xngel/internet_speed.png">
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- Item 5 -->
-    <div class="item" style="background-image:url(/app/assets/img/slide-bg-5.jpg); background-position:center;">
-      <div class="row">
-        <div class="container">
-          <div class="col-md-7 text-left" style="padding: 20px; color: rgb(255, 255, 255); background-color: rgba(0, 0, 0, 0.4); border-radius: 10px;">
-            <h3 class="animated bounceInDown">We are creative</h3>
-            <h4 class="animated bounceInUp">Get start your next awesome project</h4>
-          </div>
-          <div class="col-md-5 text-right">
+          <div class="col-md-5 text-right" style="min-height: 390px">
             <img style="max-width: 350px;"  class="animated zoomInLeft" src="http://s20.postimg.org/9vf8xngel/internet_speed.png">
           </div>
         </div>
@@ -147,7 +135,7 @@ $(document).ready(function() {
   <!-- /first section -->
 
   <!-- second section - Solutions -->
-  <div style="border-bottom: 1px olid #e7e7e7; background-color: #f8f8f8;">
+  <div style="border-bottom: 1px olid #e7e7e7; background-color: #e7e7e7;">
     <div class="container">
       <h2 class="text-center">Çözümlerimiz</h2> <hr/>
       <div class="row text-center">

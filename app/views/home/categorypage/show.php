@@ -13,36 +13,50 @@
 </div>
 <!-- /first section -->
 
-<div class="container">
+<div class="row">
 
-  <h4 class="page-title">Ürün Tipleri</h4>
+  <div class="col-md-3">
+    <?php render("product_menu", "home"); ?>
+  </div>
 
-  <table id="example" class="table table-striped table-hover dt-responsive" cellspacing="0" width="100%">
-    <thead>
-      <tr>
-        <th></th>
-        <th>Ad</th>
-        <th>Çeşit</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <?php if ($producttypes) { ?>
-      <?php foreach ($producttypes as $producttype) { ?>
-      <tr>
-        <td><img src="<?= $producttype->image; ?>" class="thumbnail img-responsive" width="184" height="140"/></td>
-        <td><?= $producttype->name; ?></td>
-        <td><?= count($producttype->all_of_product); ?></td>
-        <td>
-          <a href="/home/producttypes/show/<?= $producttype->id; ?>" class="btn btn-default" role="button" title="Göster">
-            <i class="fa fa-search"></i>Göster
-          </a>
-        </td>
-      </tr>
-      <?php } ?>
-      <?php } ?>
-    </tbody>
-  </table>
+  <div class="col-md-9">
 
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          <?= t("home.producttypes"); ?>
+        </h3>
+      </div>
+
+      <table id="example" class="table table-striped table-hover dt-responsive" cellspacing="0" width="100%">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Ad</th>
+            <th>Çeşit</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <?php if ($producttypes) { ?>
+          <?php foreach ($producttypes as $producttype) { ?>
+          <tr>
+            <td><img src="<?= $producttype->image; ?>" class="thumbnail img-responsive" width="184" height="140"/></td>
+            <td><?= $producttype->name; ?></td>
+            <td><?= count($producttype->all_of_product); ?></td>
+            <td>
+              <a href="/home/producttypes/show/<?= $producttype->id; ?>" class="btn btn-default" role="button" title="Göster">
+                <i class="fa fa-search"></i>Göster
+              </a>
+            </td>
+          </tr>
+          <?php } ?>
+          <?php } ?>
+        </tbody>
+      </table>
+
+    </div>
+
+  </div>
 
 </div>
