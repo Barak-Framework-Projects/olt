@@ -150,7 +150,7 @@ class ApplicationSql {
 
   private static function var_to_command_symbol_value($_value, $_command = "") {
 
-    if ($_value) {
+    if (!is_null($_value)) {
       $symbol = ":" . str_replace(" ", "", $_command); // ORDER BY => ORDERBY, GROUP BY => GROUPBY
       return array("$_command $symbol", $symbol, [$symbol => $_value]);
     } else {
@@ -185,15 +185,15 @@ class ApplicationSql {
 
   public static function read($_table, $_select, $_where) {
 
-    $_select = (!empty($_select)) ? implode(",", $_select) : "*";
+    $_select_fields = (!empty($_select)) ? implode(",", $_select) : "*";
 
     list($where_commands, $where_symbols, $where_symbolvalues) = static::where_to_command_symbol_symbolvalue($_where);
 
-    $query = $GLOBALS['db']->prepare("SELECT $_select FROM `$_table` $where_commands");
+    $query = $GLOBALS['db']->prepare("SELECT $_select_fields FROM `$_table` $where_commands");
 
     $symbolvalues = array_merge(
       $where_symbolvalues
-      );
+    );
 
     foreach ($symbolvalues as $symbol => $value) {
       $query->bindValue($symbol, $value, ApplicationSql::bindtype($value));
@@ -248,8 +248,8 @@ class ApplicationSql {
   public static function query($_select, $_table, $_join, $_where, $_order, $_group, $_limit, $_offset) {
 
     $_select_fields = (!empty($_select)) ? implode(",", $_select) : "*";
-    $_order_fields  = (!empty($_order)) ? "ORDER BY " . implode(",", $_order) : "";
-    $_group_fields  = (!empty($_group)) ? "GROUP BY " . implode(",", $_group) : "";
+    $_order_fields  = (!empty($_order))  ? "ORDER BY " . implode(",", $_order) : "";
+    $_group_fields  = (!empty($_group))  ? "GROUP BY " . implode(",", $_group) : "";
 
 
     if ($_join) {
@@ -262,8 +262,7 @@ class ApplicationSql {
     }
 
     list($where_commands, $where_symbols, $where_symbolvalues) = static::where_to_command_symbol_symbolvalue($_where);
-
-    list($limit_command,  $limit_symbol,  $limit_symbolvalue)  = static::var_to_command_symbol_value($_limit, "LIMIT");
+    list($limit_command,  $limit_symbol,  $limit_symbolvalue)  = static::var_to_command_symbol_value($_limit,  "LIMIT");
     list($offset_command, $offset_symbol, $offset_symbolvalue) = static::var_to_command_symbol_value($_offset, "OFFSET");
 
     $sql = "
@@ -295,13 +294,14 @@ class ApplicationSql {
 
     return $query->fetchAll(PDO::FETCH_ASSOC);
   }
+  
   public static function bindtype($value) {
     if     (is_int($value))  return PDO::PARAM_INT;
     elseif (is_bool($value)) return PDO::PARAM_BOOL;
     elseif (is_null($value)) return PDO::PARAM_NULL;
     else                     return PDO::PARAM_STR;
-
   }
+  
   public static function tablenames() {
     $name = $GLOBALS['db']->query("select database()")->fetchColumn();
     $result = $GLOBALS['db']->query("show tables");
