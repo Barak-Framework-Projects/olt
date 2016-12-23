@@ -6,7 +6,7 @@
 </ol>
 
 <!-- first section - Home -->
-<div class="parallax" style="background: url(<?= $category->image; ?>) no-repeat center fixed">
+<div class="parallax" style="background-image: url(<?= $category->image; ?>) no-repeat center fixed">
   <div class="parallax-caption">
     <h1 class="background-transparent"><?= $category->name; ?></h1>
   </div>
