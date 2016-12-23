@@ -7,7 +7,7 @@
 </ol>
 
 <!-- first section - Home -->
-<div class="parallax" style="background: url(<?= $producttype->image; ?>) no-repeat center fixed">
+<div class="parallax" style="background-image: url(<?= $producttype->image; ?>)">
   <div class="parallax-caption">
     <h1 class="background-transparent"><?= $producttype->name; ?></h1>
   </div>
