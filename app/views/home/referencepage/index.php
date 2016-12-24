@@ -5,38 +5,40 @@
 </ol>
 
 <style>
-  .thumbnail {
-    position: relative;
-    overflow: hidden;
-  }
+.thumbnail {
+  position: relative;
+  overflow: hidden;
+}
 
-  .caption {
-    position: absolute;
-    top: 0;
-    right: 0;
-    background: rgba(66, 139, 202, 0.75);
-    width: 100%;
-    height: 100%;
-    padding: 2%;
-    display: none;
-    text-align: center;
-    color: #fff !important;
-    z-index: 2;
-  }
+.caption {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  width: 100%;
+  height: 100%;
+  padding: 2%;
+  display: none;
+  text-align: center;
+  color: #fff !important;
+  z-index: 2;
+}
 </style>
-<script type="text/javascript">
-  $( document ).ready(function() {
 
-    $('.thumbnail').hover(
+<script type="text/javascript">
+$( document ).ready(function() {
+
+  $('.thumbnail').hover(
+    function(){
+        $(this).find('.caption').fadeToggle("slow"); //.fadeIn(250)
+      },
       function(){
-            $(this).find('.caption').slideDown(250); //.fadeIn(250)
-          },
-          function(){
-            $(this).find('.caption').slideUp(250); //.fadeOut(205)
-          }
-          );
-  });
+        $(this).find('.caption').fadeToggle("slow"); //.fadeOut(205)
+      }
+      );
+});
 </script>
+
 <div class="container">
 
   <div class="row">
@@ -44,12 +46,14 @@
     <?php foreach ($references as $reference) { ?>
 
     <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12 animated zoomIn">
-      <div class="thumbnail">
-        <img src="<?= $reference->image; ?>" alt="..." style="height:150px" class="img-responsive">
-        <div class="caption">
-          <h3><a data-toggle="modal" data-target="#<?= $reference->id; ?>" style="color:white"><i class="fa fa-search fa-3x"></i></a></h3>
+      <a data-toggle="modal" data-target="#<?= $reference->id; ?>" style="color:white">
+        <div class="thumbnail">
+          <img src="<?= $reference->image; ?>" alt="..." class="img-responsive" style="height:150px" />
+          <div class="caption">
+            <h3><i class="fa fa-search fa-3x"></i></h3>
+          </div>
         </div>
-      </div>
+      </a>
     </div>
 
     <!-- Modal -->

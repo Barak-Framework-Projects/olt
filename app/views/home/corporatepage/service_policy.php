@@ -6,7 +6,7 @@
 </ol>
 
 <!-- first section - Home -->
-<div class="parallax" style="background: url(/app/assets/img/corporate.jpg) no-repeat center fixed">
+<div class="parallax" style="background-image: url(/app/assets/img/corporate.jpg);">
   <div class="parallax-caption animated fadeInRight">
     <h1 class="background-transparent"><?= t("home.corporate.service_policy"); ?></h1>
   </div>
@@ -14,7 +14,7 @@
 <!-- /first section -->
 
 <div class="row">
-  <div class=" col-md-3">
+  <div class="col-md-3">
     <?php render("list", "home/corporatepage"); ?>
   </div>
   <div class="col-md-8">

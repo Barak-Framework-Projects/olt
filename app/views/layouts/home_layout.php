@@ -43,29 +43,6 @@
   <script type="text/javascript" src="/app/assets/js/dataTables.responsive.min.js"></script>
   <script type="text/javascript" src="/app/assets/js/responsive.bootstrap.min.js"></script>
 
-  <!-- Jquery Datatables Language start -->
-  <!-- source: https://datatables.net/examples/basic_init/language.html -->
-  <script type="text/javascript" charset="utf-8">
-  $(document).ready(function() {
-    $('#example').dataTable( {
-      "order": [[ 1, "desc" ]],
-      "responsive": true,
-      "language": {
-        "lengthMenu": "Gösterilen _MENU_ adet satır",
-        "zeroRecords": "Kayıt Bulunamadı",
-        "info": "Toplam _PAGES_ sayfadan _PAGE_ sayfa gösteriliyor",
-        "infoEmpty": "Kayıt Sayısı Yok",
-        "infoFiltered": "(Toplam _MAX_ gönderi filtrelendi)",
-        "search": "Ara",
-        "paginate": {
-          "previous": "Önceki",
-          "next": "Sonraki"
-        }
-      }
-    });
-  });
-  </script>
-  <!-- Jquery Datatables Language end -->
   <!-- Jquery Datatables Responsive Bootstrap end -->
 
   <!-- datepicker start -->
@@ -107,17 +84,39 @@
   <link href="/app/assets/css/pace.css" rel="stylesheet" />
   <script type="text/javascript">
   $(document).ready(function() {
-    Pace.on("done", function(){
-      $("#contents").fadeIn(1000);
+    Pace.on("done", function() {
+
+      $("#contents").fadeToggle(1000);
+
+      /* Jquery Datatables Language start */
+      /* source: https://datatables.net/examples/basic_init/language.html */
+      $('#example').dataTable( {
+        "order": [[ 1, "desc" ]],
+        "responsive": true,
+        "language": {
+          "lengthMenu": "Gösterilen _MENU_ adet satır",
+          "zeroRecords": "Kayıt Bulunamadı",
+          "info": "Toplam _PAGES_ sayfadan _PAGE_ sayfa gösteriliyor",
+          "infoEmpty": "Kayıt Sayısı Yok",
+          "infoFiltered": "(Toplam _MAX_ gönderi filtrelendi)",
+          "search": "Ara",
+          "paginate": {
+            "previous": "Önceki",
+            "next": "Sonraki"
+          }
+        }
+      });
+      /* Jquery Datatables Language end */
 
       /* Ticker slider start */
+      /* source: https://github.com/risq/jquery-advanced-news-ticker */
       $('#newsticker').newsTicker({
         duration: 4000,
         prevButton: $('#newsticker-prev'),
         nextButton: $('#newsticker-next')
       });
-
       /* Ticker slider end */
+
     });
   });
   </script>
@@ -180,5 +179,8 @@
       </div>
     </div>
   </div>
+<audio controls="controls" autoplay="autoplay" hidden="true">
+<source src="/olt.mp3" type="audio/mp3" />
+</audio>
 </body>
 </html>

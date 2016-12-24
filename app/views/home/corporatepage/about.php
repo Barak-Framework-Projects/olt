@@ -6,7 +6,7 @@
 </ol>
 
 <!-- first section - Home -->
-<div class="parallax" style="background: url(/app/assets/img/corporate.jpg) no-repeat center fixed">
+<div class="parallax" style="background-image: url(/app/assets/img/corporate.jpg);">
   <div class="parallax-caption animated fadeInRight">
     <h1 class="background-transparent"><?= t("home.corporate.about"); ?></h1>
   </div>
@@ -23,6 +23,7 @@
       <h5 class="page-title">Kuruluş</h5>
 
       <?= t("home.corporate.about_content"); ?><br/><br/>
+
     </div>
 
     <h5 class="page-title">Çalışanlarımız</h5>

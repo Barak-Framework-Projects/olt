@@ -7,6 +7,40 @@
   <li class="active"><?= $product->name; ?></li>
 </ol>
 
+<style>
+.thumbnail {
+  position: relative;
+  overflow: hidden;
+}
+
+.caption {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  width: 100%;
+  height: 100%;
+  padding: 2%;
+  display: none;
+  text-align: center;
+  color: #fff !important;
+  z-index: 2;
+}
+</style>
+
+<script type="text/javascript">
+$( document ).ready(function() {
+
+  $('.thumbnail').hover(
+    function(){
+            $(this).find('.caption').fadeToggle("slow"); //.fadeIn(250)
+          },
+          function(){
+            $(this).find('.caption').fadeToggle("slow"); //.fadeOut(205)
+          }
+          );
+});
+</script>
 
 <div class="container">
 
@@ -14,7 +48,7 @@
 
     <div class="col-md-4 col-sm-6">
 
-      <div class="modal fade" id="image" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal fade" id="<?= $product->id; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-body">
@@ -23,11 +57,18 @@
           </div>
         </div>
       </div>
-      <div class="img-thumbnail">
-        <img src="<?= $product->image; ?>" height="200" width="350"  data-toggle="modal" data-target="#image"/>
-      </div>
+
+      <a data-toggle="modal" data-target="#<?= $product->id; ?>" style="color:white">
+        <div class="thumbnail">
+          <img src="<?= $product->image; ?>" alt="..." class="img-responsive" style="max-height:177px" />
+          <div class="caption" >
+            <h3><i class="fa fa-plus-circle fa-3x"></i></h3>
+          </div>
+        </div>
+      </a>
 
     </div>
+
     <div class="col-md-8 col-sm-6">
 
       <div class="panel panel-default">
