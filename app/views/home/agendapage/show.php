@@ -5,7 +5,6 @@
   <li class="active"><?= $agenda->subject ?></li>
 </ol>
 
-
 <h3 class='label label-default pull-right'><?= $agenda->agenda_date; ?></h3>
 <h4 class="page-title-sub"><?= $agenda->subject; ?></h4>
 <div class="container" style="display:block; word-wrap:break-word;">

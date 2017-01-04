@@ -12,6 +12,9 @@
   font-size: 12px;
   padding: 1em;
 }
+.footer a {
+  color: #ccc;
+}
 </style>
 
 <div class="footer">
@@ -34,7 +37,7 @@
       </div>
       <div class="col-md-4">
 
-        <h5>Kategoriler</h5>
+        <h5><a href="/home/categories"><?= t("home.categories"); ?></a></h5>
         <hr>
         <?php if ($_footer_cs = Category::all()) { ?>
         <ul class="">
@@ -54,7 +57,7 @@
       </div>
       <div class="col-md-4">
 
-        <h5><?= t("home.agendas"); ?></h5>
+        <h5><a href="/home/agendas"><?= t("home.agendas"); ?></a></h5>
         <hr>
         <?php $agendas = Agenda::last(5); ?>
 

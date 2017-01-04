@@ -127,21 +127,19 @@
   </style>
   <!-- Page end -->
 
-
-
 </head>
 <body>
-  <div class="pace  pace-inactive">
+  <div class="pace pace-inactive">
     <div class="pace-progress" data-progress-text="100%" data-progress="99" style="width: 100%;">
       <div class="pace-progress-inner"></div>
     </div>
     <div class="pace-activity"></div>
   </div>
 
-  <div id="contents">
+
 
     <?php render("home_navbar", "home"); ?>
-
+  <div id="contents">
     <?php $_is_home = in_array($_SERVER["REQUEST_URI"], ["/", "/home", "/home/index"]); ?>
 
     <?php if (!$_is_home) { ?>
