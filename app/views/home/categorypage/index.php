@@ -7,6 +7,7 @@
 <div class="container">
 
   <div class="row">
+    <?php if($categories) { ?>
     <?php foreach ($categories as $category) { ?>
 
     <div class="col-sm-6 col-md-4 animated flipInX">
@@ -22,5 +23,9 @@
 
     <?php } ?>
   </div>
+  <?php } ?>
+  <?php } else { ?>
+  <tr class="text-center"><td colspan="4">Henüz Kategori mevcut değil</td></tr>
+  <?php } ?>
 
 </div>
