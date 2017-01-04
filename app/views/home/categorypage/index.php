@@ -22,10 +22,7 @@
     </div>
 
     <?php } ?>
+    <?php } ?>
   </div>
-  <?php } ?>
-  <?php } else { ?>
-  <tr class="text-center"><td colspan="4">Henüz Kategori mevcut değil</td></tr>
-  <?php } ?>
 
 </div>
