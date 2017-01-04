@@ -21,10 +21,7 @@
   <a href="<?= $gallery->image; ?>" class="img-thumbnail animated flipInY" title="<?= $gallery->name; ?> ">
     <img src="<?= $gallery->image; ?>" style='min-width:200px;width:200px;min-height:200px;height:200px;'>
   </a>
-
   <?php } ?>
-  <?php } else { ?>
-  <tr class="text-center"><td colspan="4">Henüz galeri mevcut değil</td></tr>
   <?php } ?>
 </div>
 
