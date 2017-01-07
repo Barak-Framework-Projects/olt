@@ -21,7 +21,7 @@
   <script src="/app/assets/js/bootstrap.min.js"></script>
 </head>
 <body>
-  <div class="container" style="width:500px; min-height:200px; margin-top: 8%;">
+  <div class="container" style="width:320px; min-height:200px; margin-top: 8%;">
     <?= BootstrapHelper::notice_show(); ?>
     <?php BootstrapHelper::notice_clear(); ?>
     {yield}

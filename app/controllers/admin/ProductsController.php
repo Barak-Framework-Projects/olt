@@ -29,8 +29,8 @@ class ProductsController extends AdminController {
       $product->file = FileHelper::move_f($file, "/upload/products/file", $product->id);
       $product->save();
     } else {
-    	$product->file = FileHelper::copy("/app/assets/img/default.png", "/upload/products/image", $product->id . ".png");
-    	$product->save();
+      $product->file = FileHelper::copy("/app/assets/img/default.png", "/upload/products/image", $product->id . ".png");
+      $product->save();
     }
 
     $_SESSION["success"] = "Yeni Ürün eklendi";
@@ -67,7 +67,7 @@ class ProductsController extends AdminController {
 
     $file = $_FILES["file"];
     if ($file["name"] != "") {// varsa bir önceki resmi sil ve yeni resmi ekle
-      $product->file = FileHelper::file_update($product->file, $file, "/upload/products/file", $product->id);
+      $product->file = FileHelper::move_f($file, "/upload/products/file", $product->id);
       $product->save();
     }
 

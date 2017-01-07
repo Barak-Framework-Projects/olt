@@ -9,7 +9,7 @@
 				<span class="icon-bar"></span>
 			</button>
 			<a class="navbar-brand" href="/home/index">
-				OLT System
+				System
 			</a>
 		</div>
 

@@ -15,7 +15,7 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-left" style="padding: 15px 0px 0px 0px;">
+      <ul class="nav navbar-nav navbar-right" style="padding: 15px 0px 0px 0px;">
         <li><a href="/home/index"><?= t("home.link"); ?></a></li>
 
         <li class="dropdown">
@@ -80,17 +80,11 @@
         <li><a href="/home/gallery"><?= t("home.gallery"); ?></a></li>
         <li><a href="/home/contact"><?= t("home.contact"); ?></a></li>
       </ul>
+      <!--
       <ul class="nav navbar-nav navbar-right" style="padding: 15px 0px 0px 0px;">
         <li><a href="/lang/tr"><img src="/app/assets/img/tr.png" class="img-border"/></a></li>
-        <!--<li><a href="/lang/en"><img src="/app/assets/img/en.png" class="img-border"/></a></li>-->
-        <li>
-          <!-- Button trigger modal -->
-          <a data-toggle="modal" data-target="<?php if (!isset($_SESSION['admin'])) echo '#myModal1'; ?>" href="<?php if (isset($_SESSION['admin'])) echo '/admin/index'?>">
-            <?= t("login.link"); ?>
-          </a>
-          <!-- Button trigger modal end -->
-        </li>
       </ul>
+      -->
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>

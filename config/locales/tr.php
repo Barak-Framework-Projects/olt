@@ -3,11 +3,11 @@
 return [
 
 "login" => [
-  "link" => "Login",
-  "title" => "User Login",
-  "username" => "Username",
-  "password" => "Password",
-  "button" => "LOGIN",
+  "title" => "Yönetici",
+  "username" => "Kullanıcı Adı",
+  "password" => "Parola",
+  "button" => "GİRİŞ",
+  "password_reset" => "Şifremi Unuttum",
 ],
 
 

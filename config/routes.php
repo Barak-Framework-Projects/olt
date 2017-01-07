@@ -2,6 +2,10 @@
 
 ApplicationRoutes::draw(
 
+  // CAPTCHA
+
+  get("/captcha", "captcha#show"),
+
   // AJAX
 
   post("/ajax/producttype"),
@@ -17,6 +21,7 @@ ApplicationRoutes::draw(
   get("/home", "home#home"),
   get("/home/index"),
   get("/home/contact"),
+  post("/home/mail_send"),
 
   //get("/home/categories/producttypes/products"),
 
@@ -28,6 +33,7 @@ ApplicationRoutes::draw(
     get("/agendas/show/:id", "agendapage#show"),
     post("/agendas", "agendapage#index"),
   	],
+
     [
     get("/corporate", "corporatepage#about"),
     get("/corporate/about", "corporatepage#about"),
@@ -35,6 +41,7 @@ ApplicationRoutes::draw(
     get("/corporate/service_policy", "corporatepage#service_policy"),
     get("/corporate/human_resources", "corporatepage#human_resources"),
     ],
+
     [
     get("/solutions", "solutionpage#network"),
     get("/solutions/structural_cabling", "solutionpage#structural_cabling"),
@@ -45,9 +52,11 @@ ApplicationRoutes::draw(
     get("/solutions/wireless", "solutionpage#wireless"),
     get("/solutions/video_conference", "solutionpage#video_conference"),
     ],
+
     [
     get("/references", "referencepage#index"),
     ],
+
     [
     get("/categories", "categorypage#index"),
     get("/categories/show/:id", "categorypage#show")
@@ -76,6 +85,8 @@ ApplicationRoutes::draw(
   get("/admin/login"),
   post("/admin/login"),
   get("/admin/logout"),
+  get("/admin/password_reset/:code", "admin#password_reset"),
+  post("/admin/password_reset"),
 
   get("/admin", "admin#index"),
   get("/admin/index"),
@@ -93,8 +104,17 @@ ApplicationRoutes::draw(
     resources("/references"),
     resources("/galleries"),
     resources("/agendas"),
-    [ post("/agendaimages/destroy") ]
-    )
+    resources("/slides"),
+    resources("/notices"),
+    [ post("/agendaimages/destroy") ],
+    [
+      get("/activations", "activations#index"),
+      get("/activations/destroy_live"),
+      get("/activations/destroy_dead"),
+      get("/activations/destroy_all"),
+      post("/activations/destroy")
+    ]
+  )
 
   );
 

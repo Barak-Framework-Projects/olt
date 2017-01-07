@@ -87,16 +87,6 @@ class FileHelper {
       unlink($file_path);
   }
 
-  // public static function update($filename, $file, $destination_directory, $destination_file) {
-  //   FileHelper::remove($filename);
-  //   return FileHelper::move_f($file, $destination_directory, $destination_file) {
-  // }
-
-  // public static function update($filename, $file, $upload_directory, $upload_file) {
-  //   FileHelper::remove($filename);
-  //   return FileHelper::move_f($file, $upload_directory, $upload_file);
-  // }
-
 }
 
 ?>

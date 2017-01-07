@@ -89,13 +89,16 @@
   </div>
   <div class="row">
 
-    <div class="well well-sm col-xs-3 col-md-2" id="side-menu">
-      <?= render("site_menu"); ?>
-      <?= render("product_menu"); ?>
-      <?= render("user_menu"); ?>
-
+    <div class="col-md-2 col-sm-3 col-xs-3" id="side-menu">
+      <div class="well well-sm">
+        <?= render("site_menu"); ?>
+        <?= render("product_menu"); ?>
+        <?= render("user_menu"); ?>
+        <?= render("system_menu"); ?>
+      </div>
     </div>
-    <div class="col-xs-9 col-md-10" id="main-menu">
+
+    <div class="col-md-10 col-sm-9 col-xs-9" id="main-menu">
       <div class="well well-sm">
         <?= BootstrapHelper::breadcrumb_button(); ?>
 

@@ -119,13 +119,13 @@
 
     });
   });
-  </script>
-  <style type="text/css">
-  #contents {
-    display: none;
-  }
-  </style>
-  <!-- Page end -->
+</script>
+<style type="text/css">
+#contents {
+  display: none;
+}
+</style>
+<!-- Page end -->
 
 </head>
 <body>
@@ -136,49 +136,37 @@
     <div class="pace-activity"></div>
   </div>
 
+  <?php render("home_navbar", "home"); ?>
 
-
-    <?php render("home_navbar", "home"); ?>
   <div id="contents">
+
     <?php $_is_home = in_array($_SERVER["REQUEST_URI"], ["/", "/home", "/home/index"]); ?>
 
-    <?php if (!$_is_home) { ?>
-    <div class="well well-sm">
+    <?php if (!$_is_home) { ?><div class="well well-sm"><?php } else { ?><div><?php } ?>
 
-      <div class="">
+    <!-- bildirimleri göster ve temizle -->
 
-        <?php } else { ?>
+    <?= BootstrapHelper::notice_show(); ?>
+    <?php BootstrapHelper::notice_clear(); ?>
 
-        <div>
-          <div>
+    {yield}
 
-            <?php } ?>
-
-            <!-- bildirimleri göster ve temizle -->
-
-            <?= BootstrapHelper::notice_show(); ?>
-            <?php BootstrapHelper::notice_clear(); ?>
-
-            {yield}
-
-          </div>
-        </div>
-
-        <?php render("signin_modal", "home"); ?>
-        <?php render("home_footer", "home"); ?>
-        <?php render("back_to_top", "layouts"); ?>
-
-        <!-- dropdown hover start -->
-        <script src="/app/assets/js/bootstrap-hover-dropdown.min.js"></script>
-        <script type="text/javascript">
-        $('.dropdown-toggle').dropdownHover();
-        </script>
-        <!-- dropdown hover end -->
-      </div>
-    </div>
   </div>
+
+  <!-- render("signin_modal", "home"); -->
+  <?php render("home_footer", "home"); ?>
+  <?php render("back_to_top", "layouts"); ?>
+
+  <!-- dropdown hover start -->
+  <script src="/app/assets/js/bootstrap-hover-dropdown.min.js"></script>
+  <script type="text/javascript">
+  $('.dropdown-toggle').dropdownHover();
+  </script>
+  <!-- dropdown hover end -->
+</div>
+
 <audio controls="controls" autoplay="autoplay" hidden="true">
-<source src="/olt.mp3" type="audio/mp3" />
+  <source src="/music.mp3" type="audio/mp3" />
 </audio>
 </body>
 </html>

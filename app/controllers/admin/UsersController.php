@@ -9,31 +9,31 @@ class UsersController extends AdminController {
   public function create() {}
 
   public function save() {
+    $user = User::load()->where("username", $_POST["username"])->or_where("email", $_POST["email"])->count();
+    if (!$user) {
+      // rastgele bir parolar belirle
+      $_POST["password"] = md5(PasswordHelper::generate(8));
 
-    // rastgele bir parolar belirle
-    $alphabet = "abcdefghijklmnopqrstuwxyzABC0123456789";
-    for ($i = 0; $i < 8; $i++) {
-      $random_password[$i] = $alphabet[rand(0, strlen($alphabet) - 1)];
-    }
-    $random_password = implode("", $random_password);
-    $_POST["password"] = md5($random_password);
-
-    $user = User::draft($_POST);
-    $user->created_at = date("Y-m-d H:i:s");
-    $user->save();
-
-    $image = $_FILES["image"];
-    if ($image["name"] != "") {// varsa yeni resmi ekle
-      $user->image = FileHelper::move_f($image, "/upload/users", $user->id);
+      $user = User::draft($_POST);
+      $user->created_at = date("Y-m-d H:i:s");
       $user->save();
-    } else {
-    	$user->image = FileHelper::copy("/app/assets/img/default.png", "/upload/users", $user->id . ".png");
-    	$user->save();
-    }
 
-    $_SESSION["warning"] = "Güvenliği için bu kullanıcı parolasını güncellemelidir!";
-    $_SESSION["success"] = "Kullanıcı adı: " . $user->username . "<br/> Parola: " . $random_password . "<br/>yeni kayıt oluşturuldu";
-    $this->redirect_to("/admin/users/show/" . $user->id);
+      $image = $_FILES["image"];
+      if ($image["name"] != "") {// varsa yeni resmi ekle
+        $user->image = FileHelper::move_f($image, "/upload/users", $user->id);
+        $user->save();
+      } else {
+        $user->image = FileHelper::copy("/app/assets/img/default.png", "/upload/users", $user->id . ".png");
+        $user->save();
+      }
+
+      $_SESSION["warning"] = "Güvenliği için bu kullanıcı parolasını güncellemelidir!";
+      $_SESSION["success"] = "Kullanıcı adı: " . $user->username . "<br/> Parola: " . $random_password . "<br/>yeni kayıt oluşturuldu";
+      $this->redirect_to("/admin/users/show/" . $user->id);
+    } else {
+      $_SESSION["danger"] = "Kullanıcı adı ve/veya e-posta başka bir kullanıcı tarafından kullanılıyor!";
+      $this->redirect_to("/admin/users/create");
+    }
   }
 
   public function show() {
@@ -51,23 +51,33 @@ class UsersController extends AdminController {
   }
 
   public function update() {
-    if ($_POST["password"] != "")
-      $_POST["password"] = md5($_POST["password"]);
+    $user_ids = User::load()->where("username", $_POST["username"])->or_where("email", $_POST["email"])->pluck("id");
 
-    $user = User::find($_POST["id"]);
-    foreach ($_POST as $key => $value) $user->$key = $value;
-    $user->updated_at = date("Y-m-d H:i:s");
-    $user->save();
+    // remove owner user_id
+    if (($user_id = array_search($_POST["id"], $user_ids)) !== false) unset($user_ids[$user_id]);
 
-    $image = $_FILES['image'];
-    if ($image["name"] != "") {// varsa bir önceki resmi sil ve yeni resmi ekle
-    	FileHelper::remove($user->image);
-      $user->image = FileHelper::move_f($image, "/upload/users", $user->id);
+    if (!$user_ids) {
+      if ($_POST["password"] != "")
+        $_POST["password"] = md5($_POST["password"]);
+
+      $user = User::find($_POST["id"]);
+      foreach ($_POST as $key => $value) $user->$key = $value;
+      $user->updated_at = date("Y-m-d H:i:s");
       $user->save();
-    }
 
-    $_SESSION["info"] = "Personel güncellendi";
-    $this->redirect_to("/admin/users/show/" . $user->id);
+      $image = $_FILES['image'];
+      if ($image["name"] != "") {// varsa bir önceki resmi sil ve yeni resmi ekle
+        FileHelper::remove($user->image);
+        $user->image = FileHelper::move_f($image, "/upload/users", $user->id);
+        $user->save();
+      }
+
+      $_SESSION["info"] = "Personel güncellendi";
+      $this->redirect_to("/admin/users/show/" . $user->id);
+    } else {
+      $_SESSION["danger"] = "Kullanıcı adı ve/veya e-posta başka bir kullanıcı tarafından kullanılıyor!";
+      $this->redirect_to("/admin/users/edit/" . $_POST["id"]);
+    }
   }
 
   public function destroy() {

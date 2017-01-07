@@ -294,14 +294,14 @@ class ApplicationSql {
 
     return $query->fetchAll(PDO::FETCH_ASSOC);
   }
-  
+
   public static function bindtype($value) {
     if     (is_int($value))  return PDO::PARAM_INT;
     elseif (is_bool($value)) return PDO::PARAM_BOOL;
     elseif (is_null($value)) return PDO::PARAM_NULL;
     else                     return PDO::PARAM_STR;
   }
-  
+
   public static function tablenames() {
     $name = $GLOBALS['db']->query("select database()")->fetchColumn();
     $result = $GLOBALS['db']->query("show tables");

@@ -1,86 +1,38 @@
 <!-- first section - Slides -->
 
 <div id="carousel-example-generic1" class="carousel slide" data-ride="carousel" style="color:white; font-size:14px;">
-  <!-- Indicators -->
-  <ol class="carousel-indicators">
-    <li data-target="#carousel-example-generic1" data-slide-to="0" class="active"></li>
-    <li data-target="#carousel-example-generic1" data-slide-to="1"></li>
-    <li data-target="#carousel-example-generic1" data-slide-to="2"></li>
-    <li data-target="#carousel-example-generic1" data-slide-to="3"></li>
-  </ol>
+
+  <?php $slides = Slide::all(); ?>
+  <?php if ($slides) { ?>
+
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
-    <!-- Item 1 -->
-    <div class="item active" style="background-image:url(/app/assets/img/slide-bg-1.jpg);">
-      <div class="row">
-        <div class="container">
-          <div class="col-md-2 text-right" style="min-height: 390px">
-            <img class="animated zoomInLeft" src="/app/assets/img/slide-2.png">
-          </div>
-          <div class="col-md-10 text-left background-transparent">
-            <h3 class="animated bounceInDown">Fiber Optik Tesisatları</h3>
-            <h4 class="animated bounceInUp">Fiber Optik Kurulum</h4>
-          </div>
+
+    <?php $active = "active"; ?>
+    <?php foreach ($slides as $slide) { ?>
+
+
+    <div class="item <?= $active; ?>" style="
+      background-image:url(<?= $slide->bg_image; ?>);
+      background-position:center;
+      min-height:479px;
+      max-height:479px;
+      ">
+
+
+      <center style="padding-top:80px">
+        <img class="img-responsive hidden-xs animated zoomInLeft" src="<?= $slide->image; ?>" style="max-width:200px; max-height:200px;" />
+      </center>
+      <div class="carousel-caption" style="bottom:0;left:0;right:0; margin-bottom:-40px;">
+        <div class="background-transparent" style="min-height:80px;">
+          <h3 class="animated bounceInDown"><?= $slide->subject; ?></h3>
+          <h4 class="animated bounceInUp"><?= $slide->content; ?></h4>
         </div>
       </div>
+
     </div>
-    <!-- End Item 1 -->
-    <!-- Item 2 -->
-    <div class="item" style="background-image:url(/app/assets/img/slide-bg-2.jpg);">
-      <div class="row">
-        <div class="container">
-          <div class="col-md-5 text-left" style="min-height: 390px">
-            <div class="row">
-              <img style="max-height: 80px"  class="animated infinite pulse" src="/app/assets/img/sfp.png">
-            </div>
-            <div class="row">
-              <img style="max-height: 80px"  class="animated infinite pulse" src="/app/assets/img/sfp-plus.png">
-            </div>
-            <div class="row">
-              <img style="max-height: 80px"  class="animated infinite pulse" src="/app/assets/img/sfp-copper.png">
-            </div>
-            <div class="row">
-              <img style="max-height: 80px"  class="animated infinite pulse" src="/app/assets/img/sfp_transceiver.png">
-            </div>
-          </div>
-          <div class="col-md-7 text-right background-transparent">
-            <h3 class="animated bounceInDown">SFP Data Transferleri</h3>
-            <h4 class="animated bounceInUp">Cisco, Hp, D-Link, Huawei, Intel, Juniper, Linksys</h4>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- End Item 2 -->
-    <!-- Item 3 -->
-    <div class="item" style="background-image:url(/app/assets/img/slide-bg-3.jpg); background-position:center;">
-      <div class="row">
-        <div class="container">
-          <div class="col-md-7 text-left background-transparent">
-            <h3 class="animated bounceInDown">Simple Bootstrap Carousel</h3>
-            <h4 class="animated bounceInUp">Bootstrap Image Carousel Slider with Animate.css</h4>
-          </div>
-          <div class="col-md-5 text-right" style="min-height: 390px">
-            <img style="max-width: 350px;"  class="animated zoomInLeft" src="http://s20.postimg.org/eq8xvxeq5/globe_network.png">
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- End Item 3 -->
-    <!-- Item 4 -->
-    <div class="item" style="background-image:url(/app/assets/img/slide-bg-4.jpg); background-position:center;">
-      <div class="row">
-        <div class="container">
-          <div class="col-md-7 text-left" style="padding: 20px; color: rgb(255, 255, 255); background-color: rgba(0, 0, 0, 0.4); border-radius: 10px;">
-            <h3 class="animated bounceInDown">We are creative</h3>
-            <h4 class="animated bounceInUp">Get start your next awesome project</h4>
-          </div>
-          <div class="col-md-5 text-right" style="min-height: 390px">
-            <img style="max-width: 350px;"  class="animated zoomInLeft" src="http://s20.postimg.org/9vf8xngel/internet_speed.png">
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- End Item 4 -->
+    <?php $active = ""; ?>
+    <?php } ?>
 
   </div>
   <!-- Controls -->
@@ -92,6 +44,9 @@
     <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
   </a>
+
+  <?php } ?>
+
 </div>
 
 <!-- morphext start -->

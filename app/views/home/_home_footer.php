@@ -60,7 +60,7 @@
         <h5><a href="/home/agendas"><?= t("home.agendas"); ?></a></h5>
         <hr>
         <?php $agendas = Agenda::last(5); ?>
-        <?php if ($agendas) { ?>
+
         <ul id="newsticker">
           <?php foreach ($agendas as $agenda) { ?>
           <li>
@@ -69,7 +69,6 @@
           </li>
           <?php } ?>
         </ul>
-        <?php } ?>
 
         <div style="background-color:#aaa; color:black" class="btn " id="newsticker-prev"><span class="glyphicon glyphicon-chevron-down"></span></div>
         <div style="background-color:#aaa; color:black" class="btn " id="newsticker-next"><span class="glyphicon glyphicon-chevron-up"></span></div>

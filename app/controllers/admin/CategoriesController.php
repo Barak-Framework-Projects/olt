@@ -7,7 +7,7 @@ class CategoriesController extends AdminController {
     $this->categories = Category::all();
   }
 
-  public function create() {}
+  // public function create() {}
 
   public function save() {
     $category = Category::draft($_POST);

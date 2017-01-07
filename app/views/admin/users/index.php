@@ -7,7 +7,7 @@
       <th>Soyad</th>
       <th>Kullanıcı Adı</th>
       <th>Telefon</th>
-      <th>Email</th>
+      <th>E-Posta</th>
       <th>Admin</th>
       <th>Patron</th>
       <th>Oluştu</th>
@@ -16,7 +16,7 @@
     </tr>
   </thead>
   <tbody>
-  	<?php if ($users) { ?>
+    <?php if ($users) { ?>
     <?php foreach ($users as $user) { ?>
     <tr>
       <td><?= $user->first_name; ?></td>
@@ -35,16 +35,16 @@
 
           <input type="hidden" value="<?= $user->id; ?>" id="id" name="id" />
           <button type="submit" class="btn btn-default" onClick="return confirm('Bu kaydı silmek istediğinizden emin misiniz?');" title="Sil">
-          <i class="fa fa-trash"></i>
-        </button>
-      </form>
-    </td>
-  </tr>
+            <i class="fa fa-trash"></i>
+          </button>
+        </form>
+      </td>
+    </tr>
 
-  <?php } ?>
-  <?php } else { ?>
-  <tr class="text-center"><td colspan="4">Henüz Kullanıcı mevcut değil</td></tr>
-  <?php } ?>
-</tbody>
+    <?php } ?>
+    <?php } else { ?>
+    <tr class="text-center"><td colspan="4">Henüz Kullanıcı mevcut değil</td></tr>
+    <?php } ?>
+  </tbody>
 </table>
 <a class="btn btn-primary" href="/admin/users/create">Kullanıcı Ekle</a>
