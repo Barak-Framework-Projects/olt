@@ -13,35 +13,69 @@
       </a>
     </div>
 
+    <?php
+    function pages_dropdown_menu($pages) {
+      if (!is_null($pages)) {
+        echo "<ul class='dropdown-menu'>";
+        foreach ($pages as $page) {
+          $pages = $page->all_of_page;
+          if (!is_null($pages)) {
+            echo "<li class='dropdown-submenu'>
+            // <a tabindex='-1' href='/home/page/" . $page->id . "'>" . $page->title . "</a>";
+            pages_dropdown_menu($page->all_of_page);
+            echo "</li>";
+          } else
+          echo "<li><a href='/home/page/". $page->id . "'>". $page->title . "</a></li>";
+        }
+        echo "</ul>";
+      }
+      echo "";
+    }
+    ?>
+
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right" style="padding: 15px 0px 0px 0px;">
         <li><a href="/home/index"><?= t("home.link"); ?></a></li>
 
+        <?php  $parent_pages = Page::load()->where("page_id", NULL)->take(); ?>
+
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <?= t("home.corporate.link"); ?>
+          <?php foreach ($parent_pages as $parent_page) { ?>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+            <?= $parent_page->title; ?>
             <b class="caret"></b>
           </a>
-          <ul class="dropdown-menu">
-            <li><a href="/home/corporate/about"><?= t("home.corporate.about"); ?></a></li>
-            <li><a href="/home/corporate/our_focus"><?= t("home.corporate.our_focus"); ?></a></li>
-            <li><a href="/home/corporate/service_policy"><?= t("home.corporate.service_policy"); ?></a></li>
-            <li><a href="/home/corporate/human_resources"><?= t("home.corporate.human_resources"); ?></a></li>
-          </ul>
+          <?php pages_dropdown_menu($parent_page->all_of_page); ?>
+          <?php } ?>
+
         </li>
 
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <?= t("home.solutions.link"); ?>
-            <b class="caret"></b>
+          <a href="/home/products" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> Ürünler            <b class="caret"></b>
           </a>
           <ul class="dropdown-menu">
-            <li><a href="/home/solutions/network"><?= t("home.solutions.network"); ?></a></li>
-            <li><a href="/home/solutions/server"><?= t("home.solutions.server"); ?></a></li>
-            <li><a href="/home/solutions/security"><?= t("home.solutions.security.link"); ?></a></li>
-            <li><a href="/home/solutions/wireless/"><?= t("home.solutions.wireless"); ?></a></li>
-            <li><a href="/home/solutions/video_conference/"><?= t("home.solutions.video_conference"); ?></a></li>
-            <li><a href="/home/solutions/structural_cabling"><?= t("home.solutions.structural_cabling"); ?></a></li>
-            <li><a href="/home/solutions/fiber_optic_infrastructure"><?= t("home.solutions.fiber_optic_infrastructure"); ?></a></li>
+            <li class="dropdown-submenu">
+              <a tabindex="-1" href="/home/categories">Kategoriler</a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-submenu">
+                  <a href="/home/categories/show/1">Fiber Optik Ürünler</a>
+                  <ul class="dropdown-menu">
+                    <li><a href="/home/producttypes/show/1">Raf Tipi Çekmeceler</a></li>
+                    <li><a href="/home/producttypes/show/2">Bakır Ürünleri</a></li>
+                  </ul>
+                </li>
+                <li class="dropdown-submenu">
+                  <a href="/home/categories/show/2">Server</a>
+                  <ul class="dropdown-menu">
+                    <li><a href="/home/producttypes/show/3">IBM System X Series</a></li>
+                    <li><a href="/home/producttypes/show/4">Server Hardiskleri</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="/home/products/search">Ürün Ara</a></li>
+            <li><a href="/home/products">Ürün Listele</a></li>
           </ul>
         </li>
 
@@ -84,7 +118,7 @@
       <ul class="nav navbar-nav navbar-right" style="padding: 15px 0px 0px 0px;">
         <li><a href="/lang/tr"><img src="/app/assets/img/tr.png" class="img-border"/></a></li>
       </ul>
-      -->
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+    -->
+  </div><!-- /.navbar-collapse -->
+</div><!-- /.container-fluid -->
 </nav>

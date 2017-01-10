@@ -106,6 +106,7 @@ ApplicationRoutes::draw(
     resources("/agendas"),
     resources("/slides"),
     resources("/notices"),
+    resources("/pages"),
     [ post("/agendaimages/destroy") ],
     [
       get("/activations", "activations#index"),

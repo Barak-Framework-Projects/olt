@@ -5,7 +5,7 @@
 	<div class="form-group">
 		<label class="col-sm-1 control-label" for="subject">Konu</label>
 		<div class="col-sm-11">
-			<input type="text" value="<?= $slide->subject; ?>" class="form-control" size="50" name="subject" id="subject" />
+			<input type="text" value="<?= $slide->subject; ?>" class="form-control" name="subject" id="subject" />
 		</div>
 	</div>
 	<div class="form-group">

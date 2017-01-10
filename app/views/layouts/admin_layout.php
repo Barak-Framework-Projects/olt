@@ -126,6 +126,12 @@
     <script>
     $(document).ready(function(){
 
+      $('#side-menu').mouseover(function() {
+
+      }).mouseout(function() {
+
+      });
+
       $('#side-menu-close').hide();
       $('#side-menu-open').click(function() {
         $('#side-menu-close').show();

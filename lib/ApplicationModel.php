@@ -120,7 +120,6 @@ class ApplicationModel {
   // ok
   public function take() {
 
-    // $this->_select = ["id", "created_at"];
     $records = self::query();
 
     if ($records) {
@@ -252,7 +251,13 @@ class ApplicationModel {
 
     // mark control
     $mark = strtoupper(trim($mark));
-    if (in_array($mark, ApplicationSql::$where_in_marks)) {
+    if (is_null($value)) {
+      $mark = "IS NULL";
+      $value = NULL;
+    } elseif (in_array($value, ApplicationSql::$where_null_marks)) {
+    	$mark = $value;
+      $value = NULL;
+    } elseif (in_array($mark, ApplicationSql::$where_in_marks)) {
       if (!is_array($value))
         throw new BelongNotFoundException("WHERE IN, NOT IN için değer list olmalıdır", $value);
     } elseif (in_array($mark, ApplicationSql::$where_between_marks)) {

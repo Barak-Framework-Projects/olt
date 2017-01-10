@@ -4,6 +4,28 @@
 <div id="site-menu">
 
 	<div class="panel list-group">
+		<a class="list-group-item" data-toggle="collapse" data-target="#pages" data-parent="#site-menu">
+			<span class="hidden-sm hidden-xs"><i class="fa fa-file-text-o"></i> Sayfalar </span>
+			<i class="fa fa-file-text-o fa-3x visible-sm visible-xs"></i>
+		</a>
+
+		<ul class="nav nav-pills nav-stacked collapse" role="ablist" id="pages">
+			<li role="presentation">
+				<a href="/admin/pages">
+					<span class="hidden-sm hidden-xs"><i class="glyphicon glyphicon-chevron-right"></i> Listele</span>
+					<i class="fa fa-list fa-1x visible-sm visible-xs" title="Listele"></i>
+				</a>
+			</li>
+			<li role="presentation">
+				<a href="/admin/pages/create">
+					<span class="hidden-sm hidden-xs"><i class="glyphicon glyphicon-chevron-right"></i> Ekle</span>
+					<i class="fa fa-plus fa-1x visible-sm visible-xs"></i>
+				</a>
+			</li>
+		</ul>
+	</div>
+
+	<div class="panel list-group">
 		<a class="list-group-item" data-toggle="collapse" data-target="#agendas" data-parent="#site-menu">
 			<span class="hidden-sm hidden-xs"><i class="fa fa-newspaper-o"></i> Haberler </span>
 			<i class="fa fa-newspaper-o fa-3x visible-sm visible-xs"></i>
