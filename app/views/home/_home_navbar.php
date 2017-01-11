@@ -33,38 +33,6 @@
 
         <?php } ?>
 
-        <li role="presentation" class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> !!!!!!!!!!!!
-            <b class="caret"></b>
-          </a>
-          <ul class="dropdown-menu">
-            <li><a href="/home/solutions/structural_cabling">asdasd</a></li>
-
-            <li class="dropdown-submenu">
-              <a tabindex="-1" href="/home/solutions/security">asddddddddddddddddd</a>
-              <ul class="dropdown-menu">
-                <li><a href="/home/solutions/security/cctv/">sssssssssssssssss</a></li>
-                <li class="dropdown-submenu">
-                  <a href="/home/solutions/security">ddddddddddddddddd</a>
-                  <ul class="dropdown-menu">
-                    <li><a href="/home/solutions/security/cctv/">eeeeeeeeeeeeee</a></li>
-                    <li><a href="/home/solutions/security/cctv/">ffffffffff</a></li>
-                    <li><a href="/home/solutions/security/cctv/">ggggggggggg</a></li>
-
-                  </ul>
-                  <li><a href="/home/solutions/security/cctv/">hhhhhhhhhhhhhhhhhhhh</a></li>
-                </li>
-                <ul class="dropdown-menu">
-                  <li><a href="/home/producttypes/show/">iiiiiiiiiiiii</a></li>
-                </ul>
-              </li>
-            </ul>
-            <li><a href="/home/solutions/security/cctv/">jjjjjjjjjjjjjj</a></li>
-            <li><a href="/home/solutions/security/cctv/">kkkkkkkkkkkkkkkkkkk</a></li>
-          </ul>
-        </li>
-
-
         <li class="dropdown">
           <a href="/home/products" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <?= t("home.products"); ?>
             <b class="caret"></b>

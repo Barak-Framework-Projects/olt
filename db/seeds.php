@@ -2,6 +2,7 @@
 
 //User::create(["first_name" => "first_name", "department_id" => "1"]);
 
+
 if (User::load()->count() == 0) {
 
   User::create(["first_name" => "Ramazan", "last_name" => "İhsanoğlu", "username" => "rihsanoglu", "password" => "97233e71ad1a600ef532d02edbbf805b", "boss" => true, "admin" => false]);

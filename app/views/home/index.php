@@ -19,7 +19,6 @@
       max-height:479px;
       ">
 
-
       <center style="padding-top:80px">
         <img class="img-responsive hidden-xs animated zoomInLeft" src="<?= $slide->image; ?>" style="max-width:200px; max-height:200px;" />
       </center>
@@ -81,7 +80,7 @@ $(document).ready(function() {
         </h2>
         <h4>
           ve her gün daha iyisi olmak için çalışıyoruz!<br/><br/>
-          <a href="/home/corporate/about" class="btn btn-info" role="button">OLT HAKKINDA</a>
+          <a href="/home/about" class="btn btn-info" role="button">OLT HAKKINDA</a>
         </h4>
       </div>
     </div>

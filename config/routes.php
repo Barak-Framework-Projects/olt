@@ -20,6 +20,7 @@ ApplicationRoutes::draw(
   root("home#home"), //get("/", "home#home"),
   get("/home", "home#home"),
   get("/home/index"),
+  get("/home/about"),
   get("/home/contact"),
   post("/home/mail_send"),
 
