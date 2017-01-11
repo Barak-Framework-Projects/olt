@@ -13,71 +13,57 @@
       </a>
     </div>
 
-    <?php
-    function pages_dropdown_menu($pages) {
-      if (!is_null($pages)) {
-        echo "<ul class='dropdown-menu'>";
-        foreach ($pages as $page) {
-          $pages = $page->all_of_page;
-          if (!is_null($pages)) {
-            echo "<li class='dropdown-submenu'>
-            // <a tabindex='-1' href='/home/page/" . $page->id . "'>" . $page->title . "</a>";
-            pages_dropdown_menu($page->all_of_page);
-            echo "</li>";
-          } else
-          echo "<li><a href='/home/page/". $page->id . "'>". $page->title . "</a></li>";
-        }
-        echo "</ul>";
-      }
-      echo "";
-    }
-    ?>
-
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right" style="padding: 15px 0px 0px 0px;">
         <li><a href="/home/index"><?= t("home.link"); ?></a></li>
 
-        <?php  $parent_pages = Page::load()->where("page_id", NULL)->take(); ?>
+        <?php $parent_pages = Page::load()->where("page_id", NULL)->take(); ?>
+        <?php if ($parent_pages) { ?>
 
+        <?php foreach ($parent_pages as $parent_page) { ?>
         <li class="dropdown">
-          <?php foreach ($parent_pages as $parent_page) { ?>
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
             <?= $parent_page->title; ?>
             <b class="caret"></b>
           </a>
-          <?php pages_dropdown_menu($parent_page->all_of_page); ?>
-          <?php } ?>
-
+          <?= PageHelper::dropdown_menu($parent_page->all_of_page); ?>
         </li>
+        <?php } ?>
 
-        <li class="dropdown">
-          <a href="/home/products" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> Ürünler            <b class="caret"></b>
+        <?php } ?>
+
+        <li role="presentation" class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> !!!!!!!!!!!!
+            <b class="caret"></b>
           </a>
           <ul class="dropdown-menu">
+            <li><a href="/home/solutions/structural_cabling">asdasd</a></li>
+
             <li class="dropdown-submenu">
-              <a tabindex="-1" href="/home/categories">Kategoriler</a>
+              <a tabindex="-1" href="/home/solutions/security">asddddddddddddddddd</a>
               <ul class="dropdown-menu">
+                <li><a href="/home/solutions/security/cctv/">sssssssssssssssss</a></li>
                 <li class="dropdown-submenu">
-                  <a href="/home/categories/show/1">Fiber Optik Ürünler</a>
+                  <a href="/home/solutions/security">ddddddddddddddddd</a>
                   <ul class="dropdown-menu">
-                    <li><a href="/home/producttypes/show/1">Raf Tipi Çekmeceler</a></li>
-                    <li><a href="/home/producttypes/show/2">Bakır Ürünleri</a></li>
+                    <li><a href="/home/solutions/security/cctv/">eeeeeeeeeeeeee</a></li>
+                    <li><a href="/home/solutions/security/cctv/">ffffffffff</a></li>
+                    <li><a href="/home/solutions/security/cctv/">ggggggggggg</a></li>
+
                   </ul>
+                  <li><a href="/home/solutions/security/cctv/">hhhhhhhhhhhhhhhhhhhh</a></li>
                 </li>
-                <li class="dropdown-submenu">
-                  <a href="/home/categories/show/2">Server</a>
-                  <ul class="dropdown-menu">
-                    <li><a href="/home/producttypes/show/3">IBM System X Series</a></li>
-                    <li><a href="/home/producttypes/show/4">Server Hardiskleri</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-            <li><a href="/home/products/search">Ürün Ara</a></li>
-            <li><a href="/home/products">Ürün Listele</a></li>
+                <ul class="dropdown-menu">
+                  <li><a href="/home/producttypes/show/">iiiiiiiiiiiii</a></li>
+                </ul>
+              </li>
+            </ul>
+            <li><a href="/home/solutions/security/cctv/">jjjjjjjjjjjjjj</a></li>
+            <li><a href="/home/solutions/security/cctv/">kkkkkkkkkkkkkkkkkkk</a></li>
           </ul>
         </li>
+
 
         <li class="dropdown">
           <a href="/home/products" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> <?= t("home.products"); ?>

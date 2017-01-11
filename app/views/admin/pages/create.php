@@ -5,10 +5,8 @@
     <label class="col-sm-1 control-label" for="page_id">Üst Sayfa</label>
     <div class="col-sm-11">
       <select class="form-control" id="page_id" name="page_id">
-      	<option value="">Üst Sayfa Yok</option>
-        <?php foreach ($pages as $page) { ?>
-        <option value="<?= $page->id; ?>"><?= $page->title; ?></option>
-        <?php } ?>
+        <option value="">Üst Sayfa Yok</option>
+        <?= PageHelper::select_option($parent_pages); ?>
       </select>
     </div>
   </div>

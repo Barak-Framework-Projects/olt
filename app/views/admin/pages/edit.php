@@ -7,11 +7,7 @@
     <div class="col-sm-11">
       <select class="form-control" id="page_id" name="page_id">
         <option value="">Üst Sayfa Yok</option>
-        <?php foreach ($pages as $_page) { ?>
-        <option value="<?= $_page->id; ?>"<?= ($page->page_id == $_page->id) ? "selected" : ""; ?>>
-          <?= $_page->title; ?>
-        </option>
-        <?php } ?>
+        <?= PageHelper::select_option_selected($parent_pages, $page, $page->page); ?>
       </select>
     </div>
   </div>

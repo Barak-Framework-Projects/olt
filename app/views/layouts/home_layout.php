@@ -67,6 +67,15 @@
   <link rel="stylesheet" type="text/css" href="/app/assets/css/animate.min.css" />
   <!-- Animatecss end -->
 
+  <!-- dropdown-submenu start -->
+  <!-- source: https://github.com/vsn4ik/bootstrap-submenu -->
+  <link rel="stylesheet" type="text/css" href="/app/assets/css/bootstrap-submenu.min.css" />
+  <script src="/app/assets/js/bootstrap-submenu.min.js"></script>
+  <script type="text/javascript">
+  $('[data-submenu]').submenupicker();
+  </script>
+  <!-- dropdown-submenu end -->
+
   <!-- bxSlider start -->
   <!-- source: http://bxslider.com/ -->
   <script src="/app/assets/js/jquery.bxslider.min.js"></script>
@@ -163,6 +172,7 @@
   $('.dropdown-toggle').dropdownHover();
   </script>
   <!-- dropdown hover end -->
+
 </div>
 
 <audio controls="controls" autoplay="autoplay" hidden="true">

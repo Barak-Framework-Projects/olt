@@ -28,30 +28,14 @@ ApplicationRoutes::draw(
   // get("/solutions/network", "solutionpage#network", "/home"),
 
   scope("/home",
+  	[
+  	get("/pages/:id", "page#show"),
+  	],
     [
     get("/agendas", "agendapage#index"),
     get("/agendas/show/:id", "agendapage#show"),
     post("/agendas", "agendapage#index"),
   	],
-
-    [
-    get("/corporate", "corporatepage#about"),
-    get("/corporate/about", "corporatepage#about"),
-    get("/corporate/our_focus", "corporatepage#our_focus"),
-    get("/corporate/service_policy", "corporatepage#service_policy"),
-    get("/corporate/human_resources", "corporatepage#human_resources"),
-    ],
-
-    [
-    get("/solutions", "solutionpage#network"),
-    get("/solutions/structural_cabling", "solutionpage#structural_cabling"),
-    get("/solutions/fiber_optic_infrastructure", "solutionpage#fiber_optic_infrastructure"),
-    get("/solutions/network", "solutionpage#network"),
-    get("/solutions/server", "solutionpage#server"),
-    get("/solutions/security", "solutionpage#security"),
-    get("/solutions/wireless", "solutionpage#wireless"),
-    get("/solutions/video_conference", "solutionpage#video_conference"),
-    ],
 
     [
     get("/references", "referencepage#index"),

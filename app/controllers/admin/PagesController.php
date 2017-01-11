@@ -7,7 +7,7 @@ class pagesController extends AdminController {
   }
 
   public function create() {
-    $this->pages = Page::all();
+    $this->parent_pages = Page::load()->where("page_id", NULL)->take();
   }
 
   public function save() {
@@ -33,7 +33,9 @@ class pagesController extends AdminController {
       $_SESSION["danger"] = "Böyle bir Sayfa bulunmamaktadır";
       return $this->redirect_to("/admin/pages");
     }
-    $this->pages = Page::load()->where("id", $this->id, "!=")->take();
+    //$this->pages = Page::load()->where("id", $this->id, "!=")->take();
+    $this->parent_pages = Page::load()->where("page_id", NULL)->take();
+
   }
 
   public function update() {
@@ -50,10 +52,14 @@ class pagesController extends AdminController {
 
   public function destroy() {
     $page = Page::find($_POST["id"]);
-
-    $page->destroy();
-    $_SESSION["info"] = "Sayfa silindi";
-    return $this->redirect_to("/admin/pages");
+    if ($page->all_of_page) {
+      $_SESSION["danger"] = "Silmek İstediğiniz sayfanın alt sayfaları olduğundan dolayı silemezsiniz!";
+      $this->redirect_to("/admin/pages/show/" . $page->id);
+    } else {
+      $page->destroy();
+      $_SESSION["info"] = "Sayfa silindi";
+      return $this->redirect_to("/admin/pages");
+    }
   }
 
 }
