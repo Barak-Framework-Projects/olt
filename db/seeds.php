@@ -1,8 +1,5 @@
 <?php
 
-//User::create(["first_name" => "first_name", "department_id" => "1"]);
-
-
 if (User::load()->count() == 0) {
 
   User::create(["first_name" => "Ramazan", "last_name" => "İhsanoğlu", "username" => "rihsanoglu", "password" => "97233e71ad1a600ef532d02edbbf805b", "boss" => true, "admin" => false]);
@@ -10,11 +7,40 @@ if (User::load()->count() == 0) {
 
 }
 
-//User::new(["first_name" => 2, "phone" => "123", "last_name" => "Demir", "username" => "tdemir", "password" => "123456", "department_id" => 3])->save();
+if (Setting::load()->count() == 0 ) {
+  $settings = [
 
-// echo User::exists(1) ? "kayit var" : "kayit yok";
+  // site configuration
+  "site_title",
+  "site_short_title",
+  "site_keywords",
+  "site_description",
+  "site_url",
+  "site_email",
+  "site_address_maps",
+  "site_address",
+  "site_phone",
+  "site_fax",
+  "site_googleanalyticsid",
 
-// User::load()->delete_all();
-// Department::load()->delete_all();
+  // image configuration
+  "image_icon",
+  "image_emblem",
+  "image_logo_normal",
+  "image_logo_side",
+  "image_footer",
+
+  // social configuration
+  "social_facebook",
+  "social_instagram",
+  "social_twitter",
+  "social_linkedin",
+  "social_googleplus",
+  ];
+  asort($settings);
+  foreach ($settings as $setting) {
+    Setting::create(["name" => $setting]);
+  }
+}
 
 ?>

@@ -17,26 +17,27 @@ ApplicationRoutes::draw(
 
   // HOME
 
-  root("home#home"), //get("/", "home#home"),
-  get("/home", "home#home"),
+  root("home#index"),
+  get("/home", "home#index"),
   get("/home/index"),
   get("/home/about"),
   get("/home/contact"),
-  post("/home/mail_send"),
+//  post("/home/mail_send"),
 
   //get("/home/categories/producttypes/products"),
 
   // get("/solutions/network", "solutionpage#network", "/home"),
 
   scope("/home",
-  	[
-  	get("/pages/:id", "page#show"),
-  	],
+    [
+    get("/pages/:id", "page#show"),
+    ],
+
     [
     get("/agendas", "agendapage#index"),
     get("/agendas/show/:id", "agendapage#show"),
     post("/agendas", "agendapage#index"),
-  	],
+    ],
 
     [
     get("/references", "referencepage#index"),
@@ -67,14 +68,14 @@ ApplicationRoutes::draw(
 
   // ADMIN
 
+  get("/admin", "admin#index"),
+  get("/admin/index"),
+
   get("/admin/login"),
   post("/admin/login"),
   get("/admin/logout"),
   get("/admin/password_reset/:code", "admin#password_reset"),
   post("/admin/password_reset"),
-
-  get("/admin", "admin#index"),
-  get("/admin/index"),
 
   // get("/category", "category#index", "admin"),
   // resources("/category", "admin"),
@@ -94,13 +95,18 @@ ApplicationRoutes::draw(
     resources("/pages"),
     [ post("/agendaimages/destroy") ],
     [
-      get("/activations", "activations#index"),
-      get("/activations/destroy_live"),
-      get("/activations/destroy_dead"),
-      get("/activations/destroy_all"),
-      post("/activations/destroy")
+    get("/activations", "activations#index"),
+    get("/activations/destroy_live"),
+    get("/activations/destroy_dead"),
+    get("/activations/destroy_all"),
+    post("/activations/destroy")
+    ],
+    [
+    get("/settings/show"),
+    get("/settings/edit"),
+    post("/settings/update"),
     ]
-  )
+    )
 
   );
 

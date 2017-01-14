@@ -4,7 +4,9 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title></title>
+  <title><?= Setting::unique(["name" => "site_title"])->value; ?></title>
+  <meta name="description" content="<?= Setting::unique(['name' => 'site_description'])->value; ?>" />
+  <meta name="keywords" content="<?= Setting::unique(['name' => 'site_keywords'])->value; ?>" />
   <link href="" rel="alternate" title="" type="application/atom+xml" />
   <link rel="shortcut icon" href="/app/assets/img/default.ico">
   <link rel="stylesheet" href="/app/assets/css/syntax.css" type="text/css" />
@@ -27,7 +29,7 @@
     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-88458033-1', 'auto');
+  ga('create', "<?= Setting::unique(['name' => 'site_googleanalyticsid'])->value; ?>", 'auto');
   ga('send', 'pageview');
 
   </script>
@@ -121,6 +123,7 @@
       /* source: https://github.com/risq/jquery-advanced-news-ticker */
       $('#newsticker').newsTicker({
         duration: 4000,
+        direction: 'up',
         prevButton: $('#newsticker-prev'),
         nextButton: $('#newsticker-next')
       });

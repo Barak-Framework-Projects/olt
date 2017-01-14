@@ -4,8 +4,8 @@
   <div class="form-group">
     <label class="col-sm-1 control-label" for="parent_page_title">Üst Sayfa</label>
     <div class="col-sm-11">
-    	<?php $parent_page = $page->page; ?>
-    	<?php $parent_page_title = (!is_null($parent_page)) ? $parent_page->title : "Üst Sayfa Yok"; ?>
+      <?php $parent_page = $page->page; ?>
+      <?php $parent_page_title = (!is_null($parent_page)) ? $parent_page->title : "Üst Sayfa Yok"; ?>
       <input type="text" value="<?= $parent_page_title; ?>" class="form-control" name="parent_page_title" id="parent_page_title" disabled />
     </div>
   </div>
@@ -19,6 +19,14 @@
     <label class="col-sm-1 control-label" for="content">İçerik</label>
     <div class="col-sm-11">
       <textarea class="form-control" rows="10" name="content" id="content" disabled><?= $page->content; ?></textarea>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-1 control-label" for="image">Resim</label>
+    <div class="col-sm-11">
+      <div class="thumbnail">
+        <img src="<?= $page->image; ?> " width="100" height="100" />
+      </div>
     </div>
   </div>
 </div>

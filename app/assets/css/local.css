@@ -30,7 +30,7 @@
   background-repeat:no-repeat;
   background-size:cover;
   background-attachment:fixed;
-  background-position: 50% 50%;                         
+  background-position: 50% 50%;
 }
 .parallax-caption {
   display: table-cell;
@@ -94,6 +94,6 @@
 /* Background Transparent Overlay */
 
 .background-transparent {
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.8);
   border-radius: 10px;
 }

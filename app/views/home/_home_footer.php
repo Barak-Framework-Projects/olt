@@ -1,6 +1,6 @@
 ﻿<style type="text/css">
 .footer {
-  background: url('/app/assets/img/footer.png') repeat center center fixed;
+  background: url("<?= Setting::unique(['name' => 'image_footer'])->value; ?>") repeat center;
   border-radius: 10px 10px 0px 0px;
   width: 100%;
   height: auto;
@@ -22,16 +22,14 @@
     <div class="row animated zoomIn">
       <div class="col-md-4">
 
-        <h3 class="lead">OLT</h3>
+        <h3 class="lead"><?= Setting::unique(["name" => "site_short_title"])->value; ?></h3>
         <p>
-          Aksi belirtilmedikçe <a href="http://olt.com.tr" target="_blank">olt.com.tr</a><br/>
+          Aksi belirtilmedikçe <a href="<?= Setting::unique(['name' => 'site_url'])->value; ?>" target="_blank"><?= Setting::unique(["name" => "site_url"])->value; ?></a><br/>
           tarafından tüm içerik hakları saklıdır.
         </p>
         <br/>
         <div>
-          Batıkent Mahallesi<br/>
-          Ali İhsan Göğüş Caddesi Baran Apt Altı No: 140/A<br/>
-          Şehitkamil/Gaziantep, Türkiye
+          <?= Setting::unique(["name" => "site_address"])->value; ?>
         </div>
 
       </div>
@@ -99,15 +97,29 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
         <ul class="nav navbar-nav pull-left">
 
-          <li><a href="mailto:info@olt.com.tr" target="_blank" class="fa fa-envelope fa-2x"></a></li>
+          <?php if (($site_email = Setting::unique(["name" => "site_email"])->value) != "") { ?>
+          <li><a href="mailto:<?= $site_email; ?>" target="_blank" class="fa fa-envelope fa-2x"></a></li>
+          <?php } ?>
 
-          <li><a href="http://www.linkedin.com/in/olt.com.tr/" target="_blank" class="fa fa-linkedin-square fa-2x"></a></li>
+          <?php if (($social_linkedin = Setting::unique(["name" => "social_linkedin"])->value) != "") { ?>
+          <li><a href="http://www.linkedin.com/in/<?= $social_linkedin; ?>" target="_blank" class="fa fa-linkedin-square fa-2x"></a></li>
+          <?php } ?>
 
-          <li><a href="http://plus.google.com/olt.com.tr/" target="_blank" class="fa fa-google-plus-square fa-2x"></a></li>
+          <?php if (($social_googleplus = Setting::unique(["name" => "social_googleplus"])->value) != "") { ?>
+          <li><a href="http://plus.google.com/<?= $social_googleplus; ?>" target="_blank" class="fa fa-google-plus-square fa-2x"></a></li>
+          <?php } ?>
 
-          <li><a href="http://twitter.com/olt.com.tr/" target="_blank" class="fa fa-twitter-square fa-2x"></a></li>
+          <?php if (($social_facebook = Setting::unique(["name" => "social_facebook"])->value) != "") { ?>
+          <li><a href="http://facebook.com/<?= $social_facebook; ?>" target="_blank" class="fa fa-facebook-square fa-2x"></a></li>
+          <?php } ?>
 
-          <li><a href="http://instagram.com/olt.com.tr/" target="_blank" class="fa fa-instagram fa-2x"></a></li>
+          <?php if (($social_twitter = Setting::unique(["name" => "social_twitter"])->value) != "") { ?>
+          <li><a href="http://twitter.com/<?= $social_twitter; ?>" target="_blank" class="fa fa-twitter-square fa-2x"></a></li>
+          <?php } ?>
+
+          <?php if (($social_instagram = Setting::unique(["name" => "social_instagram"])->value) != "") { ?>
+          <li><a href="http://instagram.com/<?= $social_instagram; ?>" target="_blank" class="fa fa-instagram fa-2x"></a></li>
+          <?php } ?>
 
         </ul>
 

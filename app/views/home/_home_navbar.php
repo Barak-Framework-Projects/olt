@@ -9,7 +9,7 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="/home/index" style="padding: 12px 0px 0px 10px;">
-        <img alt="Brand" src="/app/assets/img/default-side.png" width="200" class="img-responsive"/>
+        <img alt="Brand" src="<?= Setting::unique(['name' => 'image_logo_side'])->value; ?>" width="200" class="img-responsive"/>
       </a>
     </div>
 

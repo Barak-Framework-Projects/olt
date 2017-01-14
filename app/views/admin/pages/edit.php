@@ -3,7 +3,7 @@
 <form class="form-horizontal" action="/admin/pages/update" accept-charset="UTF-8" method="post" enctype="multipart/form-data">
   <input type="hidden" value="<?= $page->id; ?>" name="id" id="id" />
   <div class="form-group">
-    <label class="col-sm-1 control-label" for="page_id">Sayfa</label>
+    <label class="col-sm-1 control-label" for="page_id">Üst Sayfa</label>
     <div class="col-sm-11">
       <select class="form-control" id="page_id" name="page_id">
         <option value="">Üst Sayfa Yok</option>
@@ -21,6 +21,17 @@
     <label class="col-sm-1 control-label" for="content">İçerik</label>
     <div class="col-sm-11">
       <textarea class="form-control" rows="10" name="content" id="content"><?= $page->content; ?></textarea>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-1 control-label" for="image">Resim</label>
+    <div class="col-sm-11">
+      <div class="thumbnail">
+        <img src="<?= $page->image; ?>" width="100" height="100" />
+        <div class="caption">
+          <input type="file" id="image" name="image" class="form-control" />
+        </div>
+      </div>
     </div>
   </div>
   <div class="form-group">

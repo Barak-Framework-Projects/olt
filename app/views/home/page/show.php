@@ -18,7 +18,7 @@ do {
 </ol>
 
 <!-- first section - Home -->
-<div class="parallax" style="background-image: url(/app/assets/img/corporate.jpg);">
+<div class="parallax" style="background-image: url('<?= $now_page->image; ?>');">
   <div class="parallax-caption animated fadeInRight">
     <h1 class="background-transparent"><?= $now_page->title; ?></h1>
   </div>
