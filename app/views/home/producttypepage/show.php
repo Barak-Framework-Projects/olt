@@ -31,32 +31,7 @@
         </h3>
       </div>
 
-      <table id="example" class="table table-striped table-hover dt-responsive" cellspacing="0" width="100%">
-        <thead>
-          <tr>
-            <th></th>
-            <th>Ad</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <?php if ($products) { ?>
-          <?php foreach ($products as $product) { ?>
-          <tr>
-            <td><img src="<?= $product->image; ?>" class="thumbnail img-responsive" style="min-height:144px; max-height:144px; min-width:144px; max-width:144px" /></td>
-            <td><?= $product->name; ?></td>
-            <td>
-              <a href="/home/products/show/<?= $product->id; ?>" class="btn btn-default" role="button" title="Göster">
-                <i class="fa fa-search"></i>Göster
-              </a>
-            </td>
-          </tr>
-
-          <?php } ?>
-          <?php } ?>
-        </tbody>
-      </table>
-
+      <?= render("table", "/home/productpage", ["products" => $products]); ?>
 
     </div>
   </div>
