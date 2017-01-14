@@ -43,7 +43,7 @@
           <?php if ($products) { ?>
           <?php foreach ($products as $product) { ?>
           <tr>
-            <td><img src="<?= $product->image; ?>" class="thumbnail img-responsive" width="184" height="140"/></td>
+            <td><img src="<?= $product->image; ?>" class="thumbnail img-responsive" style="min-height:144px; max-height:144px; min-width:144px; max-width:144px" /></td>
             <td><?= $product->name; ?></td>
             <td>
               <a href="/home/products/show/<?= $product->id; ?>" class="btn btn-default" role="button" title="Göster">

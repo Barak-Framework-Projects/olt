@@ -14,7 +14,7 @@
     <?php foreach ($products as $product) { ?>
 
     <tr>
-      <td><img src="<?= $product->image; ?>" class="thumbnail img-responsive" style="min-height:144px; max-height:144px; min-width:144px; max-width:144px"/></td>
+      <td><img src="<?= $product->image; ?>" class="thumbnail img-responsive" style="min-height:144px; max-height:144px; min-width:144px; max-width:144px" /></td>
       <td><?= $product->name; ?></td>
       <td><?= $product->price; ?></td>
       <td>
