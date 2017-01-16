@@ -25,7 +25,7 @@
 			<div class="carousel-caption" style="bottom:0;left:0;right:0; margin-bottom:-40px;">
 				<div class="background-transparent" style="min-height:80px;">
 					<h3 class="animated bounceInDown"><?= $slide->subject; ?></h3>
-					<h4 class="animated bounceInUp"><?= $slide->content; ?></h4>
+					<h4 class="hidden-sm hidden-xs animated bounceInUp"><?= $slide->content; ?></h4>
 				</div>
 			</div>
 
