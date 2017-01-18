@@ -1,3 +1,21 @@
+### Kullanılan Teknolojiler
+
+ - [Bootstrap](http://getbootstrap.com/)
+ - [Bootstrap:Gallery](https://github.com/blueimp/Gallery)
+ - [Bootstrap:Datepicker](https://github.com/eternicode/bootstrap-datepicker)
+ - [Bootstrap:Summernote](http://summernote.org/)
+ - [Bootstrap:Dropdown-hover](https://cameronspear.com/blog/bootstrap-dropdown-on-hover-plugin/)
+ - [Bootstrap:Submenu](https://vsn4ik.github.io/bootstrap-submenu/)
+ - [Jquery:Autocomplete](https://jqueryui.com/autocomplete/)
+ - [Jquery:Datatables](https://datatables.net/)
+ - [Jquery:Bxslider](http://bxslider.com/)
+ - [Jquery:Ticker](http://risq.github.io/jquery-advanced-news-ticker/)
+ - [Jquery:Morphext](http://morphext.fyianlai.com/)
+ - [Jquery:Pace](https://github.com/HubSpot/pace/)
+ - [CSS:Animatecss](https://daneden.github.io/animate.css)
+ - [Fontawesome](http://fontawesome.io/)
+
+
 # Barak
 
 ##  Requirements Packages and Versions
