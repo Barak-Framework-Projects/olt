@@ -37,14 +37,14 @@
 
         <h5><a href="/home/categories"><?= t("home.categories"); ?></a></h5>
         <hr>
-        <?php if ($_footer_cs = Category::all()) { ?>
+        <?php if ($_categories = Category::all()) { ?>
         <ul class="">
-          <?php foreach ($_footer_cs as $_footer_c) { ?>
-          <?php if ($_footer_c) { ?>
+          <?php foreach ($_categories as $_category) { ?>
+          <?php if ($_category) { ?>
           <li>
             <i class="fa fa-caret-right" aria-hidden="true"></i>
-            <a href="/home/categories/show/<?= $_footer_c->id; ?>">
-              <?= $_footer_c->name; ?>
+            <a href="/home/categories/show/<?= $_category->id; ?>">
+              <?= $_category->name; ?>
             </a>
           </li>
           <?php } ?>
@@ -57,16 +57,17 @@
 
         <h5><a href="/home/agendas"><?= t("home.agendas"); ?></a></h5>
         <hr>
-        <?php $agendas = Agenda::last(5); ?>
 
+        <?php if ($_agendas = Agenda::last(5)) { ?>
         <ul id="newsticker">
-          <?php foreach ($agendas as $agenda) { ?>
+          <?php foreach ($_agendas as $_agenda) { ?>
           <li>
             <i class="fa fa-caret-right" aria-hidden="true"></i>
-            <a href="/home/agendas/show/<?= $agenda->id; ?>"><?= $agenda->subject; ?></a>
+            <a href="/home/agendas/show/<?= $_agenda->id; ?>"><?= $_agenda->subject; ?></a>
           </li>
           <?php } ?>
         </ul>
+        <?php } ?>
 
         <div style="background-color:#aaa; color:black" class="btn " id="newsticker-prev"><span class="glyphicon glyphicon-chevron-down"></span></div>
         <div style="background-color:#aaa; color:black" class="btn " id="newsticker-next"><span class="glyphicon glyphicon-chevron-up"></span></div>
