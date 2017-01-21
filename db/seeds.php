@@ -22,6 +22,8 @@ if (Setting::load()->count() == 0 ) {
   "site_phone",
   "site_fax",
   "site_googleanalyticsid",
+  "site_googlerecaptchasitekey",
+  "site_googlerecaptchasecretkey",
 
   // image configuration
   "image_icon",

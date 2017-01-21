@@ -11,6 +11,7 @@
     <form class="login-form" action="/admin/login" accept-charset="UTF-8" method="post">
       <input type="text" placeholder="<?= t("login.username"); ?>" class="form-control" name="username" id="username" />
       <input type="password" placeholder="<?= t("login.password"); ?>" class="form-control" name="password" id="password" />
+      <div class="g-recaptcha" data-sitekey="<?= Setting::unique(["name" => "site_googlerecaptchasitekey"])->value; ?>"></div>
       <button type="submit" class="btn btn-primary btn-block"><?= t("login.button"); ?></button>
     </form>
 
