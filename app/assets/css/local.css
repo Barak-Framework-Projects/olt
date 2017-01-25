@@ -38,7 +38,7 @@
   vertical-align: middle;
 }
 .parallax-caption h1 {
-	display: inline-block;
+  display: inline-block;
   margin: 20px;
   color: #d3d3d3;
   font-size: 4.5em;
@@ -76,18 +76,18 @@
 /* Gray Scale */
 
 .gray_scale {
- filter: grayscale(100%);
- -webkit-filter: grayscale(100%);
- -moz-filter: grayscale(100%);
- -ms-filter: grayscale(100%);
- -o-filter: grayscale(100%);
+  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+  -ms-filter: grayscale(100%);
+  -o-filter: grayscale(100%);
 }
 .gray_scale_box:hover .gray_scale {
- filter: grayscale(0%);
- -webkit-filter: grayscale(0%);
- -moz-filter: grayscale(0%);
- -ms-filter: grayscale(0%);
- -o-filter: grayscale(0%);
+  filter: grayscale(0%);
+  -webkit-filter: grayscale(0%);
+  -moz-filter: grayscale(0%);
+  -ms-filter: grayscale(0%);
+  -o-filter: grayscale(0%);
 }
 
 /* Background Transparent Overlay */
