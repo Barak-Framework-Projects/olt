@@ -29,7 +29,7 @@
 				</a>
 			</td>
 			<td>
-				<a href="/admin/activations/destroy" type="submit" class="btn btn-default" onClick="return confirm('Tüm aktivasyonları silmek istediğinizden emin misiniz?');" title="Tümünü Sil">
+				<a href="/admin/activations/destroy_all" type="submit" class="btn btn-default" onClick="return confirm('Tüm aktivasyonları silmek istediğinizden emin misiniz?');" title="Tümünü Sil">
 					<i class="fa fa-trash"></i>
 				</a>
 			</td>

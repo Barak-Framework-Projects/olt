@@ -8,7 +8,7 @@
   <meta name="description" content="<?= Setting::unique(['name' => 'site_description'])->value; ?>" />
   <meta name="keywords" content="<?= Setting::unique(['name' => 'site_keywords'])->value; ?>" />
   <link href="" rel="alternate" title="" type="application/atom+xml" />
-  <link rel="shortcut icon" href="/app/assets/img/default.ico">
+  <link rel="shortcut icon" href="<?= Setting::unique(["name" => "image_icon"])->value; ?>">
   <link rel="stylesheet" href="/app/assets/css/syntax.css" type="text/css" />
   <link href='http://fonts.googleapis.com/css?family=Monda' rel='stylesheet' type='text/css'>
 

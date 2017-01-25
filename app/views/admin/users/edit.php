@@ -95,7 +95,8 @@
   </div>
   <div class="form-group">
     <div class="col-sm-offset-1 col-sm-11">
-      <button type="submit" class="btn btn-primary">Güncelle</button>
+      <button type="submit" class="btn btn-primary"
+      onClick="return confirm('Güncellemek istediğinizden emin misiniz?');">Güncelle</button>
     </div>
   </div>
 </form>
