@@ -16,6 +16,7 @@ if (Setting::load()->count() == 0 ) {
   "site_keywords",
   "site_description",
   "site_url",
+  "site_about",
   "site_email",
   "site_email_password",
   "site_address_maps",
