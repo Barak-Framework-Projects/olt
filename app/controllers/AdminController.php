@@ -12,12 +12,16 @@ class AdminController extends ApplicationController {
 
     if (isset($_POST["username"]) and isset($_POST["password"])) { // post action?
 
-      $google_recaptchakey = Setting::unique(["name" => "site_googlerecaptchasecretkey"])->value;
-      $captcha = $_POST['g-recaptcha-response'];
-      $control = CaptchaHelper::google_parser("https://www.google.com/recaptcha/api/siteverify?secret=" . $google_recaptchakey . "&response=" . $captcha . "&remoteip=" . $_SERVER['REMOTE_ADDR']);
-      $control = json_decode($control);
+      // $google_recaptchakey = Setting::unique(["name" => "site_googlerecaptchasecretkey"])->value;
+      // $captcha = $_POST['g-recaptcha-response'];
+      // $control = CaptchaHelper::google_parser("https://www.google.com/recaptcha/api/siteverify?secret=" . $google_recaptchakey . "&response=" . $captcha . "&remoteip=" . $_SERVER['REMOTE_ADDR']);
+      // $control = json_decode($control);
 
-      if ($control->success == true) {
+      $google_recaptchasecretkey = Setting::unique(["name" => "site_googlerecaptchasecretkey"])->value;
+      $recaptcha = new \ReCaptcha\ReCaptcha($google_recaptchasecretkey);
+      $response = $recaptcha->verify($_POST['g-recaptcha-response'], $_SERVER['REMOTE_ADDR']);
+
+      if ($response->isSuccess() == true) {
 
         if ($user = User::unique(
           ["username" => $_POST["username"], "password" => md5($_POST["password"]), "admin" => true]
