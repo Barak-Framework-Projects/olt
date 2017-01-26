@@ -94,7 +94,7 @@ class AdminController extends ApplicationController {
         $_site_email_password = Setting::unique(["name" => "site_email_password"])->value;
 
         // mail'e başla
-        $mail = new Mail("mail." . $_site_url, 25);
+        $mail = new MailHelper("mail." . $_site_url, 25);
 
         // nerden ?
         $mail->Username = $_site_email;

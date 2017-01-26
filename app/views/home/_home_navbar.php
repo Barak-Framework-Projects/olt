@@ -17,6 +17,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right" style="padding: 15px 0px 0px 0px;">
         <li><a href="/home/index"><?= t("home.link"); ?></a></li>
+        <li><a href="/home/about"><?= t("home.about"); ?></a></li>
 
         <?php $parent_pages = Page::load()->where("page_id", NULL)->take(); ?>
         <?php if ($parent_pages) { ?>

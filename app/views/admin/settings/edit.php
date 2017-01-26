@@ -14,7 +14,7 @@
             <input type="file" id="<?= $setting->name; ?>" name="<?= $setting->name; ?>" class="form-control" />
           </div>
         </div>
-        <?php } elseif (preg_match("/address/", $setting->name)) { ?>
+        <?php } elseif (preg_match("/address/", $setting->name) or $setting->name == "site_about") { ?>
         <textarea class="form-control" rows="5" name="<?= $setting->name; ?>" id="<?= $setting->name; ?>"><?= $setting->value; ?></textarea>
         <?php } elseif (preg_match("/password/", $setting->name)) { ?>
         <input type="password" value="<?= $setting->value; ?>" class="form-control" name="<?= $setting->name; ?>" id="<?= $setting->name; ?>" />

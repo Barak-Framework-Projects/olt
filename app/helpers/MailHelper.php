@@ -1,6 +1,6 @@
 <?php
 
-class Mail extends APHPMailer {
+class MailHelper extends PHPMailer {
 
   public function __construct($host, $port = 25) {
     parent::__construct();
