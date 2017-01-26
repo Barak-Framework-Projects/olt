@@ -88,21 +88,31 @@ class AdminController extends ApplicationController {
         // yeni aktivasyon anahtarı oluştur
         Activation::create(["user_id" => $user->id, "code" => $code, "created_at" => date("Y-m-d H:i:s")]);
 
-        // aktivasyon üretilecek site linki
+        // site bilgileri
         $_site_url = Setting::unique(["name" => "site_url"])->value;
+        $_site_email = Setting::unique(["name" => "site_email"])->value;
+        $_site_email_password = Setting::unique(["name" => "site_email_password"])->value;
 
-        $_subject = "[System] Please reset your password";
-        $_header  = 'Content-type: text/plain; charset=utf-8' . "\r\n";
-        $_content = "
-        Sistem şifrenizi kaybettiğinizi duyduk. Üzgünüm!\r\n
-        Endişelenme! Parolanızı sıfırlamak için 1 saat içinde aşağıdaki bağlantıyı kullanabilirsiniz:\r\n
-        $_site_url/admin/password_reset/$code
+        // mail'e başla
+        $mail = new Mail("mail." . $_site_url, 25);
+
+        // nerden ?
+        $mail->Username = $_site_email;
+        $mail->Password = $_site_email_password;
+        $mail->SetFrom($_site_email, 'Admin');
+
+        // nereye ?
+        $mail->AddAddress($user->email, $user->full_name());
+
+        // ne ?
+        $mail->Subject = '[Admin] Please reset your password';
+        $mail->Body = "
+        Sistem şifrenizi kaybettiğinizi duyduk. Üzgünüm!<br/><br/>
+        Endişelenme! Parolanızı sıfırlamak için 1 saat içinde aşağıdaki bağlantıyı kullanabilirsiniz:<br/><br/>
+        <a href='http://$_site_url/admin/password_reset/$code'>http://$_site_url/admin/password_reset/$code</a>
         ";
 
-        $_subject = iconv("UTF-8", "ISO-8859-9", $_subject);
-        $_content = iconv("UTF-8", "ISO-8859-9", $_content);
-
-        if (mail($user->email, $_subject, $_content, $_header)) {
+        if ($mail->Send()) {
           $_SESSION["success"] = "Şifre sıfırlama isteği E-posta adresinize gönderildi";
         } else {
           $_SESSION["danger"] = "E-Posta gönderiminde sorun oluştu!";

@@ -3,11 +3,11 @@
 class SettingsController extends AdminController {
 
   public function show() {
-    $this->settings = Setting::all();
+    $this->settings = Setting::load()->order("name")->take();
   }
 
   public function edit() {
-    $this->settings = Setting::all();
+    $this->settings = Setting::load()->order("name")->take();
   }
 
   public function update() {

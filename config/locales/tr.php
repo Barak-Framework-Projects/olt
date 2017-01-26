@@ -16,6 +16,7 @@ return [
 "home" => [
 
   "link" => "Anasayfa",
+  "about" => "Hakkımızda",
 
   "categories" => "Kategoriler",
   "category" => "Kategori",

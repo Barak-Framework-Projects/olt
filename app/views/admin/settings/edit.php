@@ -16,6 +16,8 @@
         </div>
         <?php } elseif (preg_match("/address/", $setting->name)) { ?>
         <textarea class="form-control" rows="5" name="<?= $setting->name; ?>" id="<?= $setting->name; ?>"><?= $setting->value; ?></textarea>
+        <?php } elseif (preg_match("/password/", $setting->name)) { ?>
+        <input type="password" value="<?= $setting->value; ?>" class="form-control" name="<?= $setting->name; ?>" id="<?= $setting->name; ?>" />
         <?php } else { ?>
         <input type="text" value="<?= $setting->value; ?>" class="form-control" name="<?= $setting->name; ?>" id="<?= $setting->name; ?>" />
         <?php } ?>
