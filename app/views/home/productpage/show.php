@@ -42,7 +42,7 @@ $( document ).ready(function() {
 });
 </script>
 
-<div class="container">
+<div class="container-fluid">
 
   <div class="row">
 
