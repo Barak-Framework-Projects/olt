@@ -1,4 +1,4 @@
-<h4 class="page-title">Galeriler</h4>
+<h4 class="page-title"><?= t("home.gallery"); ?></h4>
 <ol class="breadcrumb text-right">
   <li><a href="#">Anasayfa</a></li>
   <li class="active"><?= t("home.gallery"); ?></li>
@@ -6,13 +6,13 @@
 
 <!-- The Gallery as lightbox dialog, should be a child element of the document body -->
 <div id="blueimp-gallery" class="blueimp-gallery">
-  <div class="slides"></div>
-  <h3 class="title"></h3>
-  <a class="prev">‹</a>
-  <a class="next">›</a>
-  <a class="close">×</a>
-  <a class="play-pause"></a>
-  <ol class="indicator"></ol>
+    <div class="slides"></div>
+    <h3 class="title"></h3>
+    <a class="prev">‹</a>
+    <a class="next">›</a>
+    <a class="close">×</a>
+    <a class="play-pause"></a>
+    <ol class="indicator"></ol>
 </div>
 
 <div id="links">
@@ -21,10 +21,7 @@
   <a href="<?= $gallery->image; ?>" class="img-thumbnail animated flipInY" title="<?= $gallery->name; ?> ">
     <img src="<?= $gallery->image; ?>" style='min-width:200px;width:200px;min-height:200px;height:200px;'>
   </a>
-
   <?php } ?>
-  <?php } else { ?>
-  <tr class="text-center"><td colspan="4">Henüz galeri mevcut değil</td></tr>
   <?php } ?>
 </div>
 

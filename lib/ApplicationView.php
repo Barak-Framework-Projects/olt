@@ -5,8 +5,6 @@ class ApplicationView {
   const LAYOUTPATH = "app/views/layouts/";
   const VIEWPATH   = "app/views/";
 
-  private $_content;
-
   private $_layout;
   private $_template;
 
@@ -15,15 +13,9 @@ class ApplicationView {
 
   private $_text;
   private $_file;
+  private $_partial;
 
-  // "/home/index"
-  // "/home/show"
-  // "/admin/show"
-  // ["layout"=>"home", "view" => "home", "action" => "index"]
-  // ["layout" => false]
-  // ["view" => "admin", "action" => "index"]
-  // ["view" => "admin", "action" => "index"]
-  // ["layout" => "admin", "view" => "home", "action" => "show"]
+  private $_locals;
 
   public function __construct() {}
 
@@ -33,6 +25,9 @@ class ApplicationView {
 
       foreach ($_render as $key => $value) {
         switch ($key) {
+          case "partial":  $this->_partial  = $value; break;
+          case "locals":   $this->_locals   = $value; break;
+          case "file":     $this->_file     = $value; break;
           case "text":     $this->_text     = $value; break;
           case "layout":   $this->_layout   = $value; break;
           case "view":     $this->_view     = $value; break; // default kesin
@@ -51,94 +46,93 @@ class ApplicationView {
     } else {
       throw new ViewNotFoundException("Render fonksiyonun bilinmeyen değişken tipi", $this->_render);
     }
+
   }
 
-  public function run($params = null) {
+  public function run() {
 
+    // sets contiune - start
+    if (!isset($this->_template)) { // is not set ?
+      $this->_template = $this->_view . "/" . $this->_action;
+    }
+
+    if (!isset($this->_layout)) { // is not set ?
+      $this->_layout = $this->_view;
+    }
+
+    if (!isset($this->_locals)) { // is not set ?
+      $this->_locals = null;
+    }
+    // sets contiune - end
+
+    // take content!
     if (isset($this->_text)) {
 
-      return self::text_display();
+      $content = $this->_text;
+
+    } elseif (isset($this->_file)) {
+
+      $content = self::render_file($this->_file, $this->_locals);
+
+    } elseif (isset($this->_partial)) {
+
+      $content = self::render_file(self::VIEWPATH . preg_replace("~/(?!.*/)~", "/_", $this->_partial) . ".php", $this->_locals);
+
+    } elseif ($this->_layout) { // layout : is not false?
+
+      $content = self::render_file(self::layout_file(), ["yield" => self::render_file(self::template_file(), $this->_locals)]);
+
+    } else { // layout : is false?
+
+      $content = self::render_file(self::template_file(), $this->_locals);
+
     }
 
-    // if (isset($this->_file)) {
-    //   $this->content = self::template_content($this->_file);
-    // }
-
-    if (!isset($this->_template))
-      $this->_template = $this->_view . "/" . $this->_action;
-
-    // Where is the LAYOUT ?
-    if (isset($this->_layout)) { // is set ?
-
-      if ($this->_layout) { // is not false?
-
-        $this->_layout .= "_layout";
-        $this->_content = self::page_content();
-
-      } else { // is false ?
-
-        $this->_content = self::template_content();
-
-      }
-
-    } else { // not set ?
-
-      $this->_layout = $this->_view . "_layout";
-      $this->_content = self::page_content();
-    }
-
-    self::content_display($params);
+    // show content!
+    self::display($content, $this->_locals);
   }
 
-  // merge LAYOUT and TEMPLATE content
-  private function page_content() {
-    return str_replace("{yield}", self::template_content(), self::layout_content());
-  }
+  private function layout_file() {
 
-  private function layout_content() {
-    $layout_path = self::LAYOUTPATH . $this->_layout . ".php";
+    $layout_path = self::LAYOUTPATH . trim($this->_layout, "/") . ".php";
 
     if (!file_exists($layout_path))
       throw new FileNotFoundException("Layout dosyası mevcut değil", $layout_path);
 
-    return file_get_contents($layout_path);
+    return $layout_path;
   }
 
-  private function template_content($path = self::VIEWPATH) {
+  private function template_file($path = self::VIEWPATH) {
 
     $template_path = $path . trim($this->_template, "/") . ".php";
 
     if (!file_exists($template_path))
       throw new FileNotFoundException("Template dosyası mevcut değil", $template_path);
-    return file_get_contents($template_path);
+
+    return $template_path;
   }
 
-  private function content_display($params = null) {
+  private function render_file($file = null, $locals = null) {
 
-    // controller'in paramsları var ise yükle
-    if (!is_null($params)) {
-      extract($params);
+    // https://github.com/betephp/framework/blob/master/src/Bete/View/View.php#L100
+    if (!file_exists($file))
+      throw new FileNotFoundException("Render dosyası mevcut değil", $file);
+
+    ob_start();
+    ob_implicit_flush(false);
+
+    // controller'in localsları var ise yükle
+    if (!is_null($locals)) {
+      extract($locals, EXTR_OVERWRITE);
     }
 
-    // http://stackoverflow.com/questions/1184628/php-equivalent-of-include-using-eval)
-    $file_name = 'tmp/' . time() . '.php';
-    if (!($fp = fopen($file_name, 'a')))
-      throw new FileNotFoundException("File does not exist", $file_name);
-
-    fwrite($fp, $this->_content);
-    fclose($fp);
-
-    unset($this->_content);
-    unset($fp);
-
-    include($file_name);
-
-    unlink($file_name);
+    include($file);
+    return ob_get_clean();
   }
 
-  private function text_display() {
-    echo $this->_text;
+  private function display($content) {
+    echo $content;
   }
-
 }
+
 ?>

@@ -54,6 +54,7 @@ $( document ).ready(function() {
           </div>
         </div>
       </a>
+      <center><?= $reference->name; ?></center>
     </div>
 
     <!-- Modal -->

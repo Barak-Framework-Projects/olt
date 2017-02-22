@@ -103,12 +103,8 @@ $( document ).ready(function() {
     </div>
   </div>
 
-
-
-
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
-
 
     <li role="presentation" class="active">
       <a href="#content" aria-controls="content" role="tab" data-toggle="tab">
@@ -121,7 +117,6 @@ $( document ).ready(function() {
         </div>
       </a>
     </li>
-
 
     <li role="presentation">
       <a href="#file" aria-controls="file" role="tab" data-toggle="tab">
@@ -160,7 +155,7 @@ $( document ).ready(function() {
     </div>
 
     <?php $products = Producttype::find($product->producttype->id)->all_of_product; ?>
-    <?= render("table", "/home/productpage", ["products" => $products]); ?>
+    <?php render(["partial" => "home/productpage/table", "locals" => ["products" => $products]]); ?>
 
   </div>
 </div>

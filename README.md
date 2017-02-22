@@ -1,22 +1,9 @@
-### Kullanılan Teknolojiler
-
- - [Bootstrap](http://getbootstrap.com/)
- - [Bootstrap:Gallery](https://github.com/blueimp/Gallery)
- - [Bootstrap:Datepicker](https://github.com/eternicode/bootstrap-datepicker)
- - [Bootstrap:Summernote](http://summernote.org/)
- - [Bootstrap:Dropdown-hover](https://cameronspear.com/blog/bootstrap-dropdown-on-hover-plugin/)
- - [Bootstrap:Submenu](https://vsn4ik.github.io/bootstrap-submenu/)
- - [Jquery:Autocomplete](https://jqueryui.com/autocomplete/)
- - [Jquery:Datatables](https://datatables.net/)
- - [Jquery:Bxslider](http://bxslider.com/)
- - [Jquery:Ticker](http://risq.github.io/jquery-advanced-news-ticker/)
- - [Jquery:Morphext](http://morphext.fyianlai.com/)
- - [Jquery:Pace](https://github.com/HubSpot/pace/)
- - [CSS:Animatecss](https://daneden.github.io/animate.css)
- - [Fontawesome](http://fontawesome.io/)
-
-
 # Barak
+
+[![Latest Stable Version](https://poser.pugx.org/gdemir/barak/v/stable)](https://packagist.org/packages/gdemir/barak)
+[![Total Downloads](https://poser.pugx.org/gdemir/barak/downloads)](https://packagist.org/packages/gdemir/barak)
+[![Latest Unstable Version](https://poser.pugx.org/gdemir/barak/v/unstable)](https://packagist.org/packages/gdemir/barak)
+[![License](https://poser.pugx.org/gdemir/barak/license)](https://packagist.org/packages/gdemir/barak)
 
 ##  Requirements Packages and Versions
 
@@ -27,6 +14,44 @@
 - Php Version : 7.0, - Php Database Access : [PDO](http://php.net/manual/tr/book.pdo.php)
 
 - Install : [LAMP](http://gdemir.me/categories/linux/lamp/) or [LEMP](http://gdemir.me/categories/linux/lemp/)
+
+- [Composer](http://gdemir.me/categories/php/composer/)
+
+
+## Install
+
+- Composer
+
+[Composer](http://gdemir.me/categories/php/composer/)
+
+- Barak
+
+```sh
+composer create-project gdemir/barak project_name
+```
+
+## Configuration Database File (`config/database.ini`)
+
+```ini
+[database_configuration]
+host  = localhost
+user  = root
+pass  = barak
+name  = BARAK
+```
+
+## Run
+
+    cd project_name
+    php -S localhost:9090
+
+and check homepage : [http://localhost:9090](http://localhost:9090) and thats all!
+
+## Releases
+
+- [https://github.com/gdemir/barak/releases](https://github.com/gdemir/barak/releases)
+
+---
 
 ## Guides
 
@@ -63,7 +88,7 @@ class HomeController extends ApplicationController {
 <?= $message; ?>
 ```
 
-> `app/views/layouts/home_layout.php`
+> `app/views/layouts/home.php`
 
 ```html
 <!DOCTYPE html>
@@ -75,7 +100,7 @@ class HomeController extends ApplicationController {
   <title></title>
 </head>
 <body>
-  {yield}
+  <?= $yield; ?>
 </body>
 </html>
 ```
@@ -211,13 +236,13 @@ ApplicationRoutes::draw(
 
 ```php
 ApplicationRoutes::draw(
-  get("/users/", "user#index"), // all record
-  get("/users/create"),         // new record form
-  post("users/save"),           // new record save
-  get("/users/show"),           // display record
-  get("/users/edit"),           // edit record
-  post("/user/update"),         // update record
-  post("/user/destroy")         // destroy record
+  get("/users/", "users#index"), // all record
+  get("/users/create"),          // new record form
+  post("users/save"),            // new record save
+  get("/users/show"),            // display record
+  get("/users/edit"),            // edit record
+  post("/users/update"),         // update record
+  post("/users/destroy")         // destroy record
 );
 ```
 
@@ -247,9 +272,11 @@ ApplicationRoutes::draw(
 
 #### SCOPE
 
+Kodları daha derli toplu kullanmak için Route'in Gruplama özelliğidir. Bir PATH altında CONTROLLER ve VIEW dizininin çalışma imkanı sağlar. 
+
 > controller: `app/controllers/PATH/CONTROLLER.php`
 
-> view : `app/views/VIEW/PATH/ACTION.php`
+> view : `app/views/VIEW/PATH/CONTROLLER/ACTION.php`
 
 - Simple
 
@@ -346,11 +373,11 @@ ApplicationRoutes::draw(
 ### Controller (`app/controller/*.php`)
 ---
 
-Her `config/routes.php` içerisinde tanımlanan `get` işlemi için `app/controller/*.php` dosyası içerisinde fonksiyon tanımlamak zorunlu değildir, tanımlanırsa bir değişken yükü/yükleri ilgili web sayfasına `$params[KEY]` şeklinde çekilebilir. Her `config/routes.php` içerisinde tanımlanan `post` için ilgili `app/controller/*.php` dosyası içerisinde fonksiyon tanımlamak zorunludur.
+Her `config/routes.php` içerisinde tanımlanan `get` işlemi için `app/controller/*.php` dosyası içerisinde fonksiyon tanımlamak zorunlu değildir, tanımlanırsa bir değişken yükü/yükleri controller içinde `$this->KEY` şeklinde tanımlanırsa ilgili yönlenen sayfada `$KEY` şeklinde veriye erişebilir. Her `config/routes.php` içerisinde tanımlanan `post` için ilgili `app/controller/*.php` dosyası içerisinde fonksiyon tanımlamak zorunludur.
 
 - Render
 
-> layout : `app/views/layouts/VIEW_layout.php`
+> layout : `app/views/layouts/VIEW.php`
 
 > view : `app/views/VIEW/ACTION.php`
 
@@ -362,35 +389,42 @@ class HomeController extends ApplicationController {
   public function index() {
     echo "HomeIndex sayfası öncesi çalışan fonksiyon";
 
-    // DEFAULT LAYOUT: home_layout, VIEW: home, ACTION: index
+    // DEFAULT LAYOUT: home, VIEW: home, ACTION: index
     $this->render("/home/index"); // like $this->render(["template" => "/home/index"]);
 
-    // DEFAULT LAYOUT: home_layout, VIEW: home, ACTION: show
+    // DEFAULT LAYOUT: home, VIEW: home, ACTION: show
     $this->render("/home/show"); // like $this->render(["template" => "/home/show"]);
 
-    // DEFAULT LAYOUT: home_layout, VIEW: admin, ACTION: show
+    // DEFAULT LAYOUT: home, VIEW: admin, ACTION: show
     $this->render("/admin/show"); // like $this->render(["template" => "/admin/show"]);
 
-    // Default LAYOUT: home_layout, VIEW: home, ACTION: index
-    $this->render(["layout"=>"home", "view" => "home", "action" => "index"]); // default render
+    // Default LAYOUT: home, VIEW: home, ACTION: index
+    $this->render(["layout" => "home", "view" => "home", "action" => "index"]); // default render
 
     // LAYOUT: false, VIEW: home, ACTION: index
     $this->render(["layout" => false]);
 
-    // LAYOUT: home_layout, VIEW: admin, ACTION: index
+    // LAYOUT: home, VIEW: admin, ACTION: index
     $this->render(["view" => "admin", "action" => "index"]);
 
-    // LAYOUT: home_layout, VIEW: admin, ACTION: index
+    // LAYOUT: home, VIEW: admin, ACTION: index
     $this->render(["view" => "admin", "action" => "index"]);
 
-    // LAYOUT: admin_layout, VIEW: home, ACTION: show
+    // LAYOUT: admin, VIEW: home, ACTION: show
     $this->render(["layout" => "admin", "view" => "home", "action" => "show"]);
 
-    // LAYOUT: admin_layout, VIEW: home, ACTION: index
+    // LAYOUT: admin, VIEW: home, ACTION: index
     $this->render(["layout" => "admin", "template" => "home/index"]);
 
-    // LAYOUT: admin_layout, VIEW: home, ACTION: show
+    // LAYOUT: admin, VIEW: home, ACTION: show
     $this->render(["layout" => "admin", "template" => "home/show"]);
+
+    // LAYOUT: false, VIEW: false, ACTION: false
+    // only load controller params and get this file
+    $this->render(["file" => "/app/views/admin/login.php"]);
+
+    // TODO partial, ayrıca sayfa üzerinde
+    // $this->render(["partial" => "home/navbar"]);
   }
 
 }
@@ -560,7 +594,7 @@ class AdminController extends ApplicationController {
 <h1> Admin#Home </h1>
 ```
 
-> `app/views/layouts/admin_layout.php`
+> `app/views/layouts/admin.php`
 
 ```html
 <!DOCTYPE html>
@@ -572,7 +606,7 @@ class AdminController extends ApplicationController {
   <title></title>
 </head>
 <body>
-  {yield}
+  <?= $yield; ?>
 </body>
 </html>
 ```
@@ -580,7 +614,7 @@ class AdminController extends ApplicationController {
 ### Views (`app/views/DIRECTORY/*.php`)
 ---
 
-Her `get` işlemi için `config/routes.php` de yönlendirilen `controller` ve `action` adlarını alarak, `app/views/CONTROLLER/ACTION.php` html sayfası `app/views/layouts/CONTROLLER_layout.php` içerisine `{yield}` değişken kısmına gömülür ve görüntülenir.
+Her `get` işlemi için `config/routes.php` de yönlendirilen `controller` ve `action` adlarını alarak, `app/views/CONTROLLER/ACTION.php` html sayfası `app/views/layouts/CONTROLLER.php` içerisine `<?= $yield; ?>` değişken kısmına gömülür ve görüntülenir.
 
 > `app/views/DIRECTORY/*.php`
 
@@ -588,7 +622,7 @@ Her `get` işlemi için `config/routes.php` de yönlendirilen `controller` ve `a
 <h1> Hello World </h1>
 ```
 
-> `app/views/layouts/DIRECTORY_layout.php`
+> `app/views/layouts/DIRECTORY.php`
 
 ```html
 <!DOCTYPE html>
@@ -600,12 +634,12 @@ Her `get` işlemi için `config/routes.php` de yönlendirilen `controller` ve `a
   <title></title>
 </head>
 <body>
-  {yield}
+  <?= $yield; ?>
 </body>
 </html>
 ```
 
-### Model
+### Model (`app/models/TABLE.php`)
 ---
 
 > `app/models/TABLE.php`
@@ -667,14 +701,14 @@ print_r($user);
 
 ```php
 $users = User::load()->take();
-foreach ($user as $user)
+foreach ($users as $user)
   echo $user->first_name;
 ```
 
 > `where`
 
 
-operators: `=`, `<>`, `>`, `<`, `>=`, `<=`
+operators: `=`, `!=`, `>`, `<`, `>=`, `<=`
 
 
 ```php
@@ -698,30 +732,40 @@ $users = User::load()->where("age", 25, "<=")->take();
 // SELECT * FROM user WHERE age <= 25;
 ```
 
+operators: `IS NULL`, `IS NOT NULL`
+
+```php
+$users = User::load()->where("email", NULL)->take();
+$users = User::load()->where("email", "IS NULL")->take();
+// SELECT * FROM user WHERE email IS NULL;
+$users = User::load()->where("email", "IS NOT NULL")->take();
+// SELECT * FROM user WHERE email IS NOT NULL;
+```
+
 operators: `LIKE`, `NOT LIKE`
 
 ```php
-$users = User::load()->where("email", "%.com.tr", "like")->take();
-// SELECT * FROM user WHERE id LIKE '%.com.tr';
-$users = User::load()->where("email", "%.com.tr", "not like")->take();
-// SELECT * FROM user WHERE id NOT LIKE '%.com.tr';
+$users = User::load()->where("email", "%.com.tr", "LIKE")->take();
+// SELECT * FROM user WHERE email LIKE '%.com.tr';
+$users = User::load()->where("email", "%.com.tr", "NOT LIKE")->take();
+// SELECT * FROM user WHERE email NOT LIKE '%.com.tr';
 ```
 
 operators: `IN`, `NOT IN`
 
 ```php
-$users = User::load()->where("id", [1, 2, 3], "in")->take();
+$users = User::load()->where("id", [1, 2, 3], "IN")->take();
 // SELECT * FROM user WHERE id IN (1, 2, 3);
-$users = User::load()->where("id", [1, 2, 3], "not in")->take();
+$users = User::load()->where("id", [1, 2, 3], "NOT IN")->take();
 // SELECT * FROM user WHERE id NOT IN (1, 2, 3)
 ```
 
 operators: `BETWEEN`, `NOT BETWEEN`
 
 ```php
-$users = User::load()->where("created_at", ["2016-12-01", "2016-13-01"], "between")->take();
+$users = User::load()->where("created_at", ["2016-12-01", "2016-13-01"], "BETWEEN")->take();
 // SELECT * FROM user WHERE created_at BETWEEN "2016-12-01" AND "2016-13-01";
-$users = User::load()->where("created_at", ["2016-12-01", "2016-13-01"], "not between")->take();
+$users = User::load()->where("created_at", ["2016-12-01", "2016-13-01"], "NOT BETWEEN")->take();
 // SELECT * FROM user WHERE created_at NOT BETWEEN "2016-12-01" AND "2016-13-01";
 ```
 
@@ -746,7 +790,7 @@ $users = User::load()
            ->limit(10)
            ->take();
 
-foreach ($user as $user)
+foreach ($users as $user)
   echo $user->first_name;
 ```
 
@@ -1006,7 +1050,7 @@ foreach ($books as $book)
 
 ```
 
-### Config and Database (`config/database.ini`, `config/application.ini`, `db/seeds.php`)
+### Configurations (`config/database.ini`, `config/application.ini`)
 ---
 
 > `config/database.ini` (database configuration file)
@@ -1026,6 +1070,10 @@ name  = BARAK
 display_errors = true
 time_zone      = Europe/Istanbul
 ```
+
+### Seeds (`db/seeds.php`)
+
+Proje başlamadan önce ilk çalıştırılacak dosyadır.
 
 > `db/seeds.php` (database seeds file)
 
@@ -1047,7 +1095,10 @@ User::create(["first_name" => "Atilla", "last_name" => "Demir", "username" => "a
 [![BarakTurkmens#VeledBey](https://img.youtube.com/vi/3RBtPGWRnsI/2.jpg)](https://www.youtube.com/watch?v=3RBtPGWRnsI)
 [![BarakTurkmens#VeledBey2](https://img.youtube.com/vi/CiThgSNoSr0/2.jpg)](https://www.youtube.com/watch?v=CiThgSNoSr0)
 
-
 ## Sources
 
 - [https://tr.wikipedia.org/wiki/Barak_T%C3%BCrkmenleri](https://tr.wikipedia.org/wiki/Barak_T%C3%BCrkmenleri)
+
+## License
+
+Barak is released under the [MIT License](http://www.opensource.org/licenses/MIT).

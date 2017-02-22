@@ -19,7 +19,8 @@
 <div class="row">
 
   <div class="col-md-3">
-    <?php render("product_menu", "home"); ?>
+    <?php render(["partial" => "home/product_menu"]); ?>
+
   </div>
 
   <div class="col-md-9">
@@ -31,7 +32,7 @@
         </h3>
       </div>
 
-      <?= render("table", "/home/productpage", ["products" => $products]); ?>
+      <?php render(["partial" => "home/productpage/table", "locals" =>["products" => $products]]); ?>
 
     </div>
   </div>

@@ -2,6 +2,6 @@
 
 <div class="container-fluid">
 
-  <?= render("table", "/home/productpage", ["products" => $products]); ?>
+  <?php render(["partial" => "home/productpage/table", "locals" => ["products" => $products]]); ?>
 
 </div>
