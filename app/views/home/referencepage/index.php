@@ -61,15 +61,18 @@ $( document ).ready(function() {
     <div class="modal fade" id="<?= $reference->id; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-          <div class="modal-body">
 
+          <div class="modal-header">
+            <button data-dismiss="modal" class="close" type="button" aria-hidden="true">×</button>
+          </div>
+
+          <div class="modal-body">
             <div class="row">
               <div class="col-md-3 col-sm-6"><img src="<?= $reference->image; ?>" class="col-lg-12 col-md-12 col-sm-12 col-xs-12"/></div>
               <div class="col-md-9 col-sm-6">
                 <h5 class="page-title"><?= $reference->name; ?></h5>
                 <p><?= $reference->content; ?></p>
               </div>
-
             </div>
 
           </div>

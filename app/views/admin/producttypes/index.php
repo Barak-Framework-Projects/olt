@@ -6,7 +6,6 @@
       <th>İd</th>
       <th>Kategori</th>
       <th>Ad</th>
-      <th>İçerik</th>
       <th>Oluştu</th>
       <th>Düzenlendi</th>
       <th></th>
@@ -20,7 +19,6 @@
       <td><?= $producttype->id; ?></td>
       <td><?= $producttype->category->name; ?></td>
       <td><?= $producttype->name; ?></td>
-      <td><?= substr(UTF8Helper::html_to_clear($producttype->content), 0, 550) . "..."; ?></td>
       <td><?= $producttype->created_at; ?></td>
       <td><?= $producttype->updated_at; ?></td>
 

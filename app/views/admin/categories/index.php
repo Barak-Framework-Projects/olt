@@ -5,7 +5,6 @@
     <tr>
       <th>İd</th>
       <th>Ad</th>
-      <th>İçerik</th>
       <th>Oluştu</th>
       <th>Düzenlendi</th>
       <th></th>
@@ -18,7 +17,6 @@
     <tr>
       <td><?= $category->id ?></td>
       <td><?= $category->name ?></td>
-      <td><?= $category->content ?></td>
       <td><?= $category->created_at ?></td>
       <td><?= $category->updated_at ?></td>
 

@@ -5,7 +5,6 @@
     <tr>
       <th>İd</th>
       <th>Ad</th>
-      <th>İçerik</th>
       <th>Oluştu</th>
       <th>Düzenlendi</th>
       <th></th>
@@ -18,7 +17,6 @@
     <tr>
       <td><?= $reference->id; ?></td>
       <td><?= $reference->name; ?></td>
-      <td><?= $reference->content; ?></td>
       <td><?= $reference->created_at; ?></td>
       <td><?= $reference->updated_at; ?></td>
 

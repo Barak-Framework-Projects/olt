@@ -11,14 +11,16 @@ class ProductpageController extends HomeController {
     $products = Product::all();
 
     $_products = [];
-    foreach ($products as $product)
-      array_push($_products, array(
-        "id" => $product->id,
-        "value" => $product->name,
-        "label" =>
-        "<img src='" . $product->image . "' width='50'; height='50' class='img-thumbnail'/>"
-        . $product->name
-        ));
+    if ($products) {
+      foreach ($products as $product)
+        array_push($_products, array(
+          "id" => $product->id,
+          "value" => $product->name,
+          "label" =>
+          "<img src='" . $product->image . "' width='50'; height='50' class='img-thumbnail'/>"
+          . $product->name
+          ));
+    }
     $this->products = $_products;
   }
 
