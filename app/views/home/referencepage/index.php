@@ -5,47 +5,47 @@
 </ol>
 
 <style>
-.thumbnail {
-  position: relative;
-  overflow: hidden;
-}
+  .thumbnail {
+    position: relative;
+    overflow: hidden;
+  }
 
-.caption {
-  position: absolute;
-  top: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.2);
-  width: 100%;
-  height: 100%;
-  padding: 2%;
-  display: none;
-  text-align: center;
-  color: #fff !important;
-  z-index: 2;
-}
+  .caption {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    width: 100%;
+    height: 100%;
+    padding: 2%;
+    display: none;
+    text-align: center;
+    color: #fff !important;
+    z-index: 2;
+  }
 </style>
 
 <script type="text/javascript">
-$( document ).ready(function() {
+  $( document ).ready(function() {
 
-  $('.thumbnail').hover(
-    function(){
+    $('.thumbnail').hover(
+      function(){
         $(this).find('.caption').fadeToggle("slow"); //.fadeIn(250)
       },
       function(){
         $(this).find('.caption').fadeToggle("slow"); //.fadeOut(205)
       }
       );
-});
+  });
 </script>
 
-<div class="container">
+<div class="container-fluid">
 
   <div class="row">
     <?php if ($references) { ?>
     <?php foreach ($references as $reference) { ?>
 
-    <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12 animated zoomIn">
+    <div class="col-lg-2 col-md-3 col-sm-6 col-xs-12 animated zoomIn" style="margin-bottom: 20px">
       <a data-toggle="modal" data-target="#<?= $reference->id; ?>" style="color:white">
         <div class="thumbnail">
           <img src="<?= $reference->image; ?>" alt="..." class="img-responsive" style="height:150px" />
@@ -54,7 +54,7 @@ $( document ).ready(function() {
           </div>
         </div>
       </a>
-      <center><?= $reference->name; ?></center>
+      <div class="margin-top:5px"><center><?= $reference->name; ?></center></div>
     </div>
 
     <!-- Modal -->
