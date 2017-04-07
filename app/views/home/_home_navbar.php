@@ -42,33 +42,36 @@
             <li class="dropdown-submenu">
               <a tabindex="-1" href="/home/categories"><?= t("home.categories"); ?></a>
               <?php if($_cs = Category::all()) { ?>
-              <ul class="dropdown-menu">
-                <?php foreach ($_cs as $_c) { ?>
-                <li class="dropdown-submenu">
-                  <a href="/home/categories/show/<?= $_c->id; ?>"><?= $_c->name; ?></a>
-                  <?php if ($_pts = ($_c->all_of_producttype)) { ?>
-                  <ul class="dropdown-menu">
-                    <?php foreach ($_pts as $_pt) { ?>
-                    <?php if($_pt) { ?>
-                    <li><a href="/home/producttypes/show/<?= $_pt->id; ?>"><?= $_pt->name; ?></a></li>
+                <ul class="dropdown-menu">
+                  <?php foreach ($_cs as $_c) { ?>
+                  <li class="dropdown-submenu">
+                    <a href="/home/categories/show/<?= $_c->id; ?>"><?= $_c->name; ?></a>
+                    <?php if ($_pts = ($_c->all_of_producttype)) { ?>
+                    <ul class="dropdown-menu">
+                      <?php foreach ($_pts as $_pt) { ?>
+                      <?php if($_pt) { ?>
+                      <li><a href="/home/producttypes/show/<?= $_pt->id; ?>"><?= $_pt->name; ?></a></li>
+                      <?php } ?>
+                      <?php } ?>
+                    </ul>
                     <?php } ?>
-                    <?php } ?>
-                  </ul>
+                  </li>
                   <?php } ?>
-                </li>
+                </ul>
                 <?php } ?>
-              </ul>
-              <?php } ?>
-            </li>
-            <li><a href="/home/products/search"><?= t("home.product_search"); ?></a></li>
-            <li><a href="/home/products"><?= t("home.product_list"); ?></a></li>
-          </ul>
-        </li>
+              </li>
+              <li><a href="/home/products/search"><?= t("home.product_search"); ?></a></li>
+              <li><a href="/home/products"><?= t("home.product_list"); ?></a></li>
+            </ul>
+          </li>
 
-        <li><a href="/home/references"><?= t("home.references"); ?></a></li>
-        <li><a href="/home/gallery"><?= t("home.gallery"); ?></a></li>
-        <li><a href="/home/contact"><?= t("home.contact"); ?></a></li>
-      </ul>
+          <li><a href="/home/agendas"><?= t("home.agendas"); ?></a></li>
+          <li><a href="/home/articles"><?= t("home.articles"); ?></a></li>
+          <li><a href="/home/documents"><?= t("home.documents"); ?></a></li>
+          <li><a href="/home/references"><?= t("home.references"); ?></a></li>
+          <li><a href="/home/gallery"><?= t("home.gallery"); ?></a></li>
+          <li><a href="/home/contact"><?= t("home.contact"); ?></a></li>
+        </ul>
       <!--
       <ul class="nav navbar-nav navbar-right" style="padding: 15px 0px 0px 0px;">
         <li><a href="/lang/tr"><img src="/app/assets/img/tr.png" class="img-border"/></a></li>

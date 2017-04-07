@@ -32,6 +32,10 @@ return [
 
   "agendas" => "Haberler",
 
+  "articles" => "Eğitimler",
+
+  "documents" => "Dokümanlar",
+
   "references" => "Referanslar",
 
   "gallery" => "Galeri",

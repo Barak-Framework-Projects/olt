@@ -123,6 +123,8 @@
       /* source: https://github.com/risq/jquery-advanced-news-ticker */
       $('#newsticker').newsTicker({
         duration: 4000,
+            max_rows: 5,
+
         direction: 'up',
         prevButton: $('#newsticker-prev'),
         nextButton: $('#newsticker-next')

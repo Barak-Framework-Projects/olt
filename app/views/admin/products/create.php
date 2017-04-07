@@ -34,7 +34,7 @@
   <div class="form-group">
     <label class="col-sm-1 control-label" for="price">Fiyat</label>
     <div class="col-sm-11">
-      <input type="text" placeholder="Ad" class="form-control" name="price" id="price" />
+      <input type="text" placeholder="0" class="form-control" name="price" id="price" />
     </div>
   </div>
   <div class="form-group">

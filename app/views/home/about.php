@@ -24,7 +24,7 @@
     <div class="col-md-4 col-sm-6 animated rollIn">
       <div class="thumbnail img-hover">
         <img src="<?= $user->image; ?>" alt="" class="img-circle"
-        style="padding:0.4em; background-color:#ccc; height:200px">
+        style="padding:0.4em; background-color:#ccc; height:200px; width: 200px">
         <div class="caption text-center">
           <h3><?= $user->full_name(); ?></h3>
           <p><?= $user->cv ?></p>

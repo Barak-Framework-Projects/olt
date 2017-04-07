@@ -40,7 +40,7 @@
         <div class="caption">
           <form action="/admin/agendaimages/destroy" method="post">
             <input type="hidden" value="<?= $agendaimage->id; ?>" id="id" name="id" />
-            <button type="submit" class="btn btn-default" style="width:100%" onClick=\"return confirm('Bu seçtiğiniz resmini silmek istediğinizden emin misiniz?');\" title='Sil'>
+            <button type="submit" class="btn btn-default" style="width:100%" onClick="return confirm('Bu kaydı silmek istediğinizden emin misiniz?');" title='Sil'>
               <i class="fa fa-trash"></i>
             </button>
           </form>

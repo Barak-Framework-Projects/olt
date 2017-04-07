@@ -26,7 +26,7 @@
 
       <td>
         <form action="/admin/products/destroy" method="post">
-          <a href="/admin/product/show/<?= $product->id; ?>"
+          <a href="/admin/products/show/<?= $product->id; ?>"
             class="btn btn-default" role="button" title="Göster"><i class="fa fa-search"></i>
           </a>
 

@@ -62,6 +62,15 @@ ApplicationRoutes::draw(
 
     [
     get("/gallery", "gallerypage#index")
+    ],
+
+    [
+    get("/documents", "documentpage#index")
+    ],
+
+    [
+    get("/articles", "articlepage#index"),
+    get("/articles/show/:id", "articlepage#show"),
     ]
 
     ),
@@ -93,6 +102,8 @@ ApplicationRoutes::draw(
     resources("/slides"),
     resources("/notices"),
     resources("/pages"),
+    resources("/documents"),
+    resources("/articles"),
     [ post("/agendaimages/destroy") ],
     [
     get("/activations", "activations#index"),

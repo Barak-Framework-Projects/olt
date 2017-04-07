@@ -42,8 +42,8 @@ $agenda_image_first = $agendaimages[0];
 
 <div class="row">
 
-  <div class="col-lg-3 col-md-3 col-sm-3 hidden-xs">
-    <img src="<?= $agenda_image_first->image ?>" class="img-thumbnail" data-toggle="modal" data-target="#<?= $agenda_image_first->id ?>" style="max-height=50px"/>
+  <div class="col-lg-2 col-md-2 col-sm-2 hidden-xs">
+    <img src="<?= $agenda_image_first->image ?>" class="img-thumbnail" data-toggle="modal" data-target="#<?= $agenda_image_first->id ?>" style="max-height:200px"/>
   </div>
 
   <div class="modal fade" id="<?= $agenda_image_first->id ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -56,7 +56,7 @@ $agenda_image_first = $agendaimages[0];
     </div>
   </div>
 
-  <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+  <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
     <h4 class="label label-default pull-right"><?= $agenda->agenda_date ?></h4>
     <h3>
       <a href="/home/agendas/show/<?= $agenda->id ?>"><?= $agenda->subject ?></a>
