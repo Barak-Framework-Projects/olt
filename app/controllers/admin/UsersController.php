@@ -12,7 +12,8 @@ class UsersController extends AdminController {
     $user = User::load()->where("username", $_POST["username"])->or_where("email", $_POST["email"])->count();
     if (!$user) {
       // rastgele bir parolar belirle
-      $_POST["password"] = md5(PasswordHelper::generate(8));
+      $random_password = PasswordHelper::generate(8);
+      $_POST["password"] = md5($random_password);
 
       $user = User::draft($_POST);
       $user->created_at = date("Y-m-d H:i:s");
@@ -57,8 +58,14 @@ class UsersController extends AdminController {
     if (($user_id = array_search($_POST["id"], $user_ids)) !== false) unset($user_ids[$user_id]);
 
     if (!$user_ids) {
-      if ($_POST["password"] != "")
+
+      // yeni şifre girildiyse kaydet
+      if ($_POST['password'] != "") {
         $_POST["password"] = md5($_POST["password"]);
+        $_SESSION["warning"] = "Parola güncellendi, güvenlik erişim için kullanıcı tekrardan parolayı güncellemelidir";
+      } else { // boş işe parolaya dokanma
+        unset($_POST["password"]);
+      }
 
       $user = User::find($_POST["id"]);
       foreach ($_POST as $key => $value) $user->$key = $value;
@@ -84,6 +91,13 @@ class UsersController extends AdminController {
     $user = User::find($_POST["id"]);
 
     FileHelper::remove($user->image);
+
+    $activations = $user->all_of_activation;
+    if ($activations) {
+      foreach ($activations as $activation) {
+        Activation::delete($activation->id);
+      }
+    }
 
     $user->destroy();
     $_SESSION["info"] = "Personel silindi";

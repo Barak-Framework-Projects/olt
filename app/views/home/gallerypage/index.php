@@ -1,18 +1,18 @@
 <h4 class="page-title"><?= t("home.gallery"); ?></h4>
 <ol class="breadcrumb text-right">
-  <li><a href="#">Anasayfa</a></li>
+  <li><a href="#"><?= t("home.link"); ?></a></li>
   <li class="active"><?= t("home.gallery"); ?></li>
 </ol>
 
 <!-- The Gallery as lightbox dialog, should be a child element of the document body -->
 <div id="blueimp-gallery" class="blueimp-gallery">
-    <div class="slides"></div>
-    <h3 class="title"></h3>
-    <a class="prev">‹</a>
-    <a class="next">›</a>
-    <a class="close">×</a>
-    <a class="play-pause"></a>
-    <ol class="indicator"></ol>
+  <div class="slides"></div>
+  <h3 class="title"></h3>
+  <a class="prev">‹</a>
+  <a class="next">›</a>
+  <a class="close">×</a>
+  <a class="play-pause"></a>
+  <ol class="indicator"></ol>
 </div>
 
 <div id="links">
@@ -26,21 +26,21 @@
 </div>
 
 <script>
-document.getElementById('links').onclick = function (event) {
-  event = event || window.event;
-  var target = event.target || event.srcElement,
-  link = target.src ? target.parentNode : target,
-  options = {index: link, event: event},
-  links = this.getElementsByTagName('a');
-  blueimp.Gallery(links, options);
-};
+  document.getElementById('links').onclick = function (event) {
+    event = event || window.event;
+    var target = event.target || event.srcElement,
+    link = target.src ? target.parentNode : target,
+    options = {index: link, event: event},
+    links = this.getElementsByTagName('a');
+    blueimp.Gallery(links, options);
+  };
 </script>
 <script>
-blueimp.Gallery(
-  document.getElementById('links').getElementsByTagName('a'),
-  {
-    container: '#blueimp-gallery-carousel',
-    carousel: true
-  }
-  );
-</script>
+  blueimp.Gallery(
+    document.getElementById('links').getElementsByTagName('a'),
+    {
+      container: '#blueimp-gallery-carousel',
+      carousel: true
+    }
+    );
+  </script>

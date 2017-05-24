@@ -53,19 +53,20 @@
   <?php } else { ?>
   <tr class="text-center"><td colspan="4">Henüz Haber resimleri mevcut değil</td></tr>
   <?php } ?>
+</div>
 
-  <form class="form-horizontal" action="/admin/agendas/destroy" method="post">
-    <input type="hidden" value="<?= $agenda->id; ?>" id="id" name="id" />
-    <div class="form-group">
-      <div class="col-sm-offset-1 col-sm-11">
-        <a class="btn btn-primary" href="/admin/agendas/edit/<?= $agenda->id; ?>">Düzenle</a>
-        <input type="submit" class="btn btn-danger" value="sil"
-        onClick="return confirm('Bu kaydı silmek istediğinizden emin misiniz?');" />
-      </div>
+<form class="form-horizontal" action="/admin/agendas/destroy" method="post">
+  <input type="hidden" value="<?= $agenda->id; ?>" id="id" name="id" />
+  <div class="form-group">
+    <div class="col-sm-offset-1 col-sm-11">
+      <a class="btn btn-primary" href="/admin/agendas/edit/<?= $agenda->id; ?>">Düzenle</a>
+      <input type="submit" class="btn btn-danger" value="sil"
+      onClick="return confirm('Bu kaydı silmek istediğinizden emin misiniz?');" />
     </div>
-  </form>
+  </div>
+</form>
 
-  <script type="text/javascript">
+<script type="text/javascript">
   $(document).ready(function() {
     $('#content').prop('disabled', true);
     $('#content').summernote({
@@ -77,4 +78,4 @@
       lang: 'tr-TR'
     });
   });
-  </script>
+</script>

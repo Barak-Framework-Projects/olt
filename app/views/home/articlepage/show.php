@@ -1,8 +1,8 @@
 <h4 class="page-title"><?= t("home.articles"); ?></h4>
 <ol class="breadcrumb text-right">
-  <li><a href="/">Anasayfa</a></li>
+  <li><a href="/"><?= t("home.link"); ?></a></li>
   <li><a href="/home/articles"><?= t("home.articles"); ?></a></li>
-  <li class="active"><?= $article->subject ?></li>
+  <li class="active"><?= $article->subject; ?></li>
 </ol>
 
 
@@ -16,19 +16,18 @@
 
 <?= $article->content; ?>
 
-
 <hr>
 
 <!-- Next_Previous start -->
 <ul class="pager">
 
   <?php
-  $next = Article::load()->where("created_at", $article->created_at, ">")->take();
+  $next = Article::load()->where("created_at", $article->created_at, ">")->order("created_at", "DESC")->take();
   $next = $next[0];
   ?>
 
   <?php
-  $previous = Article::load()->where("created_at", $article->created_at, "<")->take();
+  $previous = Article::load()->where("created_at", $article->created_at, "<")->order("created_at", "DESC")->take();
   $previous = $previous[0];
   ?>
 

@@ -15,14 +15,14 @@
     <?php foreach ($categories as $category) { ?>
 
     <tr>
-      <td><?= $category->id ?></td>
-      <td><?= $category->name ?></td>
-      <td><?= $category->created_at ?></td>
-      <td><?= $category->updated_at ?></td>
+      <td><?= $category->id; ?></td>
+      <td><?= $category->name; ?></td>
+      <td><?= $category->created_at; ?></td>
+      <td><?= $category->updated_at; ?></td>
 
       <td>
         <form action="/admin/categories/destroy" method="post">
-          <a href="/admin/category/show/<?= $category->id; ?>"
+          <a href="/admin/categories/show/<?= $category->id; ?>"
             class="btn btn-default" role="button" title="Göster"><i class="fa fa-search"></i>
           </a>
 

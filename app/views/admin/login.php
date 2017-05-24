@@ -26,7 +26,7 @@
 
 <div class="modal fade" id="password_reset" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 
-  <div class="modal-dialog" >
+  <div class="modal-dialog modal-sm">
     <div class="modal-content">
 
       <div class="modal-header">
@@ -37,10 +37,7 @@
       <form class="login-form" action="/admin/password_reset" accept-charset="UTF-8" method="post">
         <div class="modal-body">
           <div class="form-group">
-            <label class="col-lg-3 control-label" for="email">E-posta</label>
-            <div class="col-lg-9">
-              <input class="form-control" type="text" name="email" id="email">
-            </div>
+              <input class="form-control" type="text" placeholder="email" name="email" id="email" />
           </div>
         </div>
 

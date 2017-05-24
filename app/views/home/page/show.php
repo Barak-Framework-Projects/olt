@@ -12,7 +12,7 @@ do {
 
 <h4 class="page-title"><?= $now_page->title; ?></h4>
 <ol class="breadcrumb text-right">
-  <li><a href="/">Anasayfa</a></li>
+  <li><a href="/"><?= t("home.link"); ?></a></li>
   <?= PageHelper::parent_breadcrumbs($now_page); ?>
   <li class="active"><?= $now_page->title; ?></li>
 </ol>

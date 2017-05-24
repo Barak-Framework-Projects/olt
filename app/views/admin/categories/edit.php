@@ -5,7 +5,7 @@
   <div class="form-group">
     <label class="col-sm-1 control-label" for="name">Ad</label>
     <div class="col-sm-11">
-      <input type="text" value="<?= $category->name; ?>" class="form-control" size="50" name="name" id="name" />
+      <input type="text" value="<?= $category->name; ?>" class="form-control" name="name" id="name" />
     </div>
   </div>
   <div class="form-group">

@@ -1,10 +1,10 @@
 <h4 class="page-title"><?= t("home.agendas"); ?></h4>
 <ol class="breadcrumb text-right">
-  <li><a href="/">Anasayfa</a></li>
+  <li><a href="/"><?= t("home.link"); ?></a></li>
   <li class="active"><?= t("home.agendas"); ?></li>
 </ol>
 
-<h5 class="page-title-sub">Tarihe Göre Arama</h5>
+<h5 class="page-title-sub"><?= t("home.agenda_search"); ?></h5>
 <form class="login-form" accept-charset="UTF-8" method="post" action="/home/agendas">
   <div class="row">
     <div class="col-xs-0 col-md-3">
@@ -22,15 +22,15 @@
 </form>
 <hr>
 <script type="text/javascript">
-$(document).ready(function() {
-  $.fn.datepicker.defaults.language = 'tr';
-  $("#prev_date").datepicker({
-    format: "yyyy-mm-dd"
+  $(document).ready(function() {
+    $.fn.datepicker.defaults.language = 'tr';
+    $("#prev_date").datepicker({
+      format: "yyyy-mm-dd"
+    });
+    $("#next_date").datepicker({
+      format: "yyyy-mm-dd"
+    });
   });
-  $("#next_date").datepicker({
-    format: "yyyy-mm-dd"
-  });
-});
 </script>
 
 <?php if ($agendas) { ?>
@@ -43,23 +43,23 @@ $agenda_image_first = $agendaimages[0];
 <div class="row">
 
   <div class="col-lg-2 col-md-2 col-sm-2 hidden-xs">
-    <img src="<?= $agenda_image_first->image ?>" class="img-thumbnail" data-toggle="modal" data-target="#<?= $agenda_image_first->id ?>" style="max-height:200px"/>
+    <img src="<?= $agenda_image_first->image; ?>" class="img-thumbnail" data-toggle="modal" data-target="#<?= $agenda_image_first->id; ?>" style="max-height:200px"/>
   </div>
 
-  <div class="modal fade" id="<?= $agenda_image_first->id ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal fade" id="<?= $agenda_image_first->id; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-body">
-          <img src="<?= $agenda_image_first->image ?>" class="img-thumbnail" id="<?= $agenda_image_first->id ?>" style="width:100%"/>
+          <img src="<?= $agenda_image_first->image; ?>" class="img-thumbnail" id="<?= $agenda_image_first->id; ?>" style="width:100%"/>
         </div>
       </div>
     </div>
   </div>
 
   <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
-    <h4 class="label label-default pull-right"><?= $agenda->agenda_date ?></h4>
+    <h4 class="label label-default pull-right"><?= $agenda->agenda_date; ?></h4>
     <h3>
-      <a href="/home/agendas/show/<?= $agenda->id ?>"><?= $agenda->subject ?></a>
+      <a href="/home/agendas/show/<?= $agenda->id; ?>"><?= $agenda->subject; ?></a>
     </h3>
     <p><?= substr(UTF8Helper::html_to_clear($agenda->content), 0, 550) . "..."; ?></p>
   </div>

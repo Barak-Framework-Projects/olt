@@ -1,4 +1,4 @@
-﻿<style type="text/css">
+<style type="text/css">
 .footer {
   background: url("<?= Setting::unique(['name' => 'image_footer'])->value; ?>") repeat center;
   border-radius: 10px 10px 0px 0px;
@@ -79,7 +79,7 @@
 
 
 <div style="font-size: 12px">
-  <nav class="navbar navbar-default navbar-inverse">
+  <nav class="navbar navbar-inverse" style="border-radius: 0px 0px 10px 10px;">
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">

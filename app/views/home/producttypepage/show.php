@@ -1,8 +1,8 @@
 <h4 class="page-title"><?= t("home.producttype"); ?></h4>
 <ol class="breadcrumb text-right">
-  <li><a href="/">Anasayfa</a></li>
+  <li><a href="/"><?= t("home.link"); ?></a></li>
   <li><a href="/home/categories"><?= t("home.categories"); ?></a></li>
-  <li><a href="/home/categories/show/<?= $producttype->category->id; ?>"><?= $producttype->category->name ?></a></li>
+  <li><a href="/home/categories/show/<?= $producttype->category->id; ?>"><?= $producttype->category->name; ?></a></li>
   <li class="active"><?= $producttype->name; ?></li>
 </ol>
 

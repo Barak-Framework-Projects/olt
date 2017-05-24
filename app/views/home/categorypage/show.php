@@ -1,8 +1,8 @@
 <h4 class="page-title"><?= t("home.category"); ?></h4>
 <ol class="breadcrumb text-right">
-  <li><a href="/">Anasayfa</a></li>
+  <li><a href="/"><?= t("home.link"); ?></a></li>
   <li><a href="/home/categories"><?= t("home.categories"); ?></a></li>
-  <li class="active"><?= $category->name ?></li>
+  <li class="active"><?= $category->name; ?></li>
 </ol>
 
 <!-- first section - Home -->
@@ -12,6 +12,8 @@
   </div>
 </div>
 <!-- /first section -->
+
+<div class="container"><?= $category->content; ?></div>
 
 <div class="row">
 
@@ -46,7 +48,7 @@
             <td><?= count($producttype->all_of_product); ?></td>
             <td>
               <a href="/home/producttypes/show/<?= $producttype->id; ?>" class="btn btn-default" role="button" title="Göster">
-                <i class="fa fa-search"></i>Göster
+                <i class="fa fa-search"></i>
               </a>
             </td>
           </tr>

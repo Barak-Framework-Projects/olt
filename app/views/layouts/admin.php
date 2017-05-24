@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title></title>
   <link href="" rel="alternate" title="" type="application/atom+xml" />
-  <link rel="shortcut icon" href="default.ico">
+  <link rel="shortcut icon" href="/favicon.ico">
   <link rel="stylesheet" href="/app/assets/css/syntax.css" type="text/css" />
   <link href='http://fonts.googleapis.com/css?family=Monda' rel='stylesheet' type='text/css' />
 
@@ -33,24 +33,24 @@
   <!-- Jquery Datatables Language start -->
   <!-- source: https://datatables.net/examples/basic_init/language.html -->
   <script type="text/javascript" charset="utf-8">
-  $(document).ready(function() {
-    $('#example').dataTable( {
-      "order": [[ 1, "desc" ]],
-      "responsive": true,
-      "language": {
-        "lengthMenu": "Gösterilen _MENU_ adet satır",
-        "zeroRecords": "Kayıt Bulunamadı",
-        "info": "Toplam _PAGES_ sayfadan _PAGE_ sayfa gösteriliyor",
-        "infoEmpty": "Kayıt Sayısı Yok",
-        "infoFiltered": "(Toplam _MAX_ gönderi filtrelendi)",
-        "search": "Ara",
-        "paginate": {
-          "previous": "Önceki",
-          "next": "Sonraki"
+    $(document).ready(function() {
+      $('#example').dataTable( {
+        "order": [[ 1, "desc" ]],
+        "responsive": true,
+        "language": {
+          "lengthMenu": "Gösterilen _MENU_ adet satır",
+          "zeroRecords": "Kayıt Bulunamadı",
+          "info": "Toplam _PAGES_ sayfadan _PAGE_ sayfa gösteriliyor",
+          "infoEmpty": "Kayıt Sayısı Yok",
+          "infoFiltered": "(Toplam _MAX_ gönderi filtrelendi)",
+          "search": "Ara",
+          "paginate": {
+            "previous": "Önceki",
+            "next": "Sonraki"
+          }
         }
-      }
+      });
     });
-  });
   </script>
   <!-- Jquery Datatables Language end -->
   <!-- Jquery Datatables Responsive Bootstrap end -->
@@ -82,14 +82,13 @@
     <ul class="nav nav-pills well well-sm" style="margin-bottom:0px">
       <li role="presentation"><a href="/admin/index" class="fa fa-home">Anasayfa</a></li>
       <li role="presentation">
-        <a class="fa fa-bars" id="side-menu-close"></a>
-        <a class="fa fa-bars" id="side-menu-open"></a>
+        <a class="fa fa-bars" id="side-menu-toggle"></a>
       </li>
     </ul>
   </div>
   <div class="row">
 
-    <div class="col-md-2 col-sm-3 col-xs-3" id="side-menu">
+    <div class="col-md-2 col-sm-2 col-xs-4" id="side-menu">
       <div class="well well-sm">
         <?php render(["partial" => "admin/site_menu"]); ?>
         <?php render(["partial" => "admin/product_menu"]); ?>
@@ -98,7 +97,7 @@
       </div>
     </div>
 
-    <div class="col-md-10 col-sm-9 col-xs-9" id="main-menu">
+    <div class="col-md-10 col-sm-10 col-xs-8" id="main-menu">
       <div class="well well-sm">
         <?= BootstrapHelper::breadcrumb_button(); ?>
 
@@ -119,38 +118,26 @@
     <!-- dropdown hover start -->
     <script src="/app/assets/js/bootstrap-hover-dropdown.min.js"></script>
     <script type="text/javascript">
-    $('.dropdown-toggle').dropdownHover();
+      $('.dropdown-toggle').dropdownHover();
     </script>
     <!-- dropdown hover end -->
 
     <script>
-    $(document).ready(function(){
 
-      $('#side-menu').mouseover(function() {
+      $(document).ready(function(){
 
-      }).mouseout(function() {
+        /*
+        http://stackoverflow.com/questions/7002039/easiest-way-to-toggle-2-classes-in-jquery
+        */
+        $('#side-menu-toggle').click(function() {
+          $('#side-menu').toggleClass("hidden");
+          $("#main-menu").toggleClass("col-md-12 col-md-10");
+          $("#main-menu").toggleClass("col-sm-12 col-sm-10");
+          $("#main-menu").toggleClass("col-xs-12 col-xs-8");
+
+        });
 
       });
-
-      $('#side-menu-close').hide();
-      $('#side-menu-open').click(function() {
-        $('#side-menu-close').show();
-        $('#side-menu-open').hide();
-
-        $('#side-menu').fadeOut("slide");
-        $("#main-menu").removeClass();
-        $("#main-menu").addClass("col-xs-12 col-md-12");
-      });
-
-      $('#side-menu-close').click(function() {
-        $('#side-menu-open').show();
-        $('#side-menu-close').hide();
-
-        $('#side-menu').fadeIn("slide");
-        $("#main-menu").addClass("col-xs-10 col-md-10");
-      });
-
-    });
     </script>
   </body>
   </html>

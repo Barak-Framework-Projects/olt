@@ -72,7 +72,7 @@
 
 <div class="well well-sm">
   <div style="border-bottom: 1px solid #e7e7e7;">
-    <div class="container">
+    <div class="container-fluid">
       <div class="text-center">
         <img src="<?= Setting::unique(['name' => 'image_emblem'])->value; ?>" style="width: 80px; height: 80px;"/>
         <h2>
@@ -80,7 +80,10 @@
         </h2>
         <h4>
           ve her gün daha iyisi olmak için çalışıyoruz!<br/><br/>
-          <a href="/home/about" class="btn btn-info" role="button"><?= Setting::unique(["name" => "site_short_title"])->value; ?> HAKKINDA</a>
+          <a href="/home/about_us" class="btn btn-info" role="button">
+            <?= Setting::unique(["name" => "site_short_title"])->value; ?>
+            <?= t("home.about"); ?>
+          </a>
         </h4>
       </div>
     </div>
@@ -90,27 +93,13 @@
 
   <!-- second section - Solutions -->
 
-  <div class="container">
+  <div class="container-fluid">
 
-    <h2 class="text-center">Ürünlerimiz</h2> <hr/>
-
-    <style>
-      .thumbnail {
-        position: relative;
-
-      }
-      .caption {
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-      }
-      .caption h5 {color:white;}
-    </style>
+    <h2 class="text-center"><?= t("home.our_products"); ?></h2> <hr/>
 
     <?php
     $products_all = Product::all();
-    $product_keys = array_rand($products_all, 3);
+    $product_keys = ($products_all) ? array_rand($products_all, 3) : [];
     $products = [];
     foreach ($product_keys as $key) {
       $products[] = $products_all[$key];
@@ -131,7 +120,9 @@
         min-height:250px;
         max-height:250px;
         ">
-        <a href="/home/products/show/<?= $product->id; ?>" class="btn btn-primary pull-right" role="button">İncele</a>
+        <a href="/home/products/show/<?= $product->id; ?>" class="btn btn-info pull-right" role="button">
+          <i class="fa fa-2x fa-search"></i>
+        </a>
 
         <div class="caption background-transparent">
           <h5><?= $product->name; ?></h5>
@@ -150,7 +141,7 @@
       uzman ekibiyle yapmaktadır. <br/>
     </h4>
     <a href="/home/products" class="btn btn-info" role="button">
-      Tüm Ürünlerimiz
+      <?= t("home.our_products"); ?>
     </a>
   </center>
 </div>
@@ -159,9 +150,9 @@
 <!-- /second section -->
 
 <!-- third section - Partners -->
-<div class="container">
+<div class="container-fluid" style="background-color:#f5f5ed">
 
-  <h2 class="text-center">Partnerlerimiz</h2> <hr/>
+  <h2 class="text-center"><?= t("home.our_partners"); ?></h2> <hr/>
   <?php $partners = Partner::all(); ?>
   <?php if ($partners) { ?>
   <center>

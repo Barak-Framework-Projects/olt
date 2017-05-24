@@ -1,8 +1,8 @@
 <h4 class="page-title"><?= t("home.agendas"); ?></h4>
 <ol class="breadcrumb text-right">
-  <li><a href="/">Anasayfa</a></li>
+  <li><a href="/"><?= t("home.link"); ?></a></li>
   <li><a href="/home/agendas"><?= t("home.agendas"); ?></a></li>
-  <li class="active"><?= $agenda->subject ?></li>
+  <li class="active"><?= $agenda->subject; ?></li>
 </ol>
 
 <h3 class='label label-default pull-right'><?= $agenda->agenda_date; ?></h3>
@@ -38,21 +38,21 @@
 </div>
 
 <script>
-document.getElementById('links').onclick = function (event) {
-  event = event || window.event;
-  var target = event.target || event.srcElement,
-  link = target.src ? target.parentNode : target,
-  options = {index: link, event: event},
-  links = this.getElementsByTagName('a');
-  blueimp.Gallery(links, options);
-};
+  document.getElementById('links').onclick = function (event) {
+    event = event || window.event;
+    var target = event.target || event.srcElement,
+    link = target.src ? target.parentNode : target,
+    options = {index: link, event: event},
+    links = this.getElementsByTagName('a');
+    blueimp.Gallery(links, options);
+  };
 </script>
 <script>
-blueimp.Gallery(
-  document.getElementById('links').getElementsByTagName('a'),
-  {
-    container: '#blueimp-gallery-carousel',
-    carousel: true
-  }
-  );
-</script>
+  blueimp.Gallery(
+    document.getElementById('links').getElementsByTagName('a'),
+    {
+      container: '#blueimp-gallery-carousel',
+      carousel: true
+    }
+    );
+  </script>

@@ -23,14 +23,13 @@ class AdminController extends ApplicationController {
 
       if ($response->isSuccess() == true) {
 
-        if ($user = User::unique(
+        if ($_SESSION["admininfo"] = User::unique(
           ["username" => $_POST["username"], "password" => md5($_POST["password"]), "admin" => true]
           ))
         {
 
+          $_SESSION["admin"] = true;
           $_SESSION["success"] = "Admin sayfasına hoş geldiniz";
-          $_SESSION["full_name"] = $user->full_name();
-          $_SESSION["admin"] = $user->id;
           return $this->render("/admin/index");
 
         } else {
@@ -129,17 +128,58 @@ class AdminController extends ApplicationController {
     return $this->redirect_to("/admin/login");
   }
 
-  public function logout() {
-    if (isset($_SESSION["admin"]))
-      session_destroy();
-    return $this->redirect_to("/admin/login");
+
+  public function password_update() {
+
+   if (!empty($_POST))  { // action post mu?
+
+    $old_password = $_POST['old_password'];
+    $new_password = $_POST['new_password'];
+    $new_password_repeat = $_POST['new_password_repeat'];
+
+    $admin_password = $_SESSION["admininfo"]->password;
+    if ($admin_password != md5($old_password)) {
+      $_SESSION['danger'] = "Eski parolayı yanlış girdiniz";
+    } elseif ($new_password != $new_password_repeat) {
+      $_SESSION['danger'] = "Yeni parolar aynı değil (eşleşmiyor)";
+    } elseif ((strlen($new_password) < 8))  {
+      $_SESSION['danger'] = "Parola en az 8 karakterli olmalıdır";
+    } elseif (strpbrk($new_password, '0123456789') == "") {
+      $_SESSION['danger'] = "Parola'da en az 1 rakam olmalıdır";
+    } elseif (strpbrk($new_password, 'ABCÇDEFGĞHIİJKLMNOÖPQRSŞTUÜVWXYZ') == "") {
+      $_SESSION['danger'] = "Parola'da en az 1 büyük harf olmalıdır";
+    } elseif (strpbrk($new_password, 'abcçdefgğhıijklmnoöpqrsştuüvwxyz') == "") {
+      $_SESSION['danger'] = "Parola'da en az 1 küçük harf olmalıdır";
+    } elseif (!preg_match('/[\W]+/', $new_password)) {
+      $_SESSION['danger'] = "Parola'da en az 1 özel karakter olmalıdır";
+    }
+    $admin_id = $_SESSION["admininfo"]->id;
+
+    if (!isset($_SESSION['danger'])) {
+      $new_password = md5($new_password);
+
+      $_SESSION["admininfo"]->password = $new_password;
+      User::update($admin_id, ["password" => $new_password, "updated_at" => date("Y-m-d H:i:s")]);
+
+      $_SESSION['success'] = "Parola güncellendi";
+    }
+  } else { // action get formu getir
+    $_SESSION['warning'] = "Lütfen parola bilgilerinizi başka kişilerle paylaşmayınız!";
   }
 
-  public function require_login() {
-    if (!isset($_SESSION["admin"])) {
-      $_SESSION["warning"] = "Lütfen hesabınıza giriş yapın!";
-      return $this->redirect_to("/admin/login");
-    }
+}
+
+public function logout() {
+  if (isset($_SESSION["admin"]))
+    session_destroy();
+  return $this->redirect_to("/admin/login");
+}
+
+public function require_login() {
+  if (!isset($_SESSION["admin"])) {
+    $_SESSION["warning"] = "Lütfen hesabınıza giriş yapın!";
+    return $this->redirect_to("/admin/login");
   }
+}
 }
 ?>

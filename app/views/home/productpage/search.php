@@ -1,15 +1,15 @@
 <h4 class="page-title"><?= t("home.product_search"); ?></h4>
 <ol class="breadcrumb text-right">
-  <li><a href="/">Anasayfa</a></li>
+  <li><a href="/"><?= t("home.link"); ?></a></li>
   <li><a href="/home/products"><?= t("home.products"); ?></a></li>
   <li class="active"><?= t("home.product_search"); ?></li>
 </ol>
 
-<h5 class="page-title-sub">Ürün Hızlı Ara</h5>
+<h5 class="page-title-sub"><?= t("home.product_fast_search"); ?></h5>
 
 <form class="form-horizontal" action="/home/products/find" accept-charset="UTF-8" method="post">
   <div class="form-group">
-    <label class="col-sm-1 control-label" for="autocomplete">Ürün</label>
+    <label class="col-sm-1 control-label" for="autocomplete"><?= t("home.product"); ?></label>
     <div class="col-sm-11">
       <input id="autocomplete" class="form-control"/>
       <div id="post"></div>
@@ -22,11 +22,11 @@
   </div>
 </form>
 
-<h5 class="page-title-sub">Ürün Listele</h5>
+<h5 class="page-title-sub"><?= t("home.product_list"); ?></h5>
 
 <form class="form-horizontal" action="/home/producttypes/find" accept-charset="UTF-8" method="post">
   <div class="form-group">
-    <label class="col-sm-1 control-label" for="category_id">Kategori</label>
+    <label class="col-sm-1 control-label" for="category_id"><?= t("home.category"); ?></label>
     <div class="col-sm-11">
       <select class="form-control" id="category_id" name="category_id">
         <option value="">Kategori Seçiniz</option>
@@ -39,7 +39,7 @@
     </div>
   </div>
   <div class="form-group" id="producttype_id_box">
-    <label class="col-sm-1 control-label" for="producttype_id">Ürün Tipi</label>
+    <label class="col-sm-1 control-label" for="producttype_id"><?= t("home.producttype"); ?></label>
     <div class="col-sm-11">
       <select class="form-control" id="producttype_id" name="producttype_id">
       </select>

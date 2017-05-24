@@ -74,9 +74,19 @@
   <link rel="stylesheet" type="text/css" href="/app/assets/css/bootstrap-submenu.min.css" />
   <script src="/app/assets/js/bootstrap-submenu.min.js"></script>
   <script type="text/javascript">
-  $('[data-submenu]').submenupicker();
+    $(function() {
+      $('[data-submenu]').submenupicker();
+    });
   </script>
   <!-- dropdown-submenu end -->
+
+  <!-- dropdown hover start -->
+  <!-- source: https://github.com/CWSpear/bootstrap-hover-dropdown -->
+  <script src="/app/assets/js/bootstrap-hover-dropdown.min.js"></script>
+  <script type="text/javascript">
+    $('.dropdown-toggle').dropdownHover();
+  </script>
+  <!-- dropdown hover end -->
 
   <!-- bxSlider start -->
   <!-- source: http://bxslider.com/ -->
@@ -171,13 +181,6 @@
 
   <?php render(["partial" => "/home/home_footer"]); ?>
   <?php render(["partial" => "/layouts/back_to_top"]); ?>
-
-  <!-- dropdown hover start -->
-  <script src="/app/assets/js/bootstrap-hover-dropdown.min.js"></script>
-  <script type="text/javascript">
-  $('.dropdown-toggle').dropdownHover();
-  </script>
-  <!-- dropdown hover end -->
 
 </div>
 

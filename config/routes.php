@@ -20,7 +20,7 @@ ApplicationRoutes::draw(
   root("home#index"),
   get("/home", "home#index"),
   get("/home/index"),
-  get("/home/about"),
+  get("/home/about_us"),
   get("/home/contact"),
 //  post("/home/mail_send"),
 
@@ -85,6 +85,8 @@ ApplicationRoutes::draw(
   get("/admin/logout"),
   get("/admin/password_reset/:code", "admin#password_reset"),
   post("/admin/password_reset"),
+  get("/admin/password_update"),
+  post("/admin/password_update"),
 
   // get("/category", "category#index", "admin"),
   // resources("/category", "admin"),

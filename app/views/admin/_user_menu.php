@@ -1,12 +1,11 @@
-<span class="label label-info">Kullanıcılar</span>
-<hr>
+<div class="panel panel-default" id="user-menu">
 
-<div id="user-menu">
+<div class="panel-heading text-center">İdare</div>
 
   <div class="panel list-group">
     <a class="list-group-item" data-toggle="collapse" data-target="#users" data-parent="#user-menu">
       <span class="hidden-xs hidden-sm"><i class="fa fa-user"></i> Personeller </span>
-      <i class="fa fa-user fa-3x visible-xs visible-sm"></i>
+      <i class="fa fa-user fa-2x visible-xs visible-sm text-center"></i>
     </a>
 
     <ul class="nav nav-pills nav-stacked collapse" role="ablist" id="users">
