@@ -18,7 +18,7 @@
 <div class="row">
 
   <div class="col-md-3">
-    <?php render(["partial" => "home/product_menu"]); ?>
+    <?php render(["partial" => "home/menu_product"]); ?>
   </div>
 
   <div class="col-md-9">
