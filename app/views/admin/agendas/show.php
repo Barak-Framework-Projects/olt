@@ -19,6 +19,7 @@
       <input type="text" value="<?= $agenda->agenda_date; ?>" class="form-control" name="agenda_date" id="agenda_date" disabled />
     </div>
   </div>
+
   <?php if($agendaimages) { ?>
   <?php foreach ($agendaimages as $agendaimage) { ?>
 
@@ -33,25 +34,29 @@
   </div>
 
   <div class="form-group">
-    <label class="col-sm-1 control-label" for="agenda_date">Resim</label>
+    <label class="col-sm-1 control-label" for="image">Resim</label>
     <div class="col-sm-11">
       <div class="thumbnail" >
         <img src="<?= $agendaimage->image; ?>" class="img-responsive" data-toggle="modal" data-target="#<?= $agendaimage->id; ?>" style="max-height:100px" />
-        <div class="caption">
-          <form action="/admin/agendaimages/destroy" method="post">
-            <input type="hidden" value="<?= $agendaimage->id; ?>" id="id" name="id" />
-            <button type="submit" class="btn btn-default" style="width:100%" onClick="return confirm('Bu kaydı silmek istediğinizden emin misiniz?');" title='Sil'>
-              <i class="fa fa-trash"></i>
-            </button>
-          </form>
-        </div>
+        <form action="/admin/agendaimages/destroy" method="post">
+          <input type="hidden" value="<?= $agendaimage->id; ?>" id="id" name="id" />
+          <button type="submit" class="btn btn-default" style="width:100%" onClick="return confirm('Bu kaydı silmek istediğinizden emin misiniz?');" title='Sil'>
+            <i class="fa fa-trash"></i>
+          </button>
+        </form>
       </div>
     </div>
   </div>
 
   <?php } ?>
   <?php } else { ?>
-  <tr class="text-center"><td colspan="4">Henüz Haber resimleri mevcut değil</td></tr>
+
+  <div class="form-group">
+    <label class="col-sm-1 control-label">Resim</label>
+    <div class="col-sm-11">
+      <p class="text-center">Henüz Haber resimleri mevcut değil</p>
+    </div>
+  </div>
   <?php } ?>
 </div>
 

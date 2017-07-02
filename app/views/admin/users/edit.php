@@ -17,9 +17,7 @@
     <div class="col-sm-11">
       <div class="thumbnail">
         <img src="<?= $user->image; ?>" class='img-rounded' data-toggle='modal'data-target='#image' style="min-height:100px; height:100px;" />
-        <div class="caption">
-          <input type="file" id="image" name="image" class="form-control" />
-        </div>
+        <input type="file" id="image" name="image" class="form-control" />
       </div>
     </div>
   </div>

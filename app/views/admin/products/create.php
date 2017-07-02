@@ -7,7 +7,7 @@
       <select class="form-control" id="category_id" name="category_id">
         <option value="">Kategori Seçiniz</option>
         <?php foreach ($categories as $category) { ?>
-        <option value="<?= $category->id; ?>"><?= $category->name; ?></option>
+        <option value="<?= $category->id; ?>"><?= $category->name ?></option>
         <?php } ?>
       </select>
     </div>
@@ -26,9 +26,21 @@
     </div>
   </div>
   <div class="form-group">
+    <label class="col-sm-1 control-label" for="name_en">Ad [en]</label>
+    <div class="col-sm-11">
+      <input type="text" placeholder="Ad [en]" class="form-control" name="name_en" id="name_en" />
+    </div>
+  </div>
+  <div class="form-group">
     <label class="col-sm-1 control-label" for="content">İçerik</label>
     <div class="col-sm-11">
       <textarea class="form-control" rows="10" name="content" id="content"></textarea>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-1 control-label" for="content_en">İçerik [en]</label>
+    <div class="col-sm-11">
+      <textarea class="form-control" rows="10" name="content_en" id="content_en"></textarea>
     </div>
   </div>
   <div class="form-group">
@@ -57,35 +69,46 @@
 </form>
 
 <script type="text/javascript">
-$(document).ready(function(){
-  $("#producttype_id_box").hide();
-  $("#producttype_id").hide();
+  $(document).ready(function(){
+    $("#producttype_id_box").hide();
+    $("#producttype_id").hide();
 
-  $("#category_id").change(function() {
-    $("#producttype_id_box").show();
-    $("#producttype_id").show();
-    var category_id = $("#category_id").val();
-    $.ajax({
-      type : "post",
-      url : "/ajax/producttype",
-      data : "category_id="+category_id,
-      success : function(data) {
-        $("#producttype_id").html(data);
-        $('select#producttype_id').find('option:first').attr('selected', 'selected').trigger('change');
-      }
+    $("#category_id").change(function() {
+      $("#producttype_id_box").show();
+      $("#producttype_id").show();
+      var category_id = $("#category_id").val();
+      $.ajax({
+        type : "post",
+        url : "/ajax/producttype",
+        data : "category_id="+category_id,
+        success : function(data) {
+          $("#producttype_id").html(data);
+          $('select#producttype_id').find('option:first').attr('selected', 'selected').trigger('change');
+        }
+      });
     });
-  });
 
-});
+  });
 </script>
 <script type="text/javascript">
-$(document).ready(function() {
-  $('#content').summernote({
-    height: 200,
-    minHeight: null,
-    maxHeight: null,
-    focus: true,
-    lang: 'tr-TR'
+  $(document).ready(function() {
+    $('#content').summernote({
+      height: 200,
+      minHeight: null,
+      maxHeight: null,
+      focus: true,
+      lang: 'tr-TR'
+    });
   });
-});
+</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#content_en').summernote({
+      height: 200,
+      minHeight: null,
+      maxHeight: null,
+      focus: true,
+      lang: 'tr-TR'
+    });
+  });
 </script>

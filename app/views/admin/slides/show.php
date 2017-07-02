@@ -17,7 +17,7 @@
     <label class="col-sm-1 control-label" for="image">Resim</label>
     <div class="col-sm-11">
       <div class="thumbnail">
-        <img src="<?= $slide->image; ?> " width="100" height="100" />
+        <img src="<?= $slide->image; ?>" width="100" height="100" />
       </div>
     </div>
   </div>
@@ -25,7 +25,7 @@
     <label class="col-sm-1 control-label" for="bg_image">Arka Plan</label>
     <div class="col-sm-11">
       <div class="thumbnail">
-        <img src="<?= $slide->bg_image; ?> " width="100" height="100" />
+        <img src="<?= $slide->bg_image; ?>" width="100" height="100" />
       </div>
     </div>
   </div>

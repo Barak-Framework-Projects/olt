@@ -28,9 +28,7 @@
     <div class="col-sm-11">
       <div class="thumbnail">
         <img src="<?= $page->image; ?>" width="100" height="100" />
-        <div class="caption">
-          <input type="file" id="image" name="image" class="form-control" />
-        </div>
+        <input type="file" id="image" name="image" class="form-control" />
       </div>
     </div>
   </div>

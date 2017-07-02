@@ -90,10 +90,10 @@
 
     <div class="col-md-2 col-sm-2 col-xs-4" id="side-menu">
       <div class="well well-sm">
-        <?php render(["partial" => "admin/site_menu"]); ?>
-        <?php render(["partial" => "admin/product_menu"]); ?>
-        <?php render(["partial" => "admin/user_menu"]); ?>
-        <?php render(["partial" => "admin/system_menu"]); ?>
+        <?php render(["partial" => "admin/menu_site"]); ?>
+        <?php render(["partial" => "admin/menu_product"]); ?>
+        <?php render(["partial" => "admin/menu_user"]); ?>
+        <?php render(["partial" => "admin/menu_system"]); ?>
       </div>
     </div>
 

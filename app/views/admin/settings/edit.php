@@ -10,9 +10,7 @@
         <?php if (preg_match("/image/", $setting->name)) { ?>
         <div class="thumbnail">
           <img src="<?= $setting->value; ?>" width="100" height="100" />
-          <div class="caption">
-            <input type="file" id="<?= $setting->name; ?>" name="<?= $setting->name; ?>" class="form-control" />
-          </div>
+          <input type="file" id="<?= $setting->name; ?>" name="<?= $setting->name; ?>" class="form-control" />
         </div>
         <?php } elseif (preg_match("/address/", $setting->name) or $setting->name == "site_about") { ?>
         <textarea class="form-control" rows="5" name="<?= $setting->name; ?>" id="<?= $setting->name; ?>"><?= $setting->value; ?></textarea>

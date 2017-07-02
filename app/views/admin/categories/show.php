@@ -8,9 +8,21 @@
     </div>
   </div>
   <div class="form-group">
+    <label class="col-sm-1 control-label" for="name_en">Ad [en]</label>
+    <div class="col-sm-11">
+      <input type="text" value="<?= $category->name_en; ?>" class="form-control" name="name_en" id="name_en" disabled />
+    </div>
+  </div>
+  <div class="form-group">
     <label class="col-sm-1 control-label" for="content">İçerik</label>
     <div class="col-sm-11">
       <textarea class="form-control" rows="10" name="content" id="content" disabled><?= $category->content; ?></textarea>
+    </div>
+  </div>
+  <div class="form-group">
+  <label class="col-sm-1 control-label" for="content_en">İçerik [en]</label>
+    <div class="col-sm-11">
+      <textarea class="form-control" rows="10" name="content_en" id="content_en" disabled><?= $category->content_en; ?></textarea>
     </div>
   </div>
   <div class="form-group">
@@ -35,15 +47,28 @@
 </form>
 
 <script type="text/javascript">
-$(document).ready(function() {
-  $('#content').prop('disabled', true);
-  $('#content').summernote({
-    toolbar: [],
-    height: 200,
-    minHeight: null,
-    maxHeight: null,
-    focus: true,
-    lang: 'tr-TR'
+  $(document).ready(function() {
+    $('#content').prop('disabled', true);
+    $('#content').summernote({
+      toolbar: [],
+      height: 200,
+      minHeight: null,
+      maxHeight: null,
+      focus: true,
+      lang: 'tr-TR'
+    });
   });
-});
+</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#content_en').prop('disabled', true);
+    $('#content_en').summernote({
+      toolbar: [],
+      height: 200,
+      minHeight: null,
+      maxHeight: null,
+      focus: true,
+      lang: 'tr-TR'
+    });
+  });
 </script>

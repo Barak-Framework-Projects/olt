@@ -91,20 +91,20 @@
   </div>
 
   <div class="panel list-group">
-    <a class="list-group-item" data-toggle="collapse" data-target="#galleries" data-parent="#site-menu">
-      <span class="hidden-sm hidden-xs"><i class="fa fa-film"></i> Galeriler </span>
+    <a class="list-group-item" data-toggle="collapse" data-target="#albums" data-parent="#site-menu">
+      <span class="hidden-sm hidden-xs"><i class="fa fa-film"></i> Albümler </span>
       <i class="fa fa-film fa-2x visible-sm visible-xs text-center"></i>
     </a>
 
-    <ul class="nav nav-pills nav-stacked collapse" role="ablist" id="galleries">
+    <ul class="nav nav-pills nav-stacked collapse" role="ablist" id="albums">
       <li role="presentation">
-        <a href="/admin/galleries">
+        <a href="/admin/albums">
           <span class="hidden-sm hidden-xs"><i class="glyphicon glyphicon-chevron-right"></i> Listele</span>
           <i class="fa fa-list fa-1x visible-sm visible-xs" title="Listele"></i>
         </a>
       </li>
       <li role="presentation">
-        <a href="/admin/galleries/create">
+        <a href="/admin/albums/create">
           <span class="hidden-sm hidden-xs"><i class="glyphicon glyphicon-chevron-right"></i> Ekle</span>
           <i class="fa fa-plus fa-1x visible-sm visible-xs"></i>
         </a>

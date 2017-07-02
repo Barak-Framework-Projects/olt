@@ -8,9 +8,21 @@
     </div>
   </div>
   <div class="form-group">
+    <label class="col-sm-1 control-label" for="name_en">Ad [en]</label>
+    <div class="col-sm-11">
+      <input type="text" placeholder="Ad" class="form-control" name="name_en" id="name_en" />
+    </div>
+  </div>
+  <div class="form-group">
     <label class="col-sm-1 control-label" for="content">İçerik</label>
     <div class="col-sm-11">
       <textarea class="form-control" rows="10" name="content" id="content"></textarea>
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-1 control-label" for="content_en">İçerik [en]</label>
+    <div class="col-sm-11">
+      <textarea class="form-control" rows="10" name="content_en" id="content_en"></textarea>
     </div>
   </div>
   <div class="form-group">
@@ -29,6 +41,17 @@
 <script type="text/javascript">
 $(document).ready(function() {
   $('#content').summernote({
+    height: 200,
+    minHeight: null,
+    maxHeight: null,
+    focus: true,
+    lang: 'tr-TR'
+  });
+});
+</script>
+<script type="text/javascript">
+$(document).ready(function() {
+  $('#content_en').summernote({
     height: 200,
     minHeight: null,
     maxHeight: null,

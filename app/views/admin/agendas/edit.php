@@ -35,19 +35,18 @@
   </div>
 
   <div class="form-group">
-    <label class="col-sm-1 control-label" for="agenda_date">Resim</label>
+    <label class="col-sm-1 control-label" for="image">Resim</label>
     <div class="col-sm-11">
       <div class="thumbnail">
         <img src="<?= $agendaimage->image; ?>" class="img-responsive" data-toggle="modal" data-target="#MODAL<?= $agendaimage->id; ?>" style="max-height:100px"/>
-        <div class="caption">
-          <input type="file" id="<?= $agendaimage->id ?>" name="<?= $agendaimage->id ?>" class="form-control">
-        </div>
+        <input type="file" id="<?= $agendaimage->id ?>" name="<?= $agendaimage->id ?>" class="form-control">
       </div>
     </div>
   </div>
 
   <?php } ?>
   <?php } else { ?>
+
   <div class="form-group">
     <label class="col-sm-1 control-label">Resim</label>
     <div class="col-sm-11">

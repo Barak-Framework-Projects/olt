@@ -16,7 +16,13 @@
   <div class="form-group">
     <label class="col-sm-1 control-label" for="name">Ad</label>
     <div class="col-sm-11">
-      <input type="text" value="<?= $product->name; ?>" class="form-control" name="name" id="name" disabled/>
+      <input type="text" value="<?= $product->name; ?>" class="form-control" name="name" id="name" disabled />
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="col-sm-1 control-label" for="name_en">Ad [en]</label>
+    <div class="col-sm-11">
+      <input type="text" value="<?= $product->name_en; ?>" class="form-control" name="name_en" id="name_en" disabled />
     </div>
   </div>
   <div class="form-group">
@@ -26,9 +32,15 @@
     </div>
   </div>
   <div class="form-group">
+  <label class="col-sm-1 control-label" for="content_en">İçerik [en]</label>
+    <div class="col-sm-11">
+    <textarea class="form-control" rows="10" name="content_en" id="content_en" disabled><?= $product->content_en; ?></textarea>
+    </div>
+  </div>
+  <div class="form-group">
     <label class="col-sm-1 control-label" for="price">Fiyat</label>
     <div class="col-sm-11">
-      <input type="text" value="<?= $product->price; ?>" class="form-control" name="price" id="price" disabled/>
+      <input type="text" value="<?= $product->price; ?>" class="form-control" name="price" id="price" disabled />
     </div>
   </div>
   <div class="form-group">
@@ -43,8 +55,8 @@
     <label class="col-sm-1 control-label" for="file">Dosya</label>
     <div class="col-sm-11">
       <div class="thumbnail">
-        <embed src="<?= $product->file; ?>" style="width:100%;height:150px"></embed>
-        <div class="caption" style="text-align:center;">
+        <embed src="<?= $product->file; ?>" style="width:100%; height:150px"></embed>
+        <div style="text-align:center;">
           <a class="fa fa-download fa-3x" download href="<?= $product->file; ?>"></a>
         </div>
       </div>
@@ -64,15 +76,28 @@
 </form>
 
 <script type="text/javascript">
-$(document).ready(function() {
-  $('#content').prop('disabled', true);
-  $('#content').summernote({
-    toolbar: [],
-    height: 200,
-    minHeight: null,
-    maxHeight: null,
-    focus: true,
-    lang: 'tr-TR'
+  $(document).ready(function() {
+    $('#content').prop('disabled', true);
+    $('#content').summernote({
+      toolbar: [],
+      height: 200,
+      minHeight: null,
+      maxHeight: null,
+      focus: true,
+      lang: 'tr-TR'
+    });
   });
-});
+</script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#content_en').prop('disabled', true);
+    $('#content_en').summernote({
+      toolbar: [],
+      height: 200,
+      minHeight: null,
+      maxHeight: null,
+      focus: true,
+      lang: 'tr-TR'
+    });
+  });
 </script>
