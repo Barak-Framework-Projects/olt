@@ -2,17 +2,6 @@
 
 return [
 
-"login" => [
-  "title" => "Sisteme Giriş",
-  "username" => "Kullanıcı Adı",
-  "password" => "Şifre",
-  "password_confirmation" => "Şifreyi Onayla",
-  "password_reset" => "Şifremi Unuttum",
-  "password_change" => "Şifreyi Değiştir",
-  "button" => "Giriş Yap",
-],
-
-
 "home" => [
 
   "link" => "Anasayfa",
