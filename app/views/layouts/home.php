@@ -4,7 +4,11 @@
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title><?= Setting::unique(["name" => "site_title"])->value; ?></title>
+  <title>
+  <?= Setting::unique(["name" => "site_title_keyword"])->value; ?> |
+  <?= Setting::unique(["name" => "site_title_short"])->value; ?> -
+  <?= Setting::unique(["name" => "site_title"])->value; ?>
+  </title>
   <meta name="description" content="<?= Setting::unique(['name' => 'site_description'])->value; ?>" />
   <meta name="keywords" content="<?= Setting::unique(['name' => 'site_keywords'])->value; ?>" />
   <link href="" rel="alternate" title="" type="application/atom+xml" />
@@ -107,7 +111,7 @@
   $(document).ready(function() {
     Pace.on("done", function() {
 
-      $("#contents").fadeToggle(1000);
+      $("#contents").show();
 
       /* Jquery Datatables Language start */
       /* source: https://datatables.net/examples/basic_init/language.html */

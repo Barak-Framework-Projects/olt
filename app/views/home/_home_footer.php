@@ -22,7 +22,7 @@
     <div class="row animated zoomIn">
       <div class="col-md-4">
 
-        <h3 class="lead"><?= Setting::unique(["name" => "site_short_title"])->value; ?></h3>
+        <h3 class="lead"><?= Setting::unique(["name" => "site_title_short"])->value; ?></h3>
         <p>
           Aksi belirtilmedikçe <a href="<?= Setting::unique(['name' => 'site_url'])->value; ?>" target="_blank"><?= Setting::unique(["name" => "site_url"])->value; ?></a><br/>
           tarafından tüm içerik hakları saklıdır.

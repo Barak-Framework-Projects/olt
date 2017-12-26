@@ -76,7 +76,7 @@
       <div class="text-center">
         <img src="<?= Setting::unique(['name' => 'image_emblem'])->value; ?>" style="width: 80px; height: 80px;"/>
         <h2>
-          <?= Setting::unique(["name" => "site_short_title"])->value; ?> İLE TEKNOLOJİ ÇÖZÜMLERİ <b id="js-rotating">HIZLI, SÜREKLİ, PRATİK, KARARLI</b><br/>
+          <?= Setting::unique(["name" => "site_title_short"])->value; ?> İLE TEKNOLOJİ ÇÖZÜMLERİ <b id="js-rotating">HIZLI, SÜREKLİ, PRATİK, KARARLI</b><br/>
         </h2>
         <h4>
           ve her gün daha iyisi olmak için çalışıyoruz!<br/><br/>

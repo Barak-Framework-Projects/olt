@@ -9,9 +9,8 @@ class AgendasController extends AdminController {
   // public function create() {}
 
   public function save() {
-    $agenda = Agenda::draft($_POST);
-    $agenda->created_at = date("Y-m-d H:i:s");
-    $agenda->save();
+    $_POST["created_at"] = date("Y-m-d H:i:s");
+    $agenda = Agenda::create($_POST);
 
     // yeni resim varsa ekle
     $images = (isset($_FILES["images"])) ? $_FILES["images"] : $files = null;
@@ -19,6 +18,7 @@ class AgendasController extends AdminController {
     if (!is_null($images)) {
       $imagenames = $images["name"];
       $tmpnames = $images["tmp_name"];
+      $sizes = $images["size"];
 
       for ($i = 0; $i < count($imagenames); $i++) {
 
@@ -62,10 +62,8 @@ class AgendasController extends AdminController {
   }
 
   public function update() {
-    $agenda = Agenda::find($_POST["id"]);
-    foreach ($_POST as $key => $value) $agenda->$key = $value;
-    $agenda->updated_at = date("Y-m-d H:i:s");
-    $agenda->save();
+    $_POST["updated_at"] = date("Y-m-d H:i:s");
+    $agenda = Agenda::update($_POST["id"], $_POST);
 
     $agendaimages = $agenda->all_of_agendaimage;
 
